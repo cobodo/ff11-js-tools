@@ -1,0 +1,3873 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+<title>まくろ</title>
+<style type="text/css">
+div.macro {
+	width: 48em;
+	clear: left;
+}
+
+ul.pulldown-menu-header {
+	background-color: #ffffdd;
+	text-align: center;
+}
+
+ul.pulldown-menu-header li:hover {
+	background-color: #ffffdd !important;
+}
+
+ul.ctrl {
+	background-color: white;
+}
+
+ul.alt {
+	background-color: #eeeeff;
+}
+
+ul.pulldown-menu {
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	float: left;
+}
+
+ul.pulldown-menu li {
+	float: left;
+	position: relative;
+	margin: 0px 0px;
+	padding: 0px;
+	list-style-type: none;
+	display: block;
+	border: black solid 1px;
+	width: 4em;
+	overflow: hidden;
+}
+
+ul.pulldown-menu li:hover {
+	background-color: #ffeeee;
+	overflow: visible;
+}
+
+ul.pulldown-menu li ul {
+	margin: 0px;
+	padding: 0px;
+	display: none;
+	position: absolute;
+}
+
+ul.pulldown-menu li:hover ul {
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	left: -5px;
+	top: 1em;
+	z-index: 100;
+	display: block;
+	background-color: white;
+}
+
+ul.pulldown-menu li ul li {
+	margin: 0px;
+	padding: 8px 4px 4px 4px;
+	float: none;
+	width: 22em;
+	border: black solid 1px;
+}
+
+</style>
+</head>
+<body>
+<h1>マクロ晒し</h1>
+<p>ツッコミ歓迎 → <a href="http://d.hatena.ne.jp/galka6b/">日記</a> or <a href="http://twitter.com/cobodo">twitter</a></p>
+<h2>目次</h2>
+<ul>&nbsp;
+	<li><a href="#mnk">モンク</a></li>
+	<li><a href="#whm">白魔道士</a></li>
+	<li><a href="#change_log">更新履歴</a></li>
+</ul>
+<h2 id="book1"><a id="mnk">モンク</a></h2>
+<div class="macro">サポ踊1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Find
+        <ul>&nbsp;
+            <li>/p \&lt;t&gt;だー！／ &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>TP
+        <ul>&nbsp;
+            <li>/p ■ 拳 の 輝 き &lt;tp&gt; &lt;call16&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>StDfl
+        <ul>&nbsp;
+            <li>/ja クイックステップ &lt;t&gt;</li>
+            <li>/ja D.フラリッシュ &lt;stnpc&gt;</li>
+            <li>/wait 15</li>
+            <li>/echo ◇ふらーりっし！</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Aflouris
+        <ul>&nbsp;
+            <li>/ja A.フラリッシュ &lt;stnpc&gt;</li>
+            <li>/p ■ &lt;lastst&gt;を挑発気味 [TP&lt;tp&gt;]</li>
+            <li>/wait 15</li>
+            <li>/p ■ 挑発可能まであと15秒 [TP&lt;tp&gt;]</li>
+            <li>/wait 15</li>
+            <li>/p ■ 挑発可能 [TP&lt;tp&gt;]</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/equip 両手 パラースの腕輪</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 2</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/equip 右耳 コーラルイヤリング</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 腰 ウォーウルフベルト</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+    <li>kaihi
+        <ul>&nbsp;
+            <li>/equip 両足 テンプルゲートル</li>
+            <li>/ja 回避 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>tameru
+        <ul>&nbsp;
+            <li>/equip 両手 テンプルグローブ</li>
+            <li>/ja ためる &lt;me&gt;</li>
+            <li>/wait 14</li>
+            <li>/recast ためる</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>2Carel
+        <ul>&nbsp;
+            <li>/ja ケアルワルツII &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 両手 メレーグローブ</li>
+            <li>/equip 頭 フェラルマスク</li>
+            <li>/ja チャクラ &lt;me&gt;</li>
+            <li>//p チャクラ（毒暗闇病気回復・リジェネ10HP/3sec*24秒）</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>//as &lt;t&gt;</li>
+            <li>//as </li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/recast チャクラ</li>
+            <li>/recast ケアルワルツ</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Spectrul
+        <ul>&nbsp;
+            <li>/ja スペクトラルジグ &lt;me&gt;</li>
+            <li>/recast ジグモード</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>KikouDan
+        <ul>&nbsp;
+            <li>/grin motion &lt;stnpc&gt;</li>
+            <li>/ja 気孔弾 &lt;lastst&gt;</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Attack
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 左耳 ディアボロスピアス</li>
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>//equip 矢弾 チフィアスティング</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+    <li>Gard
+        <ul>&nbsp;
+            <li>/equip 胴 羅刹作務衣改</li>
+            <li>/equip 両手 段蔵の手甲</li>
+            <li>/equip 右手の指 ウィヴルリング</li>
+            <li>/equip 右耳 プラチナピアス</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+    <li>Kamaeru
+        <ul>&nbsp;
+            <li>/equip 両足 メレーゲートル</li>
+            <li>/ja かまえる &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Samba
+        <ul>&nbsp;
+            <li>/ja ドレインサンバ &lt;me&gt;</li>
+            <li>//ja アスピルサンバ &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Shuchu
+        <ul>&nbsp;
+            <li>/equip 頭 テンプルクラウン</li>
+            <li>/ja 集中 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 頭 フェラルマスク</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 ダイアの冑</li>
+        </ul>
+    </li>
+    <li>DivineWa
+        <ul>&nbsp;
+            <li>/ja ディバインワルツ &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>HealWalt
+        <ul>&nbsp;
+            <li>/ja ヒーリングワルツ &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ踊2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Ascetics
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws アスケーテンツォルン &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 3</li>
+        </ul>
+    </li>
+    <li>SouRyu
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 双竜脚 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 3</li>
+        </ul>
+    </li>
+    <li>KuMei
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 空鳴拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 3</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 首 剣侠の首鎖</li>
+            <li>/ws 夢想阿修羅拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/macro set 3</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>//equip 胴 阿羅漢作務衣</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 ダイアの冑</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/assist &lt;t&gt;</li>
+            <li>//ta &lt;bt&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Hyaku
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 腰 怪腕のベルト</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>equip
+        <ul>&nbsp;
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 背 アメミットマント+1</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>//equip メインウェポン デストロイヤー</li>
+        </ul>
+    </li>
+    <li>Attack2
+        <ul>&nbsp;
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 左手の指 ラジャスリング</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+    <li>Gard2
+        <ul>&nbsp;
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 左手の指 ケンプファーリング</li>
+            <li>/equip 左耳 アベンジャーピアス</li>
+            <li>/equip 頭 オプチカルハット</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 1</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ踊3
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>attack
+        <ul>&nbsp;
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>/equip 矢弾 チフィアスティング</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 1</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ戦1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Find
+        <ul>&nbsp;
+            <li>/p \&lt;t&gt;だー！／ &lt;call14&gt;</li>
+            <li>/ta &lt;stnpc&gt;</li>
+            <li>/a on</li>
+            <li>/l ◆□◆ &lt;lastst&gt; をなぐりたおせ！ ◆□◆ &lt;call1&gt;</li>
+            <li>/wait 1</li>
+            <li>/p ◆□◆ &lt;lastst&gt; をなぐりたおせ！ ◆□◆</li>
+        </ul>
+    </li>
+    <li>TP
+        <ul>&nbsp;
+            <li>/p ■TP&lt;tp&gt;！ &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>HighPot
+        <ul>&nbsp;
+            <li>/item ハイポーション &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chohatsu
+        <ul>&nbsp;
+            <li>/ja 挑発 &lt;stnpc&gt;</li>
+            <li>/p ■ &lt;lastst&gt;を挑発！[TP&lt;tp&gt;]</li>
+            <li>//wait 15</li>
+            <li>//p ■ 挑発可能まであと15秒[TP&lt;tp&gt;]</li>
+            <li>//wait 15</li>
+            <li>//p ■ 挑発可能[TP&lt;tp&gt;]</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/equip 両手 パラースの腕輪</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 5</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/equip 右耳 コーラルイヤリング</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 腰 ウォーウルフベルト</li>
+            <li>/macro set 5</li>
+        </ul>
+    </li>
+    <li>kaihi
+        <ul>&nbsp;
+            <li>/equip 両足 テンプルゲートル</li>
+            <li>/ja 回避 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>tameru
+        <ul>&nbsp;
+            <li>/equip 両手 テンプルグローブ</li>
+            <li>/ja ためる &lt;me&gt;</li>
+            <li>/wait 14</li>
+            <li>/recast ためる</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>WarCry
+        <ul>&nbsp;
+            <li>/ja ウォークライ &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 両手 メレーグローブ</li>
+            <li>/equip 頭 フェラルマスク</li>
+            <li>/ja チャクラ &lt;me&gt;</li>
+            <li>//p チャクラ（毒暗闇病気回復・リジェネ10HP/3sec*24秒）</li>
+            <li>/macro set 5</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>//as </li>
+            <li>//as </li>
+            <li>/as </li>
+            <li>/recast 集中</li>
+            <li>/recast バーサク</li>
+            <li>/recast ウォークライ</li>
+        </ul>
+    </li>
+    <li>Tackle
+        <ul>&nbsp;
+            <li>/ws タックル &lt;t&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>KikouDan
+        <ul>&nbsp;
+            <li>/ja 気孔弾 &lt;stnpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Attack
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 左耳 エーシルイヤリング</li>
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>//equip 矢弾 チフィアスティング</li>
+            <li>/macro set 5</li>
+        </ul>
+    </li>
+    <li>Gard
+        <ul>&nbsp;
+            <li>/equip 胴 羅刹作務衣改</li>
+            <li>/equip 両手 段蔵の手甲</li>
+            <li>/equip 右手の指 ファランクスリング</li>
+            <li>//equip 右耳 プラチナピアス</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/macro set 5</li>
+        </ul>
+    </li>
+    <li>Munen
+        <ul>&nbsp;
+            <li>/ja 無想無念 &lt;me&gt;</li>
+            <li>/recast 無想無念</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Barsark
+        <ul>&nbsp;
+            <li>/ja バーサク &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Shuchu
+        <ul>&nbsp;
+            <li>/equip 頭 テンプルクラウン</li>
+            <li>/ja 集中 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 頭 オプチカルハット</li>
+            <li>//equip 頭 レイヴンベレー</li>
+            <li>/equip 頭 ワラーラターバン</li>
+        </ul>
+    </li>
+    <li>Difender
+        <ul>&nbsp;
+            <li>/ja ディフェンダー &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Tackle
+        <ul>&nbsp;
+            <li>/ws タックル &lt;t&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ戦2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Ascetics
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws アスケーテンツォルン &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 6</li>
+        </ul>
+    </li>
+    <li>SouRyu
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 双竜脚 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 6</li>
+        </ul>
+    </li>
+    <li>KuMei
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 空鳴拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 6</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 首 剣侠の首鎖</li>
+            <li>/ws 夢想阿修羅拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/macro set 6</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>//equip 胴 阿羅漢作務衣</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 コブラキャップ</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>//as </li>
+            <li>/as </li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/recast 集中</li>
+            <li>/recast バーサク</li>
+            <li>/recast ウォークライ</li>
+        </ul>
+    </li>
+    <li>Hyaku
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>//equip 胴 阿羅漢作務衣</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 腰 怪腕のベルト</li>
+            <li>y頭 フェラルマスク</li>
+        </ul>
+    </li>
+    <li>equip
+        <ul>&nbsp;
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 背 アメミットマント+1</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/equip メインウェポン デストロイヤー</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 左手の指 ウッズマンリング</li>
+        </ul>
+    </li>
+    <li>Attack2
+        <ul>&nbsp;
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 左手の指 ラジャスリング</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+    <li>Gard2
+        <ul>&nbsp;
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 左手の指 ファランクスリング</li>
+            <li>//equip 左耳 疾速のピアス</li>
+            <li>/equip 頭 フェラルマスク</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 4</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ戦3
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>attack
+        <ul>&nbsp;
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>/equip 矢弾 チフィアスティング</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/macro set 4</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 4</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ忍1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Find
+        <ul>&nbsp;
+            <li>/p \&lt;t&gt;だー！／ &lt;call14&gt;</li>
+            <li>/ta &lt;stnpc&gt;</li>
+            <li>/a on</li>
+            <li>/l ◆□◆ &lt;lastst&gt; をなぐりたおせ！ ◆□◆</li>
+            <li>/wait 1</li>
+            <li>/p ◆□◆ &lt;lastst&gt; をなぐりたおせ！ ◆□◆ &lt;call1&gt;</li>
+        </ul>
+    </li>
+    <li>TP
+        <ul>&nbsp;
+            <li>/p ■ 拳 の 輝 き &lt;tp&gt; &lt;call16&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Sem1
+        <ul>&nbsp;
+            <li>/recast 空蝉の術:弐</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/ma 空蝉の術:壱 &lt;me&gt; &lt;st&gt;</li>
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>/wait 5</li>
+            <li>/equip 両足 准範士脛巾</li>
+        </ul>
+    </li>
+    <li>Sem2
+        <ul>&nbsp;
+            <li>/recast 空蝉の術:弐</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/ma 空蝉の術:弐 &lt;me&gt; &lt;st&gt;</li>
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>/wait 2</li>
+            <li>/equip 両足 准範士脛巾</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/equip 両手 パラースの腕輪</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 8</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/equip 右耳 エーシルイヤリング</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 腰 ウォーウルフベルト</li>
+            <li>/macro set 8</li>
+        </ul>
+    </li>
+    <li>kaihi
+        <ul>&nbsp;
+            <li>/equip 両足 テンプルゲートル</li>
+            <li>/ja 回避 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>tameru
+        <ul>&nbsp;
+            <li>/equip 両手 テンプルグローブ</li>
+            <li>/ja ためる &lt;me&gt;</li>
+            <li>/wait 14</li>
+            <li>/recast ためる</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>HighPort
+        <ul>&nbsp;
+            <li>/item ハイポーション &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 ＴＰシクラス+1</li>
+            <li>/equip 両手 メレーグローブ</li>
+            <li>/equip 頭 フェラルマスク</li>
+            <li>/ja チャクラ &lt;me&gt;</li>
+            <li>//p チャクラ（毒暗闇病気回復リジェネ10HP/3sec*24秒）</li>
+            <li>/macro set 8</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>//as </li>
+            <li>/as </li>
+            <li>//as </li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/recast チャクラ</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Item
+        <ul>&nbsp;
+            <li>//equip メインウェポン 竹刀</li>
+            <li>//item メイズタビュラM01 &lt;t&gt;</li>
+            <li>//item やまびこ薬 &lt;me&gt;</li>
+            <li>/item 毒消し &lt;me&gt;</li>
+            <li>//item つるはし &lt;t&gt;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>KikouDan
+        <ul>&nbsp;
+            <li>/ja 気孔弾 &lt;stnpc&gt;</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>//equip 両手 落人の篭手</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Attack
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 左耳 ディアボロスピアス</li>
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 矢弾 チフィアスティング</li>
+            <li>/macro set 8</li>
+        </ul>
+    </li>
+    <li>Gard
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 両足 羅刹脛当改</li>
+            <li>/equip 右手の指 ウィヴルリング</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>/macro set 8</li>
+        </ul>
+    </li>
+    <li>Kamaeru
+        <ul>&nbsp;
+            <li>/equip 両足 メレーゲートル</li>
+            <li>/ja かまえる &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Munen
+        <ul>&nbsp;
+            <li>/ja 無想無念 &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Shuchu
+        <ul>&nbsp;
+            <li>/equip 頭 テンプルクラウン</li>
+            <li>/ja 集中 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 頭 コブラキャップ</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 ダイアの冑</li>
+        </ul>
+    </li>
+    <li>Monomi
+        <ul>&nbsp;
+            <li>/ma 物見の術:壱 &lt;me&gt;</li>
+            <li>/recast 物見の術:壱</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Tonko
+        <ul>&nbsp;
+            <li>/ma 遁甲の術:弐 &lt;me&gt;</li>
+            <li>/recast 遁甲の術:弐</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ忍2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Ascetics
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws アスケーテンツォルン &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 9</li>
+        </ul>
+    </li>
+    <li>SouRyu
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 双竜脚 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 9</li>
+        </ul>
+    </li>
+    <li>KuMei
+        <ul>&nbsp;
+            <li>/equip 右手の指 ルビーリング</li>
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/ws 空鳴拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/macro set 9</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 首 剣侠の首鎖</li>
+            <li>/ws 夢想阿修羅拳 &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/macro set 9</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>chakura
+        <ul>&nbsp;
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>//equip 胴 阿羅漢作務衣</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 ダイアの冑</li>
+            <li>/macro set 7</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as </li>
+            <li>//as </li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/recast チャクラ</li>
+            <li>/recast 空蝉の術:弐</li>
+            <li>/recast 空蝉の術:壱</li>
+        </ul>
+    </li>
+    <li>Hyaku
+        <ul>&nbsp;
+            <li>/equip 頭 ダイアの冑</li>
+            <li>/equip 両手 落人の篭手</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 左耳 エーシルイヤリング</li>
+            <li>/equip 腰 怪腕のベルト</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>equip
+        <ul>&nbsp;
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 背 アメミットマント+1</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/equip メインウェポン デストロイヤー</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Attack2
+        <ul>&nbsp;
+            <li>/equip 両脚 メレーホーズ</li>
+            <li>/equip 左手の指 ラジャスリング</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/macro set 7</li>
+        </ul>
+    </li>
+    <li>Gard2
+        <ul>&nbsp;
+            <li>/equip 左手の指 ケンプファーリング</li>
+            <li>/equip 両脚 テンプルホーズ</li>
+            <li>/equip 左耳 アベンジャーピアス</li>
+            <li>/equip 胴 羅刹作務衣改</li>
+            <li>/equip 両手 段蔵の手甲</li>
+            <li>/macro set 7</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 7</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ忍3
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>attack
+        <ul>&nbsp;
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 胴 マルクワルドコル</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 矢弾 チフィアスティング</li>
+            <li>/macro set 7</li>
+        </ul>
+    </li>
+    <li>Muso
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>/equip 腰 茶帯</li>
+            <li>/equip 両手 教経の篭手</li>
+            <li>/macro set 7</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/macro set 7</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">気孔弾
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Find
+        <ul>&nbsp;
+            <li>/p ■&lt;pos&gt;にて&lt;t&gt;見つけました！&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>RecastSm
+        <ul>&nbsp;
+            <li>/recast 空蝉の術:壱</li>
+            <li>/recast 空蝉の術:弐</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Sem1
+        <ul>&nbsp;
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>/ma 空蝉の術:壱 &lt;me&gt;</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/recast 空蝉の術:弐</li>
+            <li>/wait 4</li>
+            <li>/equip 両足 コブラピガッシュ</li>
+        </ul>
+    </li>
+    <li>Sem2
+        <ul>&nbsp;
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>/ma 空蝉の術:弐 &lt;me&gt;</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/recast 空蝉の術:弐</li>
+            <li>/wait 2</li>
+            <li>/equip 両足 コブラピガッシュ</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>kaihi
+        <ul>&nbsp;
+            <li>/equip 両足 テンプルゲートル</li>
+            <li>/ja 回避 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 両足 コブラピガッシュ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>tameru
+        <ul>&nbsp;
+            <li>//p ちからをためて こうげきりょく２ばい &lt;call14&gt;</li>
+            <li>/equip 両手 テンプルグローブ</li>
+            <li>/ja ためる &lt;me&gt;</li>
+            <li>/wait 14</li>
+            <li>/recast ためる</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>EQ1
+        <ul>&nbsp;
+            <li>/equip メインウェポン 麒麟棍</li>
+            <li>/equip サブウェポン ブガードストラップ</li>
+            <li>/equip 頭 テンプルクラウン</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/equip 胴 ジュストコール</li>
+            <li>/equip 右手の指 アクアマリンリング</li>
+        </ul>
+    </li>
+    <li>EQ2
+        <ul>&nbsp;
+            <li>/equip 左手の指 アクアマリンリング</li>
+            <li>/equip 腰 アルザビサッシュ</li>
+            <li>/equip 両脚 ベンダースロップス</li>
+            <li>/equip 両足 コブラピガッシュ</li>
+            <li>/equip 背 メレーケープ</li>
+            <li>/equip 両手 デボティーミトン</li>
+        </ul>
+    </li>
+    <li>KikouDan
+        <ul>&nbsp;
+            <li>/equip 両手 デボティーミトン</li>
+            <li>/ja 気孔弾 &lt;t&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Gard
+        <ul>&nbsp;
+            <li>/equip 胴 羅刹作務衣改</li>
+            <li>/equip 両手 羅刹手甲</li>
+            <li>/equip 右手の指 ウィヴルリング</li>
+            <li>//equip 右耳 プラチナピアス</li>
+            <li>/equip 矢弾 ビビキーの潮騒</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Gard2
+        <ul>&nbsp;
+            <li>/equip 両脚 テンプルホーズ</li>
+            <li>/equip 左手の指 ウィヴルリング</li>
+            <li>/equip 左耳 疾速のピアス</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 両足 風魔の脚絆</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Kamaeru
+        <ul>&nbsp;
+            <li>/equip 両足 メレーゲートル</li>
+            <li>/ja かまえる &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 両足 准範士脛巾</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Shuchu
+        <ul>&nbsp;
+            <li>/equip 頭 テンプルクラウン</li>
+            <li>/ja 集中 &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>//equip 頭 コブラキャップ</li>
+            <li>//equip 頭 ワラーラターバン</li>
+            <li>//equip 頭 オプチカルハット</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<p style="clear: left;"> </p>
+<h2 id="book3"><a id="whm">白魔道士</a></h2>
+<div class="macro">サポ学1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Find
+        <ul>&nbsp;
+            <li>■ &lt;pos&gt;にて&lt;t&gt;見つけました！&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Debuff
+        <ul>&nbsp;
+            <li>/equip 首 約束バッジ</li>
+            <li>/equip 胴 ヒーラーブリオー</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/equip 両手 クレリクミトン</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+    <li>Repose
+        <ul>&nbsp;
+            <li>/recast リポーズ</li>
+            <li>/ma リポーズ &lt;stnpc&gt;</li>
+            <li>/p ♪♪♪ねーむれーよー&lt;lastst&gt;よ&lt;call1&gt;♪♪♪</li>
+            <li>/equip メインウェポン ライトスタッフ</li>
+            <li>/equip 両脚 ヒーラーパンタロン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Cost
+        <ul>&nbsp;
+            <li>/ja 簡素清貧の章 &lt;me&gt;</li>
+            <li>//ja 勤倹小心の章 &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Flash
+        <ul>&nbsp;
+            <li>/ma フラッシュ &lt;t&gt;</li>
+            <li>/recast フラッシュ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Speed
+        <ul>&nbsp;
+            <li>/ja 電光石火の章 &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>cure4
+        <ul>&nbsp;
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルIV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>cure5
+        <ul>&nbsp;
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>Misery
+        <ul>&nbsp;
+            <li>/ja ハートオブミゼリ &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>GS
+        <ul>&nbsp;
+            <li>/ja ハートオブソラス &lt;me&gt;</li>
+            <li>/ja 白のグリモア &lt;me&gt; &lt;st&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt; </li>
+            <li>/recast 簡素清貧の章</li>
+            <li>/recast 机上演習</li>
+            <li>/recast リポーズ</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Sublimat
+        <ul>&nbsp;
+            <li>/ja 机上演習 &lt;me&gt;</li>
+            <li>/recast 机上演習</li>
+            <li>//targetnpc</li>
+            <li>//item 草刈鎌 &lt;t&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Equip
+        <ul>&nbsp;
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/equip 背 闊大の外套</li>
+            <li>/equip メインウェポン ライトスタッフ</li>
+        </ul>
+    </li>
+    <li>healoff
+        <ul>&nbsp;
+            <li>/equip メインウェポン ライトスタッフ</li>
+            <li>/equip 胴 クレリクブリオー</li>
+            <li>/equip 首 コロッサストルク</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>healon
+        <ul>&nbsp;
+            <li>/equip メインウェポン ダークスタッフ</li>
+            <li>/equip 首 誇大の首鎖</li>
+            <li>//equip 胴 エラントウプランド</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/ma ストンスキン &lt;me&gt;</li>
+            <li>/equip メインウェポン 麒麟棍</li>
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/equip 胴 エラントウプランド</li>
+            <li>/macro set 2</li>
+        </ul>
+    </li>
+    <li>Aspir
+        <ul>&nbsp;
+            <li>/grin motion &lt;stnpc&gt;</li>
+            <li>/equip メインウェポン ダークスタッフ</li>
+            <li>/ma アスピル &lt;lastst&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Protare
+        <ul>&nbsp;
+            <li>/p ■ プロテア集まってください。&lt;call3&gt;</li>
+            <li>/ja 簡素清貧の章 &lt;me&gt; &lt;stpc&gt;</li>
+            <li>/wait 1</li>
+            <li>/ma シェルラV &lt;me&gt;</li>
+            <li>/ma プロテアIV &lt;me&gt; &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Ba1
+        <ul>&nbsp;
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/wait 1</li>
+            <li>/ma バストンラ &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Ba2
+        <ul>&nbsp;
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/wait 1</li>
+            <li>/ma バブレクラ &lt;me&gt;</li>
+            <li>/wait 6</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ学2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 胴 クレリクブリオー</li>
+            <li>/equip 首 コロッサストルク</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/macro set 1</li>
+        </ul>
+    </li>
+    <li>Paralyze
+        <ul>&nbsp;
+            <li>/ma パライズ &lt;t&gt;</li>
+            <li>/p パライズ →→→ &lt;t&gt;</li>
+            <li>/equip メインウェポン アイススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Slow
+        <ul>&nbsp;
+            <li>/ma スロウ &lt;t&gt;</li>
+            <li>/p スロウ →→→ &lt;t&gt;</li>
+            <li>/equip MAIN アーススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dia2
+        <ul>&nbsp;
+            <li>/ma ディアII &lt;t&gt;</li>
+            <li>/p ディアII →→→ &lt;t&gt;</li>
+            <li>/equip MAIN ライトスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Silence
+        <ul>&nbsp;
+            <li>/ma サイレス &lt;t&gt;</li>
+            <li>/p サイレス →→→ &lt;t&gt;</li>
+            <li>/equip メインウェポン ウィンドスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dispell
+        <ul>&nbsp;
+            <li>/ja 黒のグリモア &lt;me&gt;</li>
+            <li>/wait 1</li>
+            <li>/ja 黒の補遺 &lt;me&gt;</li>
+            <li>/ma ディスペル &lt;stnpc&gt;</li>
+            <li>/p ディスペル →→→ &lt;t&gt;</li>
+            <li>/equip メインウェポン ダークスタッフ</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>GS
+        <ul>&nbsp;
+            <li>/ja 白のグリモア &lt;me&gt;</li>
+            <li>/ja ハートオブソラス &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/recast 簡素清貧の章</li>
+            <li>/recast ヘイスト</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/equip メインウェポン ライトスタッフ</li>
+            <li>/equip 胴 クレリクブリオー</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/macro set 1</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ忍1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Debuff
+        <ul>&nbsp;
+            <li>/equip 背 グラマリーケープ</li>
+            <li>/equip 胴 ヒーラーブリオー</li>
+            <li>/equip 両手 クレリクミトン</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+    <li>Repose
+        <ul>&nbsp;
+            <li>/recast リポーズ</li>
+            <li>/ma リポーズ &lt;stnpc&gt;</li>
+            <li>/p ♪♪♪ねーむれーよー&lt;lastst&gt;よ&lt;call1&gt;♪♪♪</li>
+            <li>//equip メインウェポン ライトスタッフ</li>
+            <li>/equip 両脚 ヒーラーパンタロン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Sem1
+        <ul>&nbsp;
+            <li>/recast 空蝉の術:弐</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/ma 空蝉の術:壱 &lt;me&gt; &lt;st&gt;</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>//wait 5</li>
+            <li>//equip 両足 准範士脛巾</li>
+        </ul>
+    </li>
+    <li>Sem2
+        <ul>&nbsp;
+            <li>/recast 空蝉の術:弐</li>
+            <li>/recast 空蝉の術:壱</li>
+            <li>/ma 空蝉の術:弐 &lt;me&gt; &lt;st&gt;</li>
+            <li>//equip 両足 風魔の脚絆</li>
+            <li>/wait 2</li>
+            <li>//equip 両足 准範士脛巾</li>
+        </ul>
+    </li>
+    <li>Flash
+        <ul>&nbsp;
+            <li>/recast フラッシュ</li>
+            <li>/ma フラッシュ &lt;stnpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>cure3
+        <ul>&nbsp;
+            <li>/grin motion &lt;stpc&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルIII &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>cure4
+        <ul>&nbsp;
+            <li>/grin motion &lt;stpc&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルIV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>cure5
+        <ul>&nbsp;
+            <li>/grin motion &lt;stpc&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>Misery
+        <ul>&nbsp;
+            <li>/ja ハートオブミゼリ &lt;me&gt;</li>
+            <li>//equip 胴 ホーリーブレスト</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Solace
+        <ul>&nbsp;
+            <li>/ja ハートオブソラス &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/p &lt;lastst&gt; &lt;pos&gt;</li>
+            <li>/recast ヘイスト</li>
+            <li>/recast エスナ</li>
+        </ul>
+    </li>
+    <li>Eq1
+        <ul>&nbsp;
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>//equip 胴 タビンジュポン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Eq2
+        <ul>&nbsp;
+            <li>/equip 背 闊大の外套</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 胴 クレリクブリオー</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 腰 怪腕のベルト</li>
+        </ul>
+    </li>
+    <li>Boon
+        <ul>&nbsp;
+            <li>/equip 左耳 エーシルイヤリング</li>
+            <li>/ws ミスティックブーン &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 左耳 ディアボロスピアス</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>MND
+        <ul>&nbsp;
+            <li>/equip 腰 クレリクベルト</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/equip 右手の指 サファイアリング</li>
+            <li>/equip 胴 ブレスドブリオー</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 背 レインボーケープ</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/ma ストンスキン &lt;me&gt;</li>
+            <li>/equip 腰 クレリクベルト</li>
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/macro set 4</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 頭 オプチカルハット</li>
+            <li>/equip 右耳 エーシルイヤリング</li>
+            <li>/equip 両脚 ベンダースロップス</li>
+            <li>/ws ヘキサストライク &lt;t&gt;</li>
+            <li>/macro set 4</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Protare
+        <ul>&nbsp;
+            <li>/p ■ プロテア集まってください。&lt;call3&gt;</li>
+            <li>/ma シェルラV &lt;me&gt; &lt;st&gt;</li>
+            <li>/ma プロテアIV &lt;me&gt; &lt;st&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>vale
+        <ul>&nbsp;
+            <li>/ma アクアベール &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>healon
+        <ul>&nbsp;
+            <li>//equip メインウェポン ダークスタッフ</li>
+            <li>/equip 首 誇大の首鎖</li>
+            <li>//equip 胴 エラントウプランド</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ忍2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 背 闊大の外套</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/macro set 3</li>
+        </ul>
+    </li>
+    <li>Parise
+        <ul>&nbsp;
+            <li>/ma パライズ &lt;t&gt;</li>
+            <li>//p パライズ →→→ &lt;t&gt;</li>
+            <li>//equip メインウェポン アイススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Slow
+        <ul>&nbsp;
+            <li>/ma スロウ &lt;t&gt;</li>
+            <li>//p スロウ →→→ &lt;t&gt;</li>
+            <li>//equip MAIN アーススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dier2
+        <ul>&nbsp;
+            <li>/ma ディアII &lt;t&gt;</li>
+            <li>//p ディアII →→→ &lt;t&gt;</li>
+            <li>//equip MAIN ライトスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Silense
+        <ul>&nbsp;
+            <li>/ma サイレス &lt;t&gt;</li>
+            <li>//p サイレス →→→ &lt;t&gt;</li>
+            <li>//equip メインウェポン ウィンドスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/p &lt;lastst&gt; &lt;pos&gt;</li>
+            <li>/recast ヘイスト</li>
+            <li>/recast エスナ</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 腰 怪腕のベルト</li>
+            <li>/macro set 3</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/macro set 3</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ赤1
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Debuff
+        <ul>&nbsp;
+            <li>/equip 背 グラマリーケープ</li>
+            <li>/equip 胴 ヒーラーブリオー</li>
+            <li>/equip 両手 クレリクミトン</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/macro set 6</li>
+        </ul>
+    </li>
+    <li>Repose
+        <ul>&nbsp;
+            <li>/recast リポーズ</li>
+            <li>/ma リポーズ &lt;stnpc&gt;</li>
+            <li>/p ♪♪♪ねーむれーよー&lt;lastst&gt;よ&lt;call1&gt;♪♪♪</li>
+            <li>//equip メインウェポン ライトスタッフ</li>
+            <li>/equip 両脚 ヒーラーパンタロン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Sleeple
+        <ul>&nbsp;
+            <li>/recast スリプル</li>
+            <li>/ma スリプル &lt;stnpc&gt;</li>
+            <li>/p ♪♪♪ねーむれーよー&lt;lastst&gt;よ&lt;call1&gt;♪♪♪</li>
+            <li>//equip メインウェポン ダークスタッフ</li>
+            <li>/equip 両脚 ヒーラーパンタロン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Phalanx
+        <ul>&nbsp;
+            <li>/ma ファランクス &lt;me&gt;</li>
+            <li>/recast ファランクス</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Flashl
+        <ul>&nbsp;
+            <li>/recast フラッシュ</li>
+            <li>/ma フラッシュ &lt;stnpc&gt;pc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dispell
+        <ul>&nbsp;
+            <li>/recast ディスペルstpc&gt;</li>
+            <li>/ma ディスペル &lt;stnpc&gt;~トン</li>
+            <li>y胴 ノーブルチュニック</li>
+            <li>y両足 ケアルクロッグ</li>
+            <li>y両脚 クレリクパンタロン</li>
+            <li>ma ケアルIII &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>cure4
+        <ul>&nbsp;
+            <li>/grin motion &lt;stpc&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルIV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>cure5
+        <ul>&nbsp;
+            <li>/grin motion &lt;stpc&gt;</li>
+            <li>/equip 両手 ヒーラーミトン</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両足 ケアルクロッグ</li>
+            <li>/equip 両脚 クレリクパンタロン</li>
+            <li>/ma ケアルV &lt;lastst&gt;</li>
+        </ul>
+    </li>
+    <li>Misery
+        <ul>&nbsp;
+            <li>/ja ハートオブミゼリ &lt;me&gt;</li>
+            <li>//equip 胴 ホーリーブレスト</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Solace
+        <ul>&nbsp;
+            <li>/ja ハートオブソラス &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/sit /as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/p &lt;lastst&gt; &lt;pos&gt;</li>
+            <li>/recast ヘイスト</li>
+            <li>/recast エスナ</li>
+        </ul>
+    </li>
+    <li>Eq1
+        <ul>&nbsp;
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>//equip 胴 タビンジュポン</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Eq2
+        <ul>&nbsp;
+            <li>/equip 背 闊大の外套</li>
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右手の指 ウルタラムリング</li>
+            <li>/equip 胴 クレリクブリオー</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 腰 怪腕のベルト</li>
+        </ul>
+    </li>
+    <li>Boon
+        <ul>&nbsp;
+            <li>/equip 左耳 エーシルイヤリング</li>
+            <li>/ws ミスティックブーン &lt;t&gt;</li>
+            <li>/wait 1</li>
+            <li>/equip 左耳 ディアボロスピアス</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>MND
+        <ul>&nbsp;
+            <li>/equip 腰 クレリクベルト</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/equip 右手の指 サファイアリング</li>
+            <li>/equip 胴 ブレスドブリオー</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 背 レインボーケープ</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/ma ストンスキン &lt;me&gt;</li>
+            <li>/equip 腰 クレリクベルト</li>
+            <li>/equip 両足 クレリクダックビル</li>
+            <li>/equip 頭 ヒーラーキャップ</li>
+            <li>/equip 首 約束バッジ</li>
+            <li>/macro set 6</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 頭 オプチカルハット</li>
+            <li>/equip 右耳 エーシルイヤリング</li>
+            <li>/equip 両脚 ベンダースロップス</li>
+            <li>/ws ヘキサストライク &lt;t&gt;</li>
+            <li>/macro set 6</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Protare
+        <ul>&nbsp;
+            <li>/p ■ プロテア集まってください。&lt;call3&gt;</li>
+            <li>/ma シェルラV &lt;me&gt; &lt;st&gt;</li>
+            <li>/ma プロテアIV &lt;me&gt; &lt;st&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>vale
+        <ul>&nbsp;
+            <li>/ma アクアベール &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>healon
+        <ul>&nbsp;
+            <li>//equip メインウェポン ダークスタッフ</li>
+            <li>/equip 首 誇大の首鎖</li>
+            <li>//equip 胴 エラントウプランド</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">サポ赤2
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Return
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 背 闊大の外套</li>
+            <li>/equip 胴 ノーブルチュニック</li>
+            <li>/equip 両手 ブレスドミトン</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/macro set 5</li>
+        </ul>
+    </li>
+    <li>Parise
+        <ul>&nbsp;
+            <li>/ma パライズ &lt;t&gt;</li>
+            <li>//p パライズ →→→ &lt;t&gt;</li>
+            <li>//equip メインウェポン アイススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Slow
+        <ul>&nbsp;
+            <li>/ma スロウ &lt;t&gt;</li>
+            <li>//p スロウ →→→ &lt;t&gt;</li>
+            <li>//equip MAIN アーススタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dier2
+        <ul>&nbsp;
+            <li>/ma ディアII &lt;t&gt;</li>
+            <li>//p ディアII →→→ &lt;t&gt;</li>
+            <li>//equip MAIN ライトスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Silense
+        <ul>&nbsp;
+            <li>/ma サイレス &lt;t&gt;</li>
+            <li>//p サイレス →→→ &lt;t&gt;</li>
+            <li>//equip メインウェポン ウィンドスタッフ</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Target
+        <ul>&nbsp;
+            <li>/as &lt;t&gt;</li>
+            <li>/ta &lt;bt&gt;</li>
+            <li>/grin motion &lt;st&gt;</li>
+            <li>/p &lt;lastst&gt; &lt;pos&gt;</li>
+            <li>/recast ヘイスト</li>
+            <li>/recast エスナ</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Skin
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 両足 ブレスドパンプス</li>
+            <li>/equip 首 クジャクの護符</li>
+            <li>/equip 腰 怪腕のベルト</li>
+            <li>/macro set 5</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>WS
+        <ul>&nbsp;
+            <li>/equip 頭 ワラーラターバン</li>
+            <li>/equip 右耳 ブルタルピアス</li>
+            <li>/equip 両脚 ブレスドズボン</li>
+            <li>/macro set 5</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<div class="macro">テレポ屋
+<ul class="pulldown-menu pulldown-menu-header">
+    <li>&nbsp;</li>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>0</li>
+</ul>
+<ul class="pulldown-menu ctrl">
+    <li style="background-color: white;">Ctrl(L2)</li>
+    <li>Hola
+        <ul>&nbsp;
+            <li>/ma テレポホラ &lt;me&gt;</li>
+            <li>/p ラテーヌ高原方面テレポホラまもなく発車でーす &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Dem
+        <ul>&nbsp;
+            <li>/ma テレポデム &lt;me&gt;</li>
+            <li>/p コンシュタット高地方面テレポデムまもなく発車です&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Mea
+        <ul>&nbsp;
+            <li>/ma テレポメア &lt;me&gt;</li>
+            <li>/p タロンギ大峡谷方面テレポメアまもなく発車でーす &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Altep
+        <ul>&nbsp;
+            <li>/ma テレポルテ &lt;me&gt;</li>
+            <li>/p 東アルテパ砂漠方面テレポルテまもなく発車でーす &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Yhoto
+        <ul>&nbsp;
+            <li>/ma テレポヨト &lt;me&gt;</li>
+            <li>/p ヨアトル大森林方面テレポヨトまもなく発車でーす &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Vahzl
+        <ul>&nbsp;
+            <li>/ma テレポヴァズ &lt;me&gt;</li>
+            <li>/p ザルカバード方面テレポヴァズまもなく発車でーす &lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Jagner
+        <ul>&nbsp;
+            <li>/ma リコールジャグ &lt;me&gt;</li>
+            <li>/p リコールジャグToジャグナー森林〔Ｓ〕発車します&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Pashu
+        <ul>&nbsp;
+            <li>/ma リコールパシュ &lt;me&gt;</li>
+            <li>/p リコールパシュToパシュハウ沼〔Ｓ〕発車します&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Merifa
+        <ul>&nbsp;
+            <li>/ma リコールメリファ &lt;me&gt;</li>
+            <li>/p リコールメリファToメリファト山地〔Ｓ〕発車します&lt;call14&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Warp
+        <ul>&nbsp;
+            <li>/ma デジョン &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+<ul class="pulldown-menu alt">
+    <li style="background-color: white;">Alt(R2)</li>
+    <li>Sneak
+        <ul>&nbsp;
+            <li>/ma スニーク &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Invisi
+        <ul>&nbsp;
+            <li>/ma インビジ &lt;stpc&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>fish
+        <ul>&nbsp;
+            <li>/equip 矢弾 ゴカイ</li>
+            <li>/fish</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>
+        <ul>&nbsp;
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Escape
+        <ul>&nbsp;
+            <li>/ma エスケプ &lt;me&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+    <li>Search
+        <ul>&nbsp;
+            <li>/sea all &lt;t&gt;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
+        </ul>
+    </li>
+</ul>
+</div>
+<p style="clear: left;"> </p>
+
+<h2 id="change_log">更新履歴</h2>
+<ul>&nbsp;
+	<li>2010/05/21 モンク等、いろいろ追加＆更新</li>
+	<li>2009/09/30 若干更新</li>
+	<li>2009/09/05 公開(白/学)</li>
+</ul>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-309457-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

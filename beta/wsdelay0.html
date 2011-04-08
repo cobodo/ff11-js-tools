@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>WSターン数シミュレータ</title>
+    <style>
+        input[type="text"] {
+            width: 5em;
+        }
+        article {
+            display: block;
+            padding: 1em 2em;
+        }
+    </style>
+    <!--[if IE]>
+    <script type="text/javascript">
+        document.createElement('article');
+    </script>
+    <![endif]-->
+</head>
+<body>
+    <article>
+        <h2>WSターン数シミュレータ</h2>
+        <p><a href="http://d.hatena.ne.jp/galka6b/">つくったひと</a> <a href="index.html">もどる</a></p>
+        <p>
+        試行回数：<input type="text" id="N" value="2000">
+        通常命中率：<input type="text" id="acc" value="95">%
+        通常時sTP：<input type="text" id="stp" value="20"><br>
+        二刀流・格闘：<input type="checkbox" id="dual" checked>
+        猫足立ち：<input type="checkbox" id="footwork">
+        隔：<input type="text" id="delay" value="348">
+        二刀流係数：<input type="text" id="dual_k" value="1.0">
+        ヘイスト：<input type="text" id="haste" value="603">/1024<br>
+        WS命中率：<input type="text" id="wsacc" value="95">%
+        WS攻撃回数（二刀流等の追加含む）：<input type="text" id="wstime" value="8">
+        WS時sTP：<input type="text" id="wsstp" value="19"><br>
+        DA率：<input type="text" id="da" value="5">%
+        TA率：<input type="text" id="ta" value="0">%
+        蹴撃率：<input type="text" id="kick" value="17.5">%<br>
+        ヴァルチャ追加攻撃発生率（メイン）：<input type="text" id="vulture1" value="0">%
+        ヴァルチャ追加攻撃発生率（サブ）：<input type="text" id="vulture2" value="0">%
+        時々2回攻撃発生率（片手のみ）：<input type="text" id="occ" value="0">%<br>
+        <input type="submit" value="実行" id="exec">
+        </p>
+        <p>結果csv</p>
+        <textarea id="csv"></textarea>
+        <p>結果</p>
+        <p>
+        <span id="result"></span>
+        <ul id="lines"></ul>
+        </p>
+    </article>
+    <script>
+        var _d;
+        function $ (id) { return _d.getElementById(id); }
+        function getint (p, id, v) {
+            p[id] = parseInt($(id).value);
+            if (!p[id]) p[id] = v;
+        }
+        function getfloat (p, id, v, percent) {
+            p[id] = parseFloat($(id).value);
+            if (!p[id]) p[id] = v;
+            if (percent) p[id] /= 100.0;
+        }
+
+        function floor2 (x, d) {
+            if (d == undefined) return Math.floor(x);
+            var f = Math.pow(10,d);
+            return Math.floor(x*f)/f;
+        }
+
+        function _calc_tp (delay, basetp, basedelay, k) {
+            return Math.floor(basetp + (delay - basedelay) * k);
+        }
+
+        function calc_tp (delay) {
+            var ret;
+            if (delay <= 180)      ret = _calc_tp(delay,  50, 180, 15 / 180);
+            else if (delay <= 450) ret = _calc_tp(delay,  50, 180, 65 / 270);
+            else if (delay <= 480) ret = _calc_tp(delay, 115, 450, 15 /  30);
+            else if (delay <= 530) ret = _calc_tp(delay, 130, 480, 15 /  50);
+            else if (delay <= 999) ret = _calc_tp(delay, 145, 530, 35 / 470);
+            return ret;
+        }
+
+        function exec () {
+            var start = (new Date()).getTime();
+
+            // 設定
+            var p = {};
+            //試行回数
+            getint(p,'N',10);
+            //通常命中率
+            getfloat(p,'acc',95,true);
+            //格闘・二刀流
+            p.dual = $('dual').checked;
+            //二刀流係数（格闘：1.0）
+            getfloat(p,'dual_k',1.0);
+            //猫足立ち
+            p.footwork = $('footwork').checked;
+            if (p.footwork) {
+                p.dual = true;
+                $('dual').checked = true;
+            }
+            //通常時sTP
+            getfloat(p,'stp',0,true);
+            //隔
+            getint(p,'delay',999);
+            p.delay *= p.dual_k;
+            if (p.footwork) {
+                p.delay = 480;
+                $('delay').value = 480;
+            }
+            //ヘイスト
+            getint(p,'haste',0);
+            //通常得TP
+            p.tp = calc_tp((p.dual && !p.footwork)? p.delay/2 : p.delay);
+            p.gtp = Math.floor(p.tp * (1+p.stp));
+            //ヘイスト込み間隔
+            p.total_delay = p.delay * (1024 - p.haste) / 1024;
+            //WS命中率
+            getfloat(p,'wsacc',95,true);
+            //WS攻撃回数
+            getint(p,'wstime',1);
+            //WS時sTP
+            getfloat(p,'wsstp',0,true);
+            p.wsgtp1 = Math.floor(p.tp * (1+p.wsstp));
+            p.wsgtp2 = Math.floor(10 * (1+p.wsstp));
+            //DA
+            getfloat(p,'da',0,true);
+            //TA
+            getfloat(p,'ta',0,true);
+            //蹴撃
+            getfloat(p,'kick',0,true);
+            //ヴァルチャ
+            getfloat(p,'vulture1',0,true);
+            getfloat(p,'vulture2',0,true);
+            //時々2回攻撃
+            getfloat(p,'occ',0,true);
+
+            // 計算用変数
+            var sum = 0.0;
+            var maxturn = 0;
+            var minturn = 100;
+            var aveturn = 0.0;
+            var avewshit = 0.0;
+            var stop99 = 0;
+            var line = "";
+            var lines = $('lines');
+            var csv = "";
+            var cur_tp = 0;
+            var wshit = 0;
+            var cur_wstime = p.wstime;
+            var wstp;
+            var j = 0;
+            var lasttp = 0.0;
+            for (var i=1; i<=p.N; i++) {
+                cur_tp = 0;
+                wshit = 0;
+                // WS初撃
+                if (Math.random() <= p.wsacc) { cur_tp += p.wsgtp1; wshit++; }
+                // WS追撃（二刀流・格闘）
+                if ((p.dual || p.footwork) && Math.random() <= p.acc) { cur_tp += p.wsgtp1; wshit++; }
+                // WS2発目（二刀流・格闘は3発目）以降（通常命中率）
+                for (var k=((p.dual || p.footwork) ? 2 : 1); k<p.wstime; k++) {
+                    if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                }
+                cur_wstime = p.wstime;
+                // DA
+                if (cur_wstime < 8) {
+                    if (p.da != 0.0 && Math.random() <= p.da) {
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        cur_wstime++;
+                    }
+                }
+                // TA
+                if (cur_wstime < 7) {
+                    if (p.ta != 0.0 && Math.random() <= p.ta) {
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        cur_wstime += 2;
+                    }
+                }
+                //2段目DA（格闘・二刀流のみかもしれないが未検証）
+                if (p.wstime >= 2 && cur_wstime < 8) { // && (p.dual || p.footwork)) {
+                    if (p.da != 0.0 && Math.random() <= p.da) {
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        cur_wstime++;
+                    }
+                }
+                //同TA
+                if (p.wstime >= 2 && cur_wstime < 7) { // && (p.dual || p.footwork)) {
+                    if (p.ta != 0.0 && Math.random() <= p.ta) {
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        if (Math.random() <= p.acc) { cur_tp += p.wsgtp2; wshit++; }
+                        cur_wstime += 2;
+                    }
+                }
+
+                wstp = Math.floor(cur_tp);
+                j = 0;
+                lasttp = 0.0;
+                for (j=0; cur_tp < 1000; j++) {
+                    lasttp = cur_tp;
+                    // 初撃
+                    if (Math.random() <= p.acc) cur_tp += p.gtp;
+                    // 猫足蹴撃
+                    if (p.footwork) {
+                        var doublekick = false;
+                        if (p.da != 0.0 && Math.random() <= p.da) {
+                            doublekick = true;
+                        } else {
+                            for (var k=0; k<p.occ_n_main-1; k++) {
+                                if (p.occ != 0.0 && Math.random() <= p.occ) {
+                                    doublekick = true;
+                                }
+                            }
+                        }
+                        if (p.da != 0.0 && Math.random() <= p.da) {
+                            doublekick = true;
+                        }
+                        if (p.kick != 0.0 && Math.random() <= p.kick) {
+                            doublekick = true;
+                        }
+                        if (doublekick) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        }
+                        continue;
+                    }
+                    // DA/TA
+                    if (p.da != 0.0 && Math.random() <= p.da) {
+                        if (Math.random() <= p.acc) cur_tp += p.gtp;
+                    } else if (p.ta != 0.0 && Math.random() <= p.ta) {
+                        if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        if (Math.random() <= p.acc) cur_tp += p.gtp;
+                    } else { // 時々2回攻撃
+                        if (p.occ != 0.0 && Math.random() <= p.occ ) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        }
+                    }
+                    // ヴァルチャ
+                    if (p.vulture1 != 0.0 && Math.random() <= p.vulture1) {
+                        if (Math.random() <= p.acc) cur_tp += p.gtp;
+                    }
+                    // 二刀流・格闘
+                    if (p.dual) {
+                        if (Math.random() <= p.acc) {
+                            cur_tp += p.gtp;
+                        }
+                        // DA/TA
+                        if (p.da != 0.0 && Math.random() <= p.da) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        } else if (p.ta != 0.0 && Math.random() <= p.ta) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        }
+                        // ヴァルチャ
+                        if (p.vulture2 != 0.0 && Math.random() <= p.vulture2) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        }
+                        // 蹴撃
+                        if (p.kick != 0.0 && Math.random() <= p.kick) {
+                            if (Math.random() <= p.acc) cur_tp += p.gtp;
+                        }
+                    }
+                }
+                sum += j;
+                line = i + "回目：";
+                line += "WSで" + wshit + "hit（TP" + (wstp/10) + "%）し、";
+                line += (j-1) + "ターンでTP" + (lasttp/10) + "%に、";
+                line += j + "ターンでTP" + (cur_tp/10) + "%になりました。";
+                line += "平均" + floor2(sum/i, 2) + "ターンです。";
+                var li = _d.createElement('li');
+                li.innerHTML = line;
+                lines.insertBefore(li, lines.firstChild);
+                csv += i + "," + wshit + "," + wstp + "," + (lasttp / 10) + "," + j + "," + (cur_tp / 10) + "\n";
+                if (maxturn < j) maxturn = j;
+                if (minturn > j) minturn = j;
+                if (lasttp > 990) stop99++;
+                aveturn += 1.0*j/p.N;
+                avewshit += 1.0*wshit/p.N;
+            }
+
+            line = "通常得TP" + (p.gtp / 10) + "%、";
+            line += "1ターン間隔" + Math.floor(p.total_delay) + "（" + floor2(p.total_delay / 60, 1) + "秒）<br>";
+            line += "WS平均ヒット数" + floor2(avewshit, 2);
+            line += "、最大ターン数" + maxturn;
+            line += "、最小ターン数" + minturn;
+            line += "、平均ターン数" + floor2(aveturn, 2);
+            line += "、99%止まりは" + stop99 + "回(" + floor2(stop99/p.N*100) + "%)でした。<br>";
+            line += "平均WS間隔は" + floor2(aveturn*p.total_delay/60+2, 1) + "秒、平均WS速度は" + floor2(1/(aveturn*p.total_delay/60+2)*60, 4) + "回/分です。<br>";
+            $('result').innerHTML = line;
+            csv = "回数,WSヒット数,WS得TP,100直前TP,ターン数,最終TP\n" + csv;
+            $('csv').value = csv;
+            //alert((new Date()).getTime() - start);
+        }
+
+        function init () {
+            _d = document;
+            $('exec').onclick = exec;
+        }
+        window.onload = init;
+    </script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-309457-6']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
