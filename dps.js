@@ -311,12 +311,11 @@ function calc_dps_f (st, d, delay) {
     var ka = st['kick_add_p'];
     var occ_np = 1.0;
     for (var i=0; i<st['occ_n']-1; i++) {
-        occ_np *= (1-st['occ_p']);
+        occ_np *= 1-st['occ_p'];
     }
     return d.map(function (d) {
         //var add_p = 1 - (1-ta) * (1-da) * occ_np * (1-kp); // 乗算式
-        var add_p = ta + da + kp + occ_np; // 加算式
-        add_p = Math.min(0.95, add_p); // 追加攻撃発生キャップは95%？（推測
+        var add_p = Math.min(ta + da + kp + (1-occ_np), 0.95); // 加算式
         return d * (1 + add_p * (1 + ka)) * 60.0 / delay;
     });
 }

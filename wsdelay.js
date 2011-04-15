@@ -89,7 +89,9 @@ var setting = {
         new InputField('zanshin', 'float', 0, true), // 残心発動率
         new InputField('zanshin_acc', 'float', 95, true), // 残心時命中率
         new InputField('qa', 'float', 0, true), // 通常時クワッドアタック
-        new InputField('wsqa', 'float', 0, true) // WS時クワッドアタック
+        new InputField('wsqa', 'float', 0, true), // WS時クワッドアタック
+
+        new InputField('kick_add', 'float', 0, true) // 追加蹴撃率
     ],
     'postproc': function (p) {
         // 猫足立ち
@@ -254,39 +256,29 @@ function autoattack (p, s) {
     s.total_tp = s.cur_tp;
     while (s.total_tp < p.target_tp) {
         s.lasttp = s.total_tp;
+
         // 初撃
         s.hitcount1(p.acc);
+
         // 猫足蹴撃
         if (p.footwork) {
-            var doublekick = false;
-            // DA/TA/QA（優先度はQA>TA>DA）
-            if (p.qa != 0.0 && Math.random() <= p.qa) {
-                doublekick = true;
-            }
-            else if (p.ta != 0.0 && Math.random() <= p.ta) {
-                doublekick = true;
-            }
-            else if (p.da != 0.0 && Math.random() <= p.da) {
-                doublekick = true;
-            }
             // 時々2-n回攻撃
-            else {
-                for (var k=1; k<p.occ_n_main; k++) {
-                    if (p.occ1 != 0.0 && Math.random() <= p.occ1) {
-                        doublekick = true;
-                    }
-                }
+            var occ_np = 1.0;
+            for (var k=1; k<p.occ_n_main; k++) {
+                occ_np *= 1-p.occ1;
             }
-            if (p.kick != 0.0 && Math.random() <= p.kick) {
-                doublekick = true;
-            }
-            if (doublekick) {
+            var add_p = Math.min(p.qa + p.ta + p.da + p.kick + 1-occ_np, 0.95);
+            if (add_p != 0.0 && Math.random() <= add_p) {
                 s.hitcount(p.acc);
+                if (p.kick_add != 0.0 && Math.random() <= p.kick_add) {
+                    s.hitcount(p.acc);
+                }
             }
             j++;
             s.total_tp = s.cur_tp + p.regain * Math.floor((2.0 + j * p.total_delay_s) / 3.0);
             continue;
         }
+
         // DA/TA/QA（優先度はQA>TA>DA）
         if (p.qa != 0.0 && Math.random() <= p.qa) {
             s.hitcount(p.acc);
@@ -311,6 +303,7 @@ function autoattack (p, s) {
         if (p.vulture_main != 0.0 && Math.random() <= p.vulture_main) {
             s.hitcount(p.acc);
         }
+
         // 二刀流・格闘
         if (p.dual || p.h2h) {
             s.hitcount(p.acc);
@@ -341,8 +334,12 @@ function autoattack (p, s) {
             // 蹴撃
             if (p.h2h && p.kick != 0.0 && Math.random() <= p.kick) {
                 s.hitcount(p.acc);
+                if (p.kick_add != 0.0 && Math.random() <= p.kick_add) {
+                    s.hitcount(p.acc);
+                }
             }
         }
+
         j++;
         s.total_tp = s.cur_tp + p.regain * Math.floor((2.0 + j * p.total_delay_s) / 3.0);
     }
