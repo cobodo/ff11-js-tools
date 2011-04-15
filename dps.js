@@ -299,7 +299,7 @@ function calc_dps_h (st, d, delay) {
 // D/間隔（蹴撃）
 function calc_dps_k (st, d, delay) {
     return d.map(function (d) {
-        return d * st['kick_p_eq'] * 60.0 / delay;
+        return d * st['kick_p_eq'] * (1+st['kick_add_p']) * 60.0 / delay;
     });
 }
 
@@ -308,12 +308,16 @@ function calc_dps_f (st, d, delay) {
     var da = st['double_attack'];
     var ta = st['triple_attack'];
     var kp = st['kick_p_eq'];
+    var ka = st['kick_add_p'];
     var occ_np = 1.0;
     for (var i=0; i<st['occ_n']-1; i++) {
         occ_np *= (1-st['occ_p']);
     }
     return d.map(function (d) {
-        return d * (2 - (1-ta) * (1-da) * occ_np * (1-kp)) * 60.0 / delay;
+        //var add_p = 1 - (1-ta) * (1-da) * occ_np * (1-kp); // 乗算式
+        var add_p = ta + da + kp + occ_np; // 加算式
+        add_p = Math.min(0.95, add_p); // 追加攻撃発生キャップは95%？（推測
+        return d * (1 + add_p * (1 + ka)) * 60.0 / delay;
     });
 }
 
@@ -439,6 +443,9 @@ function get_inputs (mystatus) {
     // 蹴撃+
     mystatus['kick_plus'] = parseInt(getv('t_kick_plus')) * 0.01;
     if (mystatus['kick_plus'].toString() == "NaN") mystatus['kick_plus'] = 0;
+    // 追加蹴撃確率
+    mystatus['kick_add_p'] = parseInt(getv('t_kick_add_p')) * 0.01;
+    if (mystatus['kick_add_p'].toString() == "NaN") mystatus['kick_add_p'] = 0;
     // 蹴撃攻撃力アップ
     mystatus['kick_d_plus'] = parseInt(getv('t_kick_d_plus'));
     if (mystatus['kick_d_plus'].toString() == "NaN") mystatus['kick_d_plus'] = 0;
@@ -573,7 +580,7 @@ function set_status (mystatus) {
     if (mystatus['footwork']) tp_base = mystatus['delay'];
     mystatus['tp'] = parseFloat(floor2(calc_tp(tp_base) * (1 + mystatus['stp'] / 100), true, 1, 1));
     setv('t_tp', ff(mystatus['tp'], true, 1));
-    setv('t_tp_speed', ff(mystatus['tp']*(2*(1+mystatus['double_attack']+2*mystatus['triple_attack'])+mystatus['kick_p_eq'])/mystatus['haste_delay']*60*0.95));
+    setv('t_tp_speed', ff(mystatus['tp']*(2*(1+mystatus['double_attack']+2*mystatus['triple_attack'])+mystatus['kick_p_eq']*(1+mystatus['kick_add_p']))/mystatus['haste_delay']*60*0.95));
     // 得TP（WS）
     mystatus['ws_tp'] = parseFloat(floor2(floor2(calc_tp(tp_base) * (1 + mystatus['ws_stp'] / 100), 1) * 2 + floor2(1 + mystatus['ws_stp'] / 100, 1) * 6, 1));
     setv('t_ws_tp', ff(mystatus['ws_tp'], true, 1));
@@ -600,7 +607,6 @@ function calc () {
 
     // 固定ダメージx手数/ヘイスト込み間隔（蹴撃）
     d = [mystatus['kick_d_sv_top'], mystatus['kick_d_sv_mid'], mystatus['kick_d_sv_bot']];
-    var kp = mystatus['kick_p_eq'];
     total_dps = calc_dps_k(mystatus, d, mystatus['haste_delay']);
     mystatus['kick_dps_top'] = total_dps[0];
     mystatus['kick_dps_mid'] = total_dps[1];
