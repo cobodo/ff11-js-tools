@@ -299,6 +299,7 @@ function calc_dps_h (st, d, delay) {
 // D/間隔（蹴撃）
 function calc_dps_k (st, d, delay) {
     return d.map(function (d) {
+        console.log(d, st['kick_p_eq'], st['kick_add_p'], delay);
         return d * st['kick_p_eq'] * (1+st['kick_add_p']) * 60.0 / delay;
     });
 }
@@ -326,7 +327,7 @@ function weapon_calc (mystatus) {
         var w = weapon_list[i];
         if (!w.memo) w.memo = "";
         var st = {};
-        ['double_attack', 'triple_attack', 'kick_p_eq'].map(function (prop) {
+        ['double_attack', 'triple_attack', 'kick_p_eq', 'kick_add_p'].map(function (prop) {
             st[prop] = mystatus[prop];
             if (w[prop]) st[prop] += w[prop];
         });
