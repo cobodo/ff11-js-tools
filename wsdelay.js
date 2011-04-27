@@ -144,7 +144,7 @@ var setting = {
         if (p.occ_n_sub < 1) p.occ_n_sub = 1;
         if (p.h2h) {
             p.vulture_sub = p.vulture_main;
-            p.occ2 = p.occ1;
+            p.occ_n_sub = p.occ_n_main;
             p.occ_n_sub = p.occ_n_main;
         }
     },
@@ -265,7 +265,7 @@ function autoattack (p, s) {
             // 時々2-n回攻撃
             var occ_np = 1.0;
             for (var k=1; k<p.occ_n_main; k++) {
-                occ_np *= 1-p.occ1;
+                occ_np *= 1-p.occ_n_main;
             }
             var add_p = Math.min(p.qa + p.ta + p.da + p.kick + 1-occ_np, 0.95);
             if (add_p != 0.0 && Math.random() <= add_p) {
@@ -294,7 +294,7 @@ function autoattack (p, s) {
         }
         else { // 時々2-n回攻撃
             for (var k=1; k<p.occ_n_main; k++) {
-                if (p.occ1 != 0.0 && Math.random() <= p.occ1) {
+                if (p.occ_n_main != 0.0 && Math.random() <= p.occ_n_main) {
                     s.hitcount(p.acc);
                 }
             }
@@ -322,7 +322,7 @@ function autoattack (p, s) {
             }
             else { // 時々2-n回攻撃
                 for (var k=1; k<p.occ_n_sub; k++) {
-                    if (p.occ2 != 0.0 && Math.random() <= p.occ2) {
+                    if (p.occ_n_sub != 0.0 && Math.random() <= p.occ_n_sub) {
                         s.hitcount(p.acc);
                     }
                 }
