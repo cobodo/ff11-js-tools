@@ -1005,6 +1005,7 @@
 ‚µ‚ë‚Š	/jobemote WHM	Šç•¶Žš
 ‚­‚ë‚Š	/jobemote BLM	Šç•¶Žš
 ‚ ‚©‚Š	/jobemote RDM	Šç•¶Žš
+‚©‚ç‚Š	/jobemote PUP	Šç•¶Žš
 ‚ª‚­‚Š	/jobemote SCH	Šç•¶Žš
 ‚©‚¬‚”	/item ‹Ö’f‚Ì•ó‚ÌƒJƒM <t>	Šç•¶Žš
 ‚©‚¬‚“‚”	/item ‹Ö’f‚Ì•ó‚ÌƒJƒM <stnpc>	Šç•¶Žš
