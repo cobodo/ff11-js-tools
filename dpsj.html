@@ -424,7 +424,7 @@ google.load("jquery", "1");
 <script>
 function getv (id) { return $('#'+id).val(); }
 function setv (id, val) { return $('#'+id).text(val); }
-function ischecked (id) { return $('#'+id).is(':checked'); }
+function ischecked (id) { return $('#'+id).prop('checked'); }
 var mystatus = {};
 var fadespeed = 'slow';
 
