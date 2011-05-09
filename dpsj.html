@@ -424,7 +424,7 @@ google.load("jquery", "1");
 <script>
 function getv (id) { return $('#'+id).val(); }
 function setv (id, val) { return $('#'+id).text(val); }
-function ischecked (id) { return $('#'+id).attr('checked'); }
+function ischecked (id) { return $('#'+id).is(':checked'); }
 var mystatus = {};
 var fadespeed = 'slow';
 
@@ -474,29 +474,33 @@ function init () {
     calc();
 
     // 表示関連
+    var tab_ids = ["status", "weapon", "caution", "howto"];
+    tab_ids.map(function (t) {
+        var tabid = '#b_' + t;
+        $(tabid).click(function () {
+            if (t=="weapon") weapon_draw();
+            tab_switcher(t);
+        });
+    });
+
     var info_ids = ["input_special", "info_D", "info_delay", "info_kick", "info_tp"];
     info_ids.map(function (t) {
         var cbid = '#t_' + t;
         $(cbid).click(function(){
-            if ($(cbid).attr('checked')) {
+            if ($(cbid).is(':checked')) {
                 $('#'+t).fadeIn(fadespeed);
-            } else {
+            }
+            else {
                 $('#'+t).fadeOut(fadespeed);
             }
         });
         $('#'+t).fadeOut(0);
     });
+
     $('#weapon').tablesorter({sortList: [[11,1]]});
 }
 
 $(document).ready(init);
-$('#b_status').click(function () { tab_switcher('status'); })
-$('#b_weapon').click(function () {
-    weapon_draw();
-    tab_switcher('weapon');
-});
-$('#b_caution').click(function () { tab_switcher('caution'); });
-$('#b_howto').click(function () { tab_switcher('howto'); });
 </script>
 <!-- <script src="tablesort.js" type="text/javascript"></script> -->
 <script type="text/javascript">

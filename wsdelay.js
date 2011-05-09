@@ -1,7 +1,7 @@
 if (!window.console) {
     window.console = { log: function (t) {} };
 }
-var _d;
+var _d = document;
 function e (id) { return _d.getElementById(id); }
 
 function floor2 (x, d) {
@@ -91,7 +91,9 @@ var setting = {
         new InputField('qa', 'float', 0, true), // 通常時クワッドアタック
         new InputField('wsqa', 'float', 0, true), // WS時クワッドアタック
 
-        new InputField('kick_add', 'float', 0, true) // 追加蹴撃率
+        new InputField('kick_add', 'float', 0, true), // 追加蹴撃率
+        new InputField('magian_main', 'check', true), // メイン武器メイジャン複数回
+        new InputField('magian_sub', 'check', true) // サブ武器メイジャン複数回
     ],
     'postproc': function (p) {
         // 猫足立ち
@@ -145,7 +147,7 @@ var setting = {
         if (p.h2h) {
             p.vulture_sub = p.vulture_main;
             p.occ_n_sub = p.occ_n_main;
-            p.occ_n_sub = p.occ_n_main;
+            p.occ_p_sub = p.occ_p_main;
         }
     },
     'argset': function (s) {
@@ -190,7 +192,7 @@ function calc_tp (delay) {
 }
 
 function get_settings (p) {
-    // テキストフィールドからの読み込み
+    // フィールドからの読み込み
     for (var i=0; i<setting.inputs.length; i++) {
         p = setting.inputs[i].get(p);
     }
@@ -293,9 +295,48 @@ function autoattack (p, s) {
             s.hitcount(p.acc);
         }
         else { // 時々2-n回攻撃
-            for (var k=1; k<p.occ_n_main; k++) {
-                if (p.occ_n_main != 0.0 && Math.random() <= p.occ_n_main) {
+            if (p.magian_main) {
+                // メイジャン複数回武器
+                // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
+                // 時々2-3回 -> 1回:2回:3回 = 50:30:20
+                // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
+                var attackcount = 1;
+                var r = Math.random();
+                switch (p.occ_n_main) {
+                    case 2:
+                        if (p.occ_p_main != 0.0 && r <= p.occ_p_main) {
+                            attackcount = 2;
+                        }
+                        break;
+                    case 3:
+                        if (r <= 0.2) {
+                            attackcount = 3;
+                        }
+                        else if (r <= 0.5) {
+                            attackcount = 2;
+                        }
+                        break;
+                    case 4:
+                        if (r <= 0.1) {
+                            attackcount = 4;
+                        }
+                        else if (r <= 0.3) {
+                            attackcount = 3;
+                        }
+                        else if (r <= 0.6) {
+                            attackcount = 2;
+                        }
+                        break;
+                }
+                for (var k=1; k<attackcount; k++) {
                     s.hitcount(p.acc);
+                }
+            }
+            else {
+                for (var k=1; k<p.occ_n_main; k++) {
+                    if (p.occ_p_main != 0.0 && Math.random() <= p.occ_p_main) {
+                        s.hitcount(p.acc);
+                    }
                 }
             }
         }
@@ -321,9 +362,48 @@ function autoattack (p, s) {
                 s.hitcount(p.acc);
             }
             else { // 時々2-n回攻撃
-                for (var k=1; k<p.occ_n_sub; k++) {
-                    if (p.occ_n_sub != 0.0 && Math.random() <= p.occ_n_sub) {
+                if (p.magian_sub) {
+                    // メイジャン複数回武器
+                    // 時々2回   -> 1回:2回 = (1-occ_p_sub):occ_p_sub
+                    // 時々2-3回 -> 1回:2回:3回 = 50:30:20
+                    // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
+                    var attackcount = 1;
+                    var r = Math.random();
+                    switch (p.occ_n_main) {
+                        case 2:
+                            if (p.occ_p_sub != 0.0 && r <= p.occ_p_sub) {
+                                attackcount = 2;
+                            }
+                            break;
+                        case 3:
+                            if (r <= 0.2) {
+                                attackcount = 3;
+                            }
+                            else if (r <= 0.5) {
+                                attackcount = 2;
+                            }
+                            break;
+                        case 4:
+                            if (r <= 0.1) {
+                                attackcount = 4;
+                            }
+                            else if (r <= 0.3) {
+                                attackcount = 3;
+                            }
+                            else if (r <= 0.6) {
+                                attackcount = 2;
+                            }
+                            break;
+                    }
+                    for (var k=1; k<attackcount; k++) {
                         s.hitcount(p.acc);
+                    }
+                }
+                else {
+                    for (var k=1; k<p.occ_n_sub; k++) {
+                        if (p.occ_p_sub != 0.0 && Math.random() <= p.occ_p_sub) {
+                            s.hitcount(p.acc);
+                        }
                     }
                 }
             }
@@ -440,7 +520,6 @@ function exec () {
 }
 
 function init () {
-    _d = document;
     e('exec').onclick = exec;
     e('url').onclick = function (e) { this.select(0, this.value.length); };
 

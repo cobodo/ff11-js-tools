@@ -32,9 +32,6 @@
             padding: 0em 1ex;
             text-align: right;
         }
-        .hidden {
-            display: none;
-        }
     </style>
     <!--[if IE]>
     <script type="text/javascript">
@@ -72,7 +69,7 @@
                     <td>AGIモクシャ</td>
                     <td>DA率</td>
                     <td>TA率</td>
-                    <td class="hidden">QA率</td>
+                    <td>QA率</td>
                     <td>MA効果アップ</td>
                     <td>二刀流係数</td>
                 </tr>
@@ -86,7 +83,7 @@
                     <td><input type="text" id="agi"></td>
                     <td><input type="text" id="da">%</td>
                     <td><input type="text" id="ta">%</td>
-                    <td class="hidden"><input type="text" id="qa">%</td>
+                    <td><input type="text" id="qa">%</td>
                     <td>隔-<input type="text" id="ma"></td>
                     <td><input type="text" id="dual_k"></td>
                 </tr>
@@ -98,7 +95,7 @@
                     <td><input type="text" id="wsagi"></td>
                     <td><input type="text" id="wsda">%</td>
                     <td><input type="text" id="wsta">%</td>
-                    <td class="hidden"><input type="text" id="wsqa">%</td>
+                    <td><input type="text" id="wsqa">%</td>
                     <td>隔-<input type="text" id="wsma"></td>
                     <td><input type="text" id="wsdual_k"></td>
                 </tr>
@@ -117,14 +114,14 @@
                   <th>メイン</th>
                   <td><input id="delay_main" type="text" /></td>
                   <td><input id="occ_n_main" type="text" maxlength="1" style="width:2ex" />回攻撃</td>
-                  <td><input type="text" id="occ_p_main">%</td>
+                  <td><input type="text" id="occ_p_main">% メイジャン：<input type="checkbox" id="magian_main"></td>
                   <td><input id="vulture_main" type="text" />%</td>
                 </tr>
                 <tr>
                   <th>サブ</th>
                   <td><input id="delay_sub" type="text" /></td>
                   <td><input id="occ_n_sub" type="text" maxlength="1" style="width:2ex" />回攻撃</td>
-                  <td><input type="text" id="occ_p_sub">%</td>
+                  <td><input type="text" id="occ_p_sub">% メイジャン：<input type="checkbox" id="magian_sub"></td>
                   <td><input id="vulture_sub" type="text" />%</td>
                 </tr>
             </tbody>

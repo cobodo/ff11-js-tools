@@ -13,6 +13,9 @@ if (!Array.map) {
     return Array.prototype.map.call(array, callback, thisObject);
   };
 }
+if (!window.console) {
+    window.console = { log: function (t) {} };
+}
 
 function ceil2 (x, d) {
     if (d == undefined) return Math.ceil(x);
@@ -258,9 +261,13 @@ var weapon_list = [
     {name: "Rフィスト+2", lv: 90, d: 31, delay: 55},
     {name: "アルサインクローNo.1142", lv: 80, d: 19, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
     {name: "アルサインクロー+1No.1911", lv: 85, d: 23, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "アルサインクローNo.1144", lv: 80, d: 0, delay: 140, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "アルサインクロー+1No.1912", lv: 85, d: 0, delay: 132, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 3},
+    {name: "アルサインクロー+2No.2309", lv: 90, d: 25, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
+    {name: "アルサインクローNo.1144", lv: 80, d: 0, delay: 140, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3},
+    {name: "アルサインクロー+1No.1912", lv: 85, d: 0, delay: 132, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3},
+    {name: "アルサインクロー+2No.2310", lv: 90, d: 0, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3},
     {name: "アルサインクローNo.1145", lv: 80, d: 23, delay: 86, memo: "弱ワーグ系。DA+7%", double_attack: 0.07},
+    {name: "アルサインクロー+1No.1913", lv: 85, d: 27, delay: 86, memo: "弱ワーグ系。DA+9%", double_attack: 0.09},
+    {name: "アルサインクロー+2No.2311", lv: 90, d: 30, delay: 86, memo: "弱ワーグ系。DA+10%", double_attack: 0.1},
     {name: "タイパンファング", lv: 80, d: 22, delay: 61},
     {name: "タイパンファング+1", lv: 85, d: 26, delay: 61},
     {name: "タイパンファング+2", lv: 90, d: 29, delay: 61},
@@ -268,7 +275,9 @@ var weapon_list = [
     {name: "バラクーダNo.1198", lv: 80, d: 22, delay: 60},
     {name: "バラクーダNo.1199", lv: 80, d: 20, delay: 60},
     {name: "バラクーダ+1", lv: 85, d: 23, delay: 60},
-    {name: "バラクーダ+2", lv: 90, d: 23, delay: 60},
+    {name: "バラクーダ+2No.2336", lv: 90, d: 26, delay: 60},
+    {name: "バラクーダ+2No.2337", lv: 90, d: 23, delay: 60},
+    {name: "バラクーダ+2No.2338", lv: 90, d: 26, delay: 60},
     {name: "マグヌスサインティ", lv: 82, d: 10, delay: 51, memo: "マグヌスストーン装備時、時々2倍撃。発動率50%と仮定。", vulture: 0.5},
     {name: "ヘフォンナックル", lv: 85, d: 30, delay: 86},
     {name: "トウリンセスタス", lv: 89, d: 28, delay: 48},
@@ -288,7 +297,19 @@ function calc_dps_h (st, d, delay) {
     add1 += st['two_times']; // ウルスラグナの2倍撃（非DA/TA時）
 
     var add2 = 2*ta + (1-ta)*da; // 両手に乗る効果
-    add2 += (1-ta)*(1-da)*(st['occ_n']-1)*st['occ_p']; // 時々2-n回攻撃
+    var occ_expected = 0.0; // 追加攻撃回数の期待値
+    switch (st['occ_n']) {
+        case 2:
+            occ_expected = st['occ_p'];
+            break;
+        case 3:
+            occ_expected = 0.7; // = 0.3 + 0.2*2;
+            break;
+        case 4:
+            occ_expected = 1.0; // = 0.3 + 0.2*2 + 0.1*3;
+            break;
+    }
+    add2 += (1-ta)*(1-da)*occ_expected; // 時々2-n回攻撃
     add2 += st['vulture']; // ヴァルチャ
 
     return d.map(function (d) {
@@ -299,7 +320,6 @@ function calc_dps_h (st, d, delay) {
 // D/間隔（蹴撃）
 function calc_dps_k (st, d, delay) {
     return d.map(function (d) {
-        console.log(d, st['kick_p_eq'], st['kick_add_p'], delay);
         return d * st['kick_p_eq'] * (1+st['kick_add_p']) * 60.0 / delay;
     });
 }
@@ -310,13 +330,21 @@ function calc_dps_f (st, d, delay) {
     var ta = st['triple_attack'];
     var kp = st['kick_p_eq'];
     var ka = st['kick_add_p'];
-    var occ_np = 1.0;
-    for (var i=0; i<st['occ_n']-1; i++) {
-        occ_np *= 1-st['occ_p'];
+    var occ_expected = 0.0; // 追加攻撃回数の期待値
+    switch (st['occ_n']) {
+        case 2:
+            occ_expected = st['occ_p'];
+            break;
+        case 3:
+            occ_expected = 0.5; // = 0.3 + 0.2;
+            break;
+        case 4:
+            occ_expected = 0.6; // = 0.3 + 0.2 + 0.1;
+            break;
     }
     return d.map(function (d) {
         //var add_p = 1 - (1-ta) * (1-da) * occ_np * (1-kp); // 乗算式
-        var add_p = Math.min(ta + da + kp + (1-occ_np), 0.95); // 加算式
+        var add_p = Math.min(ta + da + kp + (1-occ_expected), 0.95); // 加算式
         return d * (1 + add_p * (1 + ka)) * 60.0 / delay;
     });
 }
@@ -461,6 +489,7 @@ function get_inputs (mystatus) {
     // 猫足立ち
     if (ischecked('t_footwork')) mystatus['footwork'] = true;
     else mystatus['footwork'] = false;
+    // 百烈拳
     if (ischecked('t_hundred_fists')) mystatus['footwork'] = false;
     // クリティカル率
     mystatus['crit_p'] = parseFloat(getv('t_crit_p')) * 0.01;
@@ -512,7 +541,7 @@ function set_status (mystatus) {
     setv('t_sv_top', mystatus['sv_top']);
 
     // SV関数下限
-    mystatus['sv_bot'] = Math.min(-mystatus['weapon_rank'], -2);
+    mystatus['sv_bot'] = Math.min(-mystatus['weapon_rank'], -1);
     setv('t_sv_bot', mystatus['sv_bot']);
 
     // SV関数中央値
