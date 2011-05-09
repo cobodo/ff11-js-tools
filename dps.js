@@ -283,7 +283,8 @@ var weapon_list = [
     {name: "トウリンセスタス", lv: 89, d: 28, delay: 48},
     {name: "フュアロセスタス", lv: 90, d: 22, delay: 30},
     {name: "アイラバグナウ", lv: 87, d: 23, delay: 60},
-    {name: "アイラバグナウ+1", lv: 87, d: 24, delay: 57}
+    {name: "アイラバグナウ+1", lv: 87, d: 24, delay: 57},
+    {name: "メタソーマカタール", lv: 88, d: 30, delay: 84}
 ];
 
 // D/間隔（手）
