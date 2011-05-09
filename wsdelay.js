@@ -93,7 +93,8 @@ var setting = {
 
         new InputField('kick_add', 'float', 0, true), // 追加蹴撃率
         new InputField('magian_main', 'check', true), // メイン武器メイジャン複数回
-        new InputField('magian_sub', 'check', true) // サブ武器メイジャン複数回
+        new InputField('magian_sub', 'check', true), // サブ武器メイジャン複数回
+        new InputField('jabeforews', 'int', 0) // WS前アビ実行回数
     ],
     'postproc': function (p) {
         // 猫足立ち
@@ -141,6 +142,11 @@ var setting = {
         // 与TP
         p.dtp = Math.floor((p.tp+30) * (1-p.moksha) * (1-p.agi));
         p.wsdtp = Math.floor((p.tp+30) * (1-p.wsmoksha) * (1-p.wsagi));
+        if (p.footwork) {
+            var tp = calc_tp(p.delay / 2);
+            p.dtp = Math.floor((tp+30) * (1-p.moksha) * (1-p.agi));
+            p.wsdtp = Math.floor((tp+30) * (1-p.wsmoksha) * (1-p.wsagi));
+        }
         // 時々2回攻撃
         if (p.occ_n_main < 1) p.occ_n_main = 1;
         if (p.occ_n_sub < 1) p.occ_n_sub = 1;
@@ -506,7 +512,7 @@ function exec () {
     var aveturn = 1.0 * s.sumturn / p.N;
     line += "、平均ターン数" + floor2(aveturn, 2);
     line += "、-1%止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
-    var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2, 1);
+    var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2 + 2*p.jabeforews, 1);
     line += "平均WS間隔は" + ave_time_bet_ws + "秒、";
     var ave_ws_speed = floor2(1.0 / (aveturn * p.total_delay_s + 2) * 60, 4);
     line += "平均WS速度は" + ave_ws_speed + "回/分、";
