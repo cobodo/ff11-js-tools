@@ -514,9 +514,9 @@ function exec () {
     line += "、-1%止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
     var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2 + 2*p.jabeforews, 1);
     line += "平均WS間隔は" + ave_time_bet_ws + "秒、";
-    var ave_ws_speed = floor2(1.0 / (aveturn * p.total_delay_s + 2) * 60, 4);
+    var ave_ws_speed = floor2(1.0 / (aveturn * p.total_delay_s + 2 + 2*p.jabeforews) * 60, 4);
     line += "平均WS速度は" + ave_ws_speed + "回/分、";
-    var ave_dealtp_speed = floor2(s.dealtp * 0.1 / (p.N * (aveturn * p.total_delay_s + 2)) * 60, 1);
+    var ave_dealtp_speed = floor2(s.dealtp * 0.1 / (p.N * (aveturn * p.total_delay_s + 2 + 2*p.jabeforews)) * 60, 1);
     line += "平均与TP速度は" + ave_dealtp_speed + "TP/分です。<br>";
     e('result').innerHTML = line;
     csv = "回数,WSヒット数,WS得TP,直前TP,ターン数,最終TP\n" + csv;
