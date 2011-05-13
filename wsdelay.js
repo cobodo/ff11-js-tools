@@ -1,8 +1,12 @@
 if (!window.console) {
     window.console = { log: function (t) {} };
 }
+var hist = [0,0,0,0,0,0,0,0,0]; // for debug
 var _d = document;
 function e (id) { return _d.getElementById(id); }
+function rand (s) {
+    return Math.random();
+}
 
 function floor2 (x, d) {
     if (d == undefined) return Math.floor(x);
@@ -207,6 +211,160 @@ function get_settings (p) {
     return p;
 }
 
+function make_attack_procs (p) {
+    var attackprocs = []; // 1ターンの追加攻撃回数を計算する関数群
+
+    if (p.footwork) {
+        // 時々2-n回攻撃
+        var occ_np = 0.0;
+        if (p.magian_main) {
+            // メイジャン複数回武器
+            // 猫足立ちについては1回攻撃以外はすべて追加蹴撃成立と見なす（暫定）
+            // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
+            // 時々2-3回 -> 1回:2回 = 50:50
+            // 時々2-4回 -> 1回:2回 = 40:60
+            occ_np = ([0.0, 0.0, p.occ_p_main, 0.5, 0.6])[p.occ_n_main];
+        }
+        else {
+            occ_np = p.occ_p_main * (p.occ_n_main - 1); // 加算説
+        }
+        var total_p = Math.min(p.qa + p.ta + p.da + p.kick + occ_np, 0.95); // 加算説
+            // 95%キャップと仮定（2011.05.10 VU前は80%～85%キャップだった？）
+        if (total_p > 0.0) {
+            if (p.kick_add > 0.0) {
+                attackprocs.push(function () {
+                    if (rand('footwork') <= total_p) {
+                        if (rand('footwork_add') <= p.kick_add) {
+                            return 2;
+                        }
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+            else {
+                attackprocs.push(function () {
+                    if (rand('footwork (no adds)') <= total_p) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+        }
+    }
+    else { // 非猫足
+        if (p.dual || p.h2h) attackprocs.push(function () { return 1; });
+        // DA/TA/QA/複数回攻撃（優先度はQA>TA>DA>複数回攻撃）
+        var occ_f = function () { return 0; };
+        if (p.magian_main) {
+            // メイジャン複数回攻撃武器
+            // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
+            // 時々2-3回 -> 1回:2回:3回 = 50:30:20
+            // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
+            switch (p.occ_n_main) {
+                case 2:
+                    occ_f = function () {
+                        if (p.occ_p_main > 0.0 && rand() <= p.occ_p_main) {
+                            return 1;
+                        }
+                        return 0;
+                    };
+                    break;
+                case 3:
+                    occ_f = function () {
+                        var r = rand();
+                        if (r <= 0.2) {
+                            return 2;
+                        }
+                        else if (r <= 0.5) {
+                            return 1;
+                        }
+                        return 0;
+                    };
+                    break;
+                case 4:
+                    occ_f = function () {
+                        var r = rand();
+                        if (r <= 0.1) {
+                            return 3;
+                        }
+                        else if (r <= 0.3) {
+                            return 2;
+                        }
+                        else if (r <= 0.6) {
+                            return 1;
+                        }
+                        return 0;
+                    };
+                    break;
+            }
+        }
+        else { //メイジャン以外の複数回攻撃武器
+            occ_f = function () {
+                var sum = 0;
+                for (var k=1; k<p.occ_n_main; k++) {
+                    if (rand() <= p.occ_p_main) {
+                        ++sum;
+                    }
+                }
+                return sum;
+            };
+        }
+        attackprocs.push((function () {
+            var qa = (p.qa > 0.0);
+            var ta = (p.ta > 0.0);
+            var da = (p.da > 0.0);
+            return function () {
+                if (qa && rand() <= p.qa) {
+                    return 3;
+                }
+                else if (ta && rand() <= p.ta) {
+                    return 2;
+                }
+                else if (da && rand() <= p.da) {
+                    return 1;
+                }
+                return occ_f();
+            };
+        })());
+
+        // ヴァルチャ
+        if (p.vulture_main > 0.0) {
+            attackprocs.push(function () {
+                if (rand() <= p.vulture_main) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+
+        // 蹴撃
+        if (p.h2h && p.kick > 0.0) {
+            if (p.kick_add > 0.0) {
+                attackprocs.push(function () {
+                    if (rand() <= p.kick) {
+                        if (rand() <= p.kick_add) {
+                            return 2;
+                        }
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+            else {
+                attackprocs.push(function () {
+                    if (rand() <= p.kick) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+        }
+    }
+
+    return attackprocs;
+}
+
 function ws (p, s) {
     // WS初撃
     s.wshitcount(p.wsacc, p.wsgtp1);
@@ -217,213 +375,68 @@ function ws (p, s) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // QA
-    if (s.wsattack < 6 && p.wsqa != 0.0 && Math.random() <= p.wsqa) {
+    if (s.wsattack < 6 && p.wsqa != 0.0 && rand() <= p.wsqa) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // TA
-    else if (s.wsattack < 7 && p.wsta != 0.0 && Math.random() <= p.wsta) {
+    else if (s.wsattack < 7 && p.wsta != 0.0 && rand() <= p.wsta) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // DA
-    else if (s.wsattack < 8 && p.wsda != 0.0 && Math.random() <= p.wsda) {
+    else if (s.wsattack < 8 && p.wsda != 0.0 && rand() <= p.wsda) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目QA
-    if (p.wstime >= 2 && s.wsattack < 6 && p.wsqa != 0.0 && Math.random() <= p.wsqa) {
+    if (p.wstime >= 2 && s.wsattack < 6 && p.wsqa != 0.0 && rand() <= p.wsqa) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目TA
-    else if (p.wstime >= 2 && s.wsattack < 7 && p.wsta != 0.0 && Math.random() <= p.wsta) {
+    else if (p.wstime >= 2 && s.wsattack < 7 && p.wsta != 0.0 && rand() <= p.wsta) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目DA
-    else if (p.wstime >= 2 && s.wsattack < 8 && p.wsda != 0.0 && Math.random() <= p.wsda) {
+    else if (p.wstime >= 2 && s.wsattack < 8 && p.wsda != 0.0 && rand() <= p.wsda) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 与TP
     if (s.cur_tp > 0) s.dealtp += p.wsdtp;
     // コンサーブTP
     // コンサーブTP+p = 確率p%で発動し、WS後のTP+1.0～20.0が均等ランダム
-    if (p.conservetp != 0.0 && Math.random() <= p.conservetp) {
-        s.cur_tp += Math.ceil(Math.random()*190) + 10;
+    if (p.conservetp != 0.0 && rand() <= p.conservetp) {
+        s.cur_tp += Math.ceil(rand()*190) + 10;
     }
 
     s.wstp = Math.floor(s.cur_tp);
     s.sumwshit += s.wshit;
 }
 
-function autoattack (p, s) {
+function autoattack (p, s, attackprocs) {
     var j = 0;
     s.lasttp = 0.0;
     s.total_tp = s.cur_tp;
+
     while (s.total_tp < p.target_tp) {
         s.lasttp = s.total_tp;
 
-        // 初撃
+        var attackcount = 0;
+        for (var i=0; i<attackprocs.length; ++i) {
+            attackcount += attackprocs[i]();
+        }
+        attackcount = Math.min(attackcount, 8);
+
+        // for debug
+        if (hist[attackcount] != undefined) hist[attackcount] += 1;
+        else hist[attackcount] = 1;
+
         s.hitcount1(p.acc);
-
-        // 猫足蹴撃
-        if (p.footwork) {
-            // 時々2-n回攻撃
-            var occ_np = 1.0;
-            for (var k=1; k<p.occ_n_main; k++) {
-                occ_np *= 1-p.occ_n_main;
-            }
-            var add_p = Math.min(p.qa + p.ta + p.da + p.kick + 1-occ_np, 0.95);
-            if (add_p != 0.0 && Math.random() <= add_p) {
-                s.hitcount(p.acc);
-                if (p.kick_add != 0.0 && Math.random() <= p.kick_add) {
-                    s.hitcount(p.acc);
-                }
-            }
-            j++;
-            s.total_tp = s.cur_tp + p.regain * Math.floor((2.0 + j * p.total_delay_s) / 3.0);
-            continue;
-        }
-
-        // DA/TA/QA（優先度はQA>TA>DA）
-        if (p.qa != 0.0 && Math.random() <= p.qa) {
+        for (var i=0; i<attackcount; ++i) {
             s.hitcount(p.acc);
-            s.hitcount(p.acc);
-            s.hitcount(p.acc);
-        }
-        else if (p.ta != 0.0 && Math.random() <= p.ta) {
-            s.hitcount(p.acc);
-            s.hitcount(p.acc);
-        }
-        else if (p.da != 0.0 && Math.random() <= p.da) {
-            s.hitcount(p.acc);
-        }
-        else { // 時々2-n回攻撃
-            if (p.magian_main) {
-                // メイジャン複数回武器
-                // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
-                // 時々2-3回 -> 1回:2回:3回 = 50:30:20
-                // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
-                var attackcount = 1;
-                var r = Math.random();
-                switch (p.occ_n_main) {
-                    case 2:
-                        if (p.occ_p_main != 0.0 && r <= p.occ_p_main) {
-                            attackcount = 2;
-                        }
-                        break;
-                    case 3:
-                        if (r <= 0.2) {
-                            attackcount = 3;
-                        }
-                        else if (r <= 0.5) {
-                            attackcount = 2;
-                        }
-                        break;
-                    case 4:
-                        if (r <= 0.1) {
-                            attackcount = 4;
-                        }
-                        else if (r <= 0.3) {
-                            attackcount = 3;
-                        }
-                        else if (r <= 0.6) {
-                            attackcount = 2;
-                        }
-                        break;
-                }
-                for (var k=1; k<attackcount; k++) {
-                    s.hitcount(p.acc);
-                }
-            }
-            else {
-                for (var k=1; k<p.occ_n_main; k++) {
-                    if (p.occ_p_main != 0.0 && Math.random() <= p.occ_p_main) {
-                        s.hitcount(p.acc);
-                    }
-                }
-            }
-        }
-        // ヴァルチャ
-        if (p.vulture_main != 0.0 && Math.random() <= p.vulture_main) {
-            s.hitcount(p.acc);
-        }
-
-        // 二刀流・格闘
-        if (p.dual || p.h2h) {
-            s.hitcount(p.acc);
-            // DA/TA/QA（優先度はQA>TA>DA）
-            if (p.qa != 0.0 && Math.random() <= p.qa) {
-                s.hitcount(p.acc);
-                s.hitcount(p.acc);
-                s.hitcount(p.acc);
-            }
-            else if (p.ta != 0.0 && Math.random() <= p.ta) {
-                s.hitcount(p.acc);
-                s.hitcount(p.acc);
-            }
-            else if (p.da != 0.0 && Math.random() <= p.da) {
-                s.hitcount(p.acc);
-            }
-            else { // 時々2-n回攻撃
-                if (p.magian_sub) {
-                    // メイジャン複数回武器
-                    // 時々2回   -> 1回:2回 = (1-occ_p_sub):occ_p_sub
-                    // 時々2-3回 -> 1回:2回:3回 = 50:30:20
-                    // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
-                    var attackcount = 1;
-                    var r = Math.random();
-                    switch (p.occ_n_main) {
-                        case 2:
-                            if (p.occ_p_sub != 0.0 && r <= p.occ_p_sub) {
-                                attackcount = 2;
-                            }
-                            break;
-                        case 3:
-                            if (r <= 0.2) {
-                                attackcount = 3;
-                            }
-                            else if (r <= 0.5) {
-                                attackcount = 2;
-                            }
-                            break;
-                        case 4:
-                            if (r <= 0.1) {
-                                attackcount = 4;
-                            }
-                            else if (r <= 0.3) {
-                                attackcount = 3;
-                            }
-                            else if (r <= 0.6) {
-                                attackcount = 2;
-                            }
-                            break;
-                    }
-                    for (var k=1; k<attackcount; k++) {
-                        s.hitcount(p.acc);
-                    }
-                }
-                else {
-                    for (var k=1; k<p.occ_n_sub; k++) {
-                        if (p.occ_p_sub != 0.0 && Math.random() <= p.occ_p_sub) {
-                            s.hitcount(p.acc);
-                        }
-                    }
-                }
-            }
-            // ヴァルチャ
-            if (p.vulture_sub != 0.0 && Math.random() <= p.vulture_sub) {
-                s.hitcount(p.acc);
-            }
-            // 蹴撃
-            if (p.h2h && p.kick != 0.0 && Math.random() <= p.kick) {
-                s.hitcount(p.acc);
-                if (p.kick_add != 0.0 && Math.random() <= p.kick_add) {
-                    s.hitcount(p.acc);
-                }
-            }
         }
 
         j++;
@@ -465,17 +478,17 @@ function exec () {
         // 関数
         wshitcount: function (acc, gtp) {
             this.wsattack++;
-            if (Math.random() > acc) return;
+            if (rand() > acc) return;
             this.cur_tp += gtp;
             this.wshit++;
         },
         hitcount1: function (acc) { // 初撃
-            if (!(Math.random() <= acc || Math.random() <= p.zanshin && Math.random() <= p.zanshin_acc)) return;
+            if (!(rand() <= acc || rand() <= p.zanshin && rand() <= p.zanshin_acc)) return;
             this.cur_tp += this.p.gtp;
             this.dealtp += this.p.dtp;
         },
         hitcount: function (acc) {
-            if (Math.random() > acc) return;
+            if (rand() > acc) return;
             this.cur_tp += this.p.gtp;
             this.dealtp += this.p.dtp;
         },
@@ -491,10 +504,12 @@ function exec () {
     var line = "";
     var lines = e('lines');
     var csv = "";
+    var attackprocs = make_attack_procs(p);
+
     for (var i=1; i<=p.N; i++) {
         s.next();
-        ws(p,s);
-        var j = autoattack(p,s);
+        ws(p, s);
+        var j = autoattack(p, s, attackprocs);
         csv += i + "," + s.wshit + "," + (s.wstp / 10) + "," + (s.lasttp / 10) + "," + j + "," + (s.cur_tp / 10) + "\n";
     }
 
