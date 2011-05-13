@@ -375,40 +375,40 @@ function ws (p, s) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // QA
-    if (s.wsattack < 6 && p.wsqa != 0.0 && rand() <= p.wsqa) {
+    if (s.wsattack < 6 && p.wsqa > 0.0 && rand() <= p.wsqa) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // TA
-    else if (s.wsattack < 7 && p.wsta != 0.0 && rand() <= p.wsta) {
+    else if (s.wsattack < 7 && p.wsta > 0.0 && rand() <= p.wsta) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // DA
-    else if (s.wsattack < 8 && p.wsda != 0.0 && rand() <= p.wsda) {
+    else if (s.wsattack < 8 && p.wsda > 0.0 && rand() <= p.wsda) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目QA
-    if (p.wstime >= 2 && s.wsattack < 6 && p.wsqa != 0.0 && rand() <= p.wsqa) {
+    if (p.wstime >= 2 && s.wsattack < 6 && p.wsqa > 0.0 && rand() <= p.wsqa) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目TA
-    else if (p.wstime >= 2 && s.wsattack < 7 && p.wsta != 0.0 && rand() <= p.wsta) {
+    else if (p.wstime >= 2 && s.wsattack < 7 && p.wsta > 0.0 && rand() <= p.wsta) {
         s.wshitcount(p.acc, p.wsgtp2);
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 2段目DA
-    else if (p.wstime >= 2 && s.wsattack < 8 && p.wsda != 0.0 && rand() <= p.wsda) {
+    else if (p.wstime >= 2 && s.wsattack < 8 && p.wsda > 0.0 && rand() <= p.wsda) {
         s.wshitcount(p.acc, p.wsgtp2);
     }
     // 与TP
     if (s.cur_tp > 0) s.dealtp += p.wsdtp;
     // コンサーブTP
     // コンサーブTP+p = 確率p%で発動し、WS後のTP+1.0～20.0が均等ランダム
-    if (p.conservetp != 0.0 && rand() <= p.conservetp) {
+    if (p.conservetp > 0.0 && rand() <= p.conservetp) {
         s.cur_tp += Math.ceil(rand()*190) + 10;
     }
 
