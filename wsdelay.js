@@ -254,16 +254,16 @@ function make_attack_procs (p) {
     else { // 非猫足
         if (p.dual || p.h2h) attackprocs.push(function () { return 1; });
         // DA/TA/QA/複数回攻撃（優先度はQA>TA>DA>複数回攻撃）
-        var occ_f = function () { return 0; };
-        if (p.magian_main) {
+        var magian_occ = function (occ_n, occ_p) {
             // メイジャン複数回攻撃武器
             // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
             // 時々2-3回 -> 1回:2回:3回 = 50:30:20
             // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
-            switch (p.occ_n_main) {
+            var occ_f = function () { return 0; };
+            switch (occ_n) {
                 case 2:
                     occ_f = function () {
-                        if (p.occ_p_main > 0.0 && rand() <= p.occ_p_main) {
+                        if (occ_p > 0.0 && rand() <= occ_p) {
                             return 1;
                         }
                         return 0;
@@ -297,19 +297,20 @@ function make_attack_procs (p) {
                     };
                     break;
             }
-        }
-        else { //メイジャン以外の複数回攻撃武器
-            occ_f = function () {
+            return occ_f;
+        };
+        var other_occ = function (occ_n, occ_p) {
+            return function () {
                 var sum = 0;
-                for (var k=1; k<p.occ_n_main; k++) {
-                    if (rand() <= p.occ_p_main) {
+                for (var k=1; k<occ_n; k++) {
+                    if (rand() <= occ_p) {
                         ++sum;
                     }
                 }
                 return sum;
             };
         }
-        attackprocs.push((function () {
+        var multiattack = function (occ_f) {
             var qa = (p.qa > 0.0);
             var ta = (p.ta > 0.0);
             var da = (p.da > 0.0);
@@ -325,7 +326,25 @@ function make_attack_procs (p) {
                 }
                 return occ_f();
             };
-        })());
+        };
+        var occ_f_main = function () { return 0; };
+        if (p.magian_main) {
+            occ_f_main = magian_occ(p.occ_n_main, p.occ_p_main);
+        }
+        else { //メイジャン以外の複数回攻撃武器
+            occ_f_main = other_occ(p.occ_n_main, p.occ_p_main);
+        }
+        attackprocs.push(multiattack(occ_f_main));
+        if (p.dual || p.h2h) {
+            var occ_f_sub = function () { return 0; };
+            if (p.magian_sub) {
+                occ_f_sub = magian_occ(p.occ_n_sub, p.occ_p_sub);
+            }
+            else { //メイジャン以外の複数回攻撃武器
+                occ_f_sub = other_occ(p.occ_n_sub, p.occ_p_sub);
+            }
+            attackprocs.push(multiattack(occ_f_sub));
+        }
 
         // ヴァルチャ
         if (p.vulture_main > 0.0) {
