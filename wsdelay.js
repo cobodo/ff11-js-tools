@@ -1,7 +1,6 @@
 if (!window.console) {
     window.console = { log: function (t) {} };
 }
-var hist = [0,0,0,0,0,0,0,0,0]; // for debug
 var _d = document;
 function e (id) { return _d.getElementById(id); }
 function rand (s) {
@@ -429,10 +428,6 @@ function autoattack (p, s, attackprocs) {
             attackcount += attackprocs[i]();
         }
         attackcount = Math.min(attackcount, 8);
-
-        // for debug
-        if (hist[attackcount] != undefined) hist[attackcount] += 1;
-        else hist[attackcount] = 1;
 
         s.hitcount1(p.acc);
         for (var i=0; i<attackcount; ++i) {
