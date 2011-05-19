@@ -211,7 +211,7 @@ function get_settings (p) {
 }
 
 function make_attack_procs (p) {
-    var attackprocs = []; // 1ターンの追加攻撃回数を計算する関数群
+    var attackprocs = [0]; // 1ターンの追加攻撃回数を計算する関数群
 
     if (p.footwork) {
         // 時々2-n回攻撃
@@ -252,7 +252,7 @@ function make_attack_procs (p) {
         }
     }
     else { // 非猫足
-        if (p.dual || p.h2h) attackprocs.push(function () { return 1; });
+        if (p.dual || p.h2h) attackprocs[0] += 1;
         // DA/TA/QA/複数回攻撃（優先度はQA>TA>DA>複数回攻撃）
         var magian_occ = function (occ_n, occ_p) {
             // メイジャン複数回攻撃武器
@@ -442,11 +442,11 @@ function autoattack (p, s, attackprocs) {
     while (s.total_tp < p.target_tp) {
         s.lasttp = s.total_tp;
 
-        var attackcount = 0;
-        for (var i=0; i<attackprocs.length; ++i) {
+        var attackcount = attackprocs[0];
+        for (var i=1; i<attackprocs.length; ++i) {
             attackcount += attackprocs[i]();
         }
-        attackcount = Math.min(attackcount, 8);
+        attackcount = Math.min(attackcount, 7);
 
         s.hitcount1(p.acc);
         for (var i=0; i<attackcount; ++i) {
