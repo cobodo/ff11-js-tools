@@ -295,7 +295,6 @@ function calc_dps_h (st, d, delay) {
     var add1 = 0; // 初段のみの効果
     add1 += 2 * st['three_times']; // スファライの3倍撃（非DA/TA時）
     add1 += st['multi_p']; // グランツファウストの追加攻撃
-    add1 += st['two_times']; // ウルスラグナの2倍撃（非DA/TA時）
 
     var add2 = 2*ta + (1-ta)*da; // 両手に乗る効果
     var occ_expected = 0.0; // 追加攻撃回数の期待値
@@ -312,6 +311,7 @@ function calc_dps_h (st, d, delay) {
     }
     add2 += (1-ta)*(1-da)*occ_expected; // 時々2-n回攻撃
     add2 += st['vulture']; // ヴァルチャ
+    add2 *= (1+st['two_times']); // ウルスラグナの2倍撃（DA/TAに乗ると仮定）
 
     return d.map(function (d) {
         return (d * ((1 + add2) * 2 + add1)) * 60.0 / delay;
