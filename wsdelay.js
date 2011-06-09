@@ -1,25 +1,26 @@
+(function (window, undefined) {
 if (!window.console) {
     window.console = { log: function (t) {} };
 }
-var _d = document;
-function e (id) { return _d.getElementById(id); }
-function rand (s) {
-    return Math.random();
-}
 
-function floor2 (x, d) {
+var wsdelay = {};
+
+var e = function (id) { return window.document.getElementById(id); };
+var rand = function (s) { return Math.random(); };
+
+var floor2 = function (x, d) {
     if (d == undefined) return Math.floor(x);
     var f = Math.pow(10,d);
     return Math.floor(x*f)/f;
-}
+};
 
 // input field object
-function InputField (id, type, v, isPercent) {
+var InputField = function (id, type, v, isPercent) {
     this.id = id;
     this.type = type;
     this.defaultValue = v;
     this.isPercent = (isPercent === true) ? true : false;
-}
+};
 
 InputField.prototype = {
     'get': function (p) {
@@ -49,7 +50,7 @@ InputField.prototype = {
 };
 
 // setting
-var setting = {
+wsdelay.setting = {
     'inputs': [
         new InputField('N', 'int', 50000), // 試行回数
         new InputField('target_tp', 'float', 100, false), // 目標TP
@@ -186,11 +187,11 @@ var setting = {
     }
 };
 
-function _calc_tp (delay, basetp, basedelay, k) {
+var _calc_tp = function (delay, basetp, basedelay, k) {
     return Math.floor(basetp + (delay - basedelay) * k);
-}
+};
 
-function calc_tp (delay) {
+var calc_tp = function (delay) {
     var ret;
     if (delay <= 180)      ret = _calc_tp(delay,  50, 180, 15 / 180);
     else if (delay <= 450) ret = _calc_tp(delay,  50, 180, 65 / 270);
@@ -198,19 +199,19 @@ function calc_tp (delay) {
     else if (delay <= 530) ret = _calc_tp(delay, 130, 480, 15 /  50);
     else                   ret = _calc_tp(delay, 145, 530, 35 / 470);
     return ret;
-}
+};
 
-function get_settings (p) {
+var get_settings = function (p) {
     // フィールドからの読み込み
-    for (var i=0; i<setting.inputs.length; i++) {
-        p = setting.inputs[i].get(p);
+    for (var i=0; i<wsdelay.setting.inputs.length; i++) {
+        p = wsdelay.setting.inputs[i].get(p);
     }
     // 入力値に基づいてデータ構築
-    p = setting.postproc(p);
+    p = wsdelay.setting.postproc(p);
     return p;
-}
+};
 
-function make_attack_procs (p) {
+var make_attack_procs = function (p) {
     var attackprocs = [0]; // 1ターンの追加攻撃回数を計算する関数群
 
     if (p.footwork) {
@@ -381,9 +382,9 @@ function make_attack_procs (p) {
     }
 
     return attackprocs;
-}
+};
 
-function ws (p, s) {
+var ws = function (p, s) {
     // WS初撃
     s.wshitcount(p.wsacc, p.wsgtp1);
     // WS追撃（二刀流・格闘）
@@ -432,9 +433,9 @@ function ws (p, s) {
 
     s.wstp = Math.floor(s.cur_tp);
     s.sumwshit += s.wshit;
-}
+};
 
-function autoattack (p, s, attackprocs) {
+var autoattack = function (p, s, attackprocs) {
     var j = 0;
     s.lasttp = 0.0;
     s.total_tp = s.cur_tp;
@@ -463,9 +464,9 @@ function autoattack (p, s, attackprocs) {
     if (s.lasttp > (p.target_tp - 10)) s.stop99++;
 
     return j;
-}
+};
 
-function exec () {
+var exec = function () {
     var start = (new Date()).getTime();
 
     // 設定
@@ -550,11 +551,11 @@ function exec () {
     e('result').innerHTML = line;
     csv = "回数,WSヒット数,WS得TP,直前TP,ターン数,最終TP\n" + csv;
     e('csv').value = csv;
-    setting.makeurl();
+    wsdelay.setting.makeurl();
     //console.log("consumed time:", (new Date()).getTime() - start);
-}
+};
 
-function init () {
+window.onload = function () {
     e('exec').onclick = exec;
     e('url').onclick = function (e) { this.select(0, this.value.length); };
 
@@ -563,9 +564,10 @@ function init () {
     if (location.href.indexOf('#') != -1) {
         s = location.href.split('#').pop();
     }
-    setting.argset(s);
+    wsdelay.setting.argset(s);
     get_settings({});
-    setting.makeurl();
-}
-window.onload = init;
+    wsdelay.setting.makeurl();
+};
 
+window.wsdelay = wsdelay;
+})(window);
