@@ -3,8 +3,6 @@ if (!window.console) {
     window.console = { log: function (t) {} };
 }
 
-var wsdelay = {};
-
 var e = function (id) { return window.document.getElementById(id); };
 var rand = function (s) { return Math.random(); };
 
@@ -50,7 +48,7 @@ InputField.prototype = {
 };
 
 // setting
-wsdelay.setting = {
+var setting = {
     'inputs': [
         new InputField('N', 'int', 50000), // 試行回数
         new InputField('target_tp', 'float', 100, false), // 目標TP
@@ -203,11 +201,11 @@ var calc_tp = function (delay) {
 
 var get_settings = function (p) {
     // フィールドからの読み込み
-    for (var i=0; i<wsdelay.setting.inputs.length; i++) {
-        p = wsdelay.setting.inputs[i].get(p);
+    for (var i=0; i<setting.inputs.length; i++) {
+        p = setting.inputs[i].get(p);
     }
     // 入力値に基づいてデータ構築
-    p = wsdelay.setting.postproc(p);
+    p = setting.postproc(p);
     return p;
 };
 
@@ -551,7 +549,7 @@ var exec = function () {
     e('result').innerHTML = line;
     csv = "回数,WSヒット数,WS得TP,直前TP,ターン数,最終TP\n" + csv;
     e('csv').value = csv;
-    wsdelay.setting.makeurl();
+    setting.makeurl();
     //console.log("consumed time:", (new Date()).getTime() - start);
 };
 
@@ -564,10 +562,9 @@ window.onload = function () {
     if (location.href.indexOf('#') != -1) {
         s = location.href.split('#').pop();
     }
-    wsdelay.setting.argset(s);
+    setting.argset(s);
     get_settings({});
-    wsdelay.setting.makeurl();
+    setting.makeurl();
 };
 
-window.wsdelay = wsdelay;
 })(window);
