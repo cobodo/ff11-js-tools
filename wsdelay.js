@@ -460,6 +460,8 @@ var autoattack = function (p, s, attackprocs) {
     if (s.maxturn < j) s.maxturn = j;
     if (s.minturn > j) s.minturn = j;
     if (s.lasttp > (p.target_tp - 10)) s.stop99++;
+    if (s.turnhist[j]) s.turnhist[j] += 1;
+    else s.turnhist[j] = 1;
 
     return j;
 };
@@ -478,6 +480,7 @@ var exec = function () {
         maxturn: 0,
         minturn: 100,
         sumturn: 0.0, // sum of turn to ws
+        turnhist: {}, // histgram of turn
         sumwshit: 0.0, // sum of ws hit count
         stop99: 0,
         dealtp: 0,
@@ -519,7 +522,7 @@ var exec = function () {
     var csv = "";
     var attackprocs = make_attack_procs(p);
 
-    for (var i=1; i<=p.N; i++) {
+    for (var i=1; i<=p.N; ++i) {
         s.next();
         ws(p, s);
         var j = autoattack(p, s, attackprocs);
@@ -539,6 +542,13 @@ var exec = function () {
     line += "、最小ターン数" + s.minturn;
     var aveturn = 1.0 * s.sumturn / p.N;
     line += "、平均ターン数" + floor2(aveturn, 2);
+    var medsum = 0;
+    var medturn = s.minturn;
+    for (; medturn<s.maxturn; ++medturn) {
+        medsum += s.turnhist[medturn];
+        if (medsum >= p.N / 2) break;
+    }
+    line += "、ターン数中央値" + medturn;
     line += "、-1%止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
     var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2 + 2*p.jabeforews, 1);
     line += "平均WS間隔は" + ave_time_bet_ws + "秒、";
