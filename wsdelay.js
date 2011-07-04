@@ -469,7 +469,11 @@ var autoattack = function (p, s, attackprocs) {
 var makehist = function (d, N, min, max, turnhist) {
     var medsum = 0;
     var medturn = min;
-    e('distribution').innerHTML = '';
+    //e('distribution').innerHTML = '';
+    var dist = e('distribution');
+    dist.parentNode.removeChild(dist);
+    dist = d.createElement('table');
+    dist.id = 'distribution';
     var th1 = d.createElement('th');
     th1.appendChild(d.createTextNode('ターン数'));
     var th2 = d.createElement('th');
@@ -480,7 +484,7 @@ var makehist = function (d, N, min, max, turnhist) {
     headtr.appendChild(th1);
     headtr.appendChild(th2);
     headtr.appendChild(th3);
-    e('distribution').appendChild(headtr);
+    dist.appendChild(headtr);
     for (var i=min; i<max; ++i) {
         if (medsum < N / 2) {
             medsum += turnhist[i];
@@ -502,8 +506,9 @@ var makehist = function (d, N, min, max, turnhist) {
         var data = d.createElement('td');
         data.appendChild(bar);
         tr.appendChild(data);
-        e('distribution').appendChild(tr);
+        dist.appendChild(tr);
     }
+    e('result').parentNode.appendChild(dist);
 
     return medturn;
 };
