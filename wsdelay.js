@@ -466,6 +466,48 @@ var autoattack = function (p, s, attackprocs) {
     return j;
 };
 
+var makehist = function (d, N, min, max, turnhist) {
+    var medsum = 0;
+    var medturn = min;
+    e('distribution').innerHTML = '';
+    var th1 = d.createElement('th');
+    th1.appendChild(d.createTextNode('ターン数'));
+    var th2 = d.createElement('th');
+    th2.appendChild(d.createTextNode('出現回数'));
+    var th3 = d.createElement('th');
+    th3.appendChild(d.createTextNode('グラフ'));
+    var headtr = d.createElement('tr');
+    headtr.appendChild(th1);
+    headtr.appendChild(th2);
+    headtr.appendChild(th3);
+    e('distribution').appendChild(headtr);
+    for (var i=min; i<max; ++i) {
+        if (medsum < N / 2) {
+            medsum += turnhist[i];
+            medturn = i;
+        }
+        var tr = d.createElement('tr');
+        var turn = d.createElement('td');
+        turn.appendChild(d.createTextNode(i));
+        tr.appendChild(turn);
+        var turnnum = d.createElement('td');
+        turnnum.appendChild(d.createTextNode(turnhist[i]));
+        tr.appendChild(turnnum);
+        var bar = d.createElement('div');
+        bar.style.backgroundColor = 'blue';
+        bar.style.position = 'relative';
+        bar.style.width = Math.round(turnhist[i] * 1000.0 / N) + 'px';
+        bar.style.height = '20px';
+        console.log(Math.round(turnhist[i] * 1000.0 / N));
+        var data = d.createElement('td');
+        data.appendChild(bar);
+        tr.appendChild(data);
+        e('distribution').appendChild(tr);
+    }
+
+    return medturn;
+};
+
 var exec = function () {
     var start = (new Date()).getTime();
 
@@ -542,12 +584,7 @@ var exec = function () {
     line += "、最小ターン数" + s.minturn;
     var aveturn = 1.0 * s.sumturn / p.N;
     line += "、平均ターン数" + floor2(aveturn, 2);
-    var medsum = 0;
-    var medturn = s.minturn;
-    for (; medturn<s.maxturn; ++medturn) {
-        medsum += s.turnhist[medturn];
-        if (medsum >= p.N / 2) break;
-    }
+    var medturn = makehist(window.document, p.N, s.minturn, s.maxturn, s.turnhist);
     line += "、ターン数中央値" + medturn;
     line += "、-1%止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
     var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2 + 2*p.jabeforews, 1);
