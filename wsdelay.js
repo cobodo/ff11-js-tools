@@ -469,7 +469,6 @@ var autoattack = function (p, s, attackprocs) {
 var makehist = function (d, N, min, max, turnhist) {
     var medsum = 0;
     var medturn = min;
-    //e('distribution').innerHTML = '';
     var dist = e('distribution');
     dist.parentNode.removeChild(dist);
     dist = d.createElement('table');
@@ -495,7 +494,7 @@ var makehist = function (d, N, min, max, turnhist) {
         turn.appendChild(d.createTextNode(i));
         tr.appendChild(turn);
         var turnnum = d.createElement('td');
-        turnnum.appendChild(d.createTextNode(turnhist[i]));
+        turnnum.appendChild(d.createTextNode(turnhist[i] + " (" + Math.round(turnhist[i] * 100.0 / N) + "%)"));
         tr.appendChild(turnnum);
         var bar = d.createElement('div');
         bar.style.backgroundColor = 'blue';
