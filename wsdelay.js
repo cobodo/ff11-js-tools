@@ -501,7 +501,6 @@ var makehist = function (d, N, min, max, turnhist) {
         bar.style.position = 'relative';
         bar.style.width = Math.round(turnhist[i] * 1000.0 / N) + 'px';
         bar.style.height = '20px';
-        console.log(Math.round(turnhist[i] * 1000.0 / N));
         var data = d.createElement('td');
         data.appendChild(bar);
         tr.appendChild(data);
