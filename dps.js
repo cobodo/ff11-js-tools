@@ -512,9 +512,9 @@ function set_status (mystatus) {
 
     // 総合スキル
     mystatus['skill'] = mystatus['skill_plus'];
-    var skill_bounds = [0, 50, 60, 70, 80, 99];
-    var skill_diff = [0, 3, 5, 4.85, 5, 6];
-    var skill_sum = [3, 153, 203, 251, 301, 415];
+    var skill_bounds = [0, 50, 60, 70, 80, 90, 99];
+    var skill_diff = [0, 3, 5, 4.85, 5, 6, 7];
+    var skill_sum = [3, 153, 203, 251, 301, 361, 415];
     for (var i=1; i<skill_bounds.length; i++) {
         if (mystatus['lv'] < skill_bounds[i]) {
             mystatus['skill'] += Math.floor(skill_sum[i-1] + (mystatus['lv'] - skill_bounds[i-1]) * skill_diff[i]);
