@@ -226,11 +226,11 @@ var weapon_list = [
     {name: "マノプル", lv: 74, d: 20, delay: 122},
     {name: "オベロンナックル", lv: 75, d: 18, delay: 96},
     {name: "スファライ", lv: 75, d: 23, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05},
-    {name: "スファライ（最終）", lv: 90, d: 44, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05},
+    {name: "スファライ（最終）", lv: 95, d: 48, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05},
     {name: "カエストス", lv: 75, d: 23, delay: 96},
     {name: "カイザーナックル", lv: 75, d: 20, delay: 86},
     {name: "グランツファウスト", lv: 75, d: 20, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5},
-    {name: "グランツファウスト（最終）", lv: 90, d: 42, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5},
+    {name: "グランツファウスト（最終）", lv: 95, d: 47, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5},
     {name: "ケーニヒスナックル", lv: 75, d: 19, delay: 96},
     {name: "デュナミスナックル", lv: 75, d: 16, delay: 96},
     {name: "バーニンナックル", lv: 75, d: 16, delay: 96},
@@ -255,10 +255,11 @@ var weapon_list = [
     {name: "ポワンサヴァット+1", lv: 77, d: 20, delay: 49},
     {name: "ウルスラグナ", lv: 80, d: 27, delay: 51},
     {name: "ウルスラグナNo.1909", lv: 85, d: 32, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2},
-    {name: "ウルスラグナ（最終）", lv: 90, d: 35, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2},
+    {name: "ウルスラグナ（最終）", lv: 95, d: 39, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2},
     {name: "レバナントフィスト", lv: 80, d: 23, delay: 55},
     {name: "Rフィスト+1", lv: 85, d: 28, delay: 55},
     {name: "Rフィスト+2", lv: 90, d: 31, delay: 55},
+    {name: "Rフィスト+3", lv: 95, d: 34, delay: 55},
     {name: "アルサインクローNo.1142", lv: 80, d: 19, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
     {name: "アルサインクロー+1No.1911", lv: 85, d: 23, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
     {name: "アルサインクロー+2No.2309", lv: 90, d: 25, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
@@ -271,6 +272,7 @@ var weapon_list = [
     {name: "タイパンファング", lv: 80, d: 22, delay: 61},
     {name: "タイパンファング+1", lv: 85, d: 26, delay: 61},
     {name: "タイパンファング+2", lv: 90, d: 29, delay: 61},
+    {name: "タイパンファング+3", lv: 95, d: 32, delay: 61},
     {name: "バラクーダ", lv: 80, d: 14, delay: 60},
     {name: "バラクーダNo.1198", lv: 80, d: 22, delay: 60},
     {name: "バラクーダNo.1199", lv: 80, d: 20, delay: 60},
@@ -284,7 +286,8 @@ var weapon_list = [
     {name: "フュアロセスタス", lv: 90, d: 22, delay: 30},
     {name: "アイラバグナウ", lv: 87, d: 23, delay: 60},
     {name: "アイラバグナウ+1", lv: 87, d: 24, delay: 57},
-    {name: "メタソーマカタール", lv: 88, d: 30, delay: 84}
+    {name: "メタソーマカタール", lv: 88, d: 30, delay: 84},
+    {name: "グロテスクセスタス", lv:92, d: 20, delay: 0}
 ];
 
 // D/間隔（手）
