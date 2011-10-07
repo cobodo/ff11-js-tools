@@ -96,7 +96,8 @@ var setting = {
         new InputField('kick_add', 'float', 0, true), // 追加蹴撃率
         new InputField('magian_main', 'check', true), // メイン武器メイジャン複数回
         new InputField('magian_sub', 'check', true), // サブ武器メイジャン複数回
-        new InputField('jabeforews', 'int', 0) // WS前アビ実行回数
+        new InputField('jabeforews', 'int', 0), // WS前アビ実行回数
+        new InputField('savetp', 'int', 0) // セーブTP
     ],
     'postproc': function (p) {
         // 猫足立ち
@@ -157,6 +158,8 @@ var setting = {
             p.occ_n_sub = p.occ_n_main;
             p.occ_p_sub = p.occ_p_main;
         }
+        // セーブTP
+        p.savetp *= 10;
     },
     'argset': function (s) {
         var vs;
@@ -554,7 +557,7 @@ var exec = function () {
             this.dealtp += this.p.dtp;
         },
         next: function () {
-            this.cur_tp = 0;
+            this.cur_tp = this.p.savetp;
             this.wstp = 0;
             this.wshit = 0;
             this.wsattack = 0;
