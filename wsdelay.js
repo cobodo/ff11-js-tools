@@ -621,5 +621,5 @@ window.onload = function () {
     setting.makeurl();
 };
 
-})(window);
+})(this);
 
