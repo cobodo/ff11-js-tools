@@ -431,6 +431,7 @@ var ws = function (p, s) {
     if (p.conservetp > 0.0 && rand() <= p.conservetp) {
         s.cur_tp += Math.ceil(rand()*190) + 10;
     }
+    s.cur_tp = Math.max(s.cur_tp, p.savetp);
 
     s.wstp = Math.floor(s.cur_tp);
     s.sumwshit += s.wshit;
@@ -557,7 +558,7 @@ var exec = function () {
             this.dealtp += this.p.dtp;
         },
         next: function () {
-            this.cur_tp = this.p.savetp;
+            this.cur_tp = 0 // 2012-03-27 VUにより仕様変更 this.p.savetp;
             this.wstp = 0;
             this.wshit = 0;
             this.wsattack = 0;
