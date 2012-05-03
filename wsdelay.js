@@ -212,174 +212,175 @@ var get_settings = function (p) {
     return p;
 };
 
-var make_attack_procs = function (p) {
-    var attackprocs = [0]; // 1ターンの追加攻撃回数を計算する関数群
-
-    if (p.footwork) {
-        // 時々2-n回攻撃
-        var occ_np = 0.0;
-        if (p.magian_main) {
-            // メイジャン複数回武器
-            // 猫足立ちについては1回攻撃以外はすべて追加蹴撃成立と見なす（暫定）
-            // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
-            // 時々2-3回 -> 1回:2回 = 50:50
-            // 時々2-4回 -> 1回:2回 = 40:60
-            occ_np = ([0.0, 0.0, p.occ_p_main, 0.5, 0.6])[p.occ_n_main];
-        }
-        else {
-            occ_np = p.occ_p_main * (p.occ_n_main - 1); // 加算説
-        }
-        var total_p = Math.min(p.qa + p.ta + p.da + p.kick + occ_np, 0.95); // 加算説
-            // 95%キャップと仮定（2011.05.10 VU前は80%～85%キャップだった？）
-        if (total_p > 0.0) {
-            if (p.kick_add > 0.0) {
-                attackprocs.push(function () {
-                    if (rand('footwork') <= total_p) {
-                        if (rand('footwork_add') <= p.kick_add) {
-                            return 2;
-                        }
-                        return 1;
-                    }
-                    return 0;
-                });
-            }
-            else {
-                attackprocs.push(function () {
-                    if (rand('footwork (no adds)') <= total_p) {
-                        return 1;
-                    }
-                    return 0;
-                });
-            }
-        }
-    }
-    else { // 非猫足
-        if (p.dual || p.h2h) attackprocs[0] += 1;
-        // DA/TA/QA/複数回攻撃（優先度はQA>TA>DA>複数回攻撃）
-        var magian_occ = function (occ_n, occ_p) {
-            // メイジャン複数回攻撃武器
-            // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
-            // 時々2-3回 -> 1回:2回:3回 = 50:30:20
-            // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
-            var occ_f = function () { return 0; };
-            switch (occ_n) {
-                case 2:
-                    occ_f = function () {
-                        if (occ_p > 0.0 && rand() <= occ_p) {
-                            return 1;
-                        }
-                        return 0;
-                    };
-                    break;
-                case 3:
-                    occ_f = function () {
-                        var r = rand();
-                        if (r <= 0.2) {
-                            return 2;
-                        }
-                        else if (r <= 0.5) {
-                            return 1;
-                        }
-                        return 0;
-                    };
-                    break;
-                case 4:
-                    occ_f = function () {
-                        var r = rand();
-                        if (r <= 0.1) {
-                            return 3;
-                        }
-                        else if (r <= 0.3) {
-                            return 2;
-                        }
-                        else if (r <= 0.6) {
-                            return 1;
-                        }
-                        return 0;
-                    };
-                    break;
-            }
-            return occ_f;
-        };
-        var other_occ = function (occ_n, occ_p) {
+// 蹴撃 meta function
+var kick_proc = function (kick_p, add_p) {
+    if (kick_p > 0.0) {
+        if (add_p > 0.0) {
             return function () {
-                var sum = 0;
-                for (var k=1; k<occ_n; k++) {
-                    if (rand() <= occ_p) {
-                        ++sum;
+                if (rand('footwork') <= kick_p) {
+                    if (rand('footwork_add') <= add_p) {
+                        return 2;
                     }
-                }
-                return sum;
-            };
-        }
-        var multiattack = function (occ_f) {
-            var qa = (p.qa > 0.0);
-            var ta = (p.ta > 0.0);
-            var da = (p.da > 0.0);
-            return function () {
-                if (qa && rand() <= p.qa) {
-                    return 3;
-                }
-                else if (ta && rand() <= p.ta) {
-                    return 2;
-                }
-                else if (da && rand() <= p.da) {
-                    return 1;
-                }
-                return occ_f();
-            };
-        };
-        var occ_f_main = function () { return 0; };
-        if (p.magian_main) {
-            occ_f_main = magian_occ(p.occ_n_main, p.occ_p_main);
-        }
-        else { //メイジャン以外の複数回攻撃武器
-            occ_f_main = other_occ(p.occ_n_main, p.occ_p_main);
-        }
-        attackprocs.push(multiattack(occ_f_main));
-        if (p.dual || p.h2h) {
-            var occ_f_sub = function () { return 0; };
-            if (p.magian_sub) {
-                occ_f_sub = magian_occ(p.occ_n_sub, p.occ_p_sub);
-            }
-            else { //メイジャン以外の複数回攻撃武器
-                occ_f_sub = other_occ(p.occ_n_sub, p.occ_p_sub);
-            }
-            attackprocs.push(multiattack(occ_f_sub));
-        }
-
-        // ヴァルチャ
-        if (p.vulture_main > 0.0) {
-            attackprocs.push(function () {
-                if (rand() <= p.vulture_main) {
                     return 1;
                 }
                 return 0;
-            });
+            };
         }
+        else {
+            return function () {
+                if (rand('footwork (no adds)') <= kick_p) {
+                    return 1;
+                }
+                return 0;
+            };
+        }
+    }
+};
 
-        // 蹴撃
-        if (p.h2h && p.kick > 0.0) {
-            if (p.kick_add > 0.0) {
-                attackprocs.push(function () {
-                    if (rand() <= p.kick) {
-                        if (rand() <= p.kick_add) {
-                            return 2;
-                        }
-                        return 1;
-                    }
-                    return 0;
-                });
-            }
-            else {
-                attackprocs.push(function () {
-                    if (rand() <= p.kick) {
-                        return 1;
-                    }
-                    return 0;
-                });
+// 猫足立ち meta function
+var footwork_proc = function (p) {
+    // 時々2-n回攻撃
+    var occ_np = 0.0;
+    if (p.magian_main) {
+        // メイジャン複数回武器
+        // 猫足立ちについては1回攻撃以外はすべて追加蹴撃成立と見なす（暫定）
+        // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
+        // 時々2-3回 -> 1回:2回 = 50:50
+        // 時々2-4回 -> 1回:2回 = 40:60
+        occ_np = ([0.0, 0.0, p.occ_p_main, 0.5, 0.6])[p.occ_n_main];
+    }
+    else {
+        occ_np = p.occ_p_main * (p.occ_n_main - 1); // 加算説
+    }
+    var total_p = Math.min(p.qa + p.ta + p.da + p.kick + occ_np, 0.95); // 加算説
+        // 95%キャップと仮定（2011.05.10 VU前は80%～85%キャップだった？）
+    return kick_proc(total_p, p.kick_add);
+};
+
+// メイジャン複数回攻撃武器 meta function
+var magian_occ = function (occ_n, occ_p) {
+    // 時々2回   -> 1回:2回 = (1-occ_p_main):occ_p_main
+    // 時々2-3回 -> 1回:2回:3回 = 50:30:20
+    // 時々2-4回 -> 1回:2回:3回:4回 = 40:30:20:10
+    var occ_f = function () { return 0; };
+    switch (occ_n) {
+        case 2:
+            occ_f = function () {
+                if (occ_p > 0.0 && rand() <= occ_p) {
+                    return 1;
+                }
+                return 0;
+            };
+            break;
+        case 3:
+            occ_f = function () {
+                var r = rand();
+                if (r <= 0.2) {
+                    return 2;
+                }
+                else if (r <= 0.5) {
+                    return 1;
+                }
+                return 0;
+            };
+            break;
+        case 4:
+            occ_f = function () {
+                var r = rand();
+                if (r <= 0.1) {
+                    return 3;
+                }
+                else if (r <= 0.3) {
+                    return 2;
+                }
+                else if (r <= 0.6) {
+                    return 1;
+                }
+                return 0;
+            };
+            break;
+    }
+    return occ_f;
+};
+
+// 非メイジャン複数回攻撃 meta function
+var other_occ = function (occ_n, occ_p) {
+    return function () {
+        var sum = 0;
+        for (var k=1; k<occ_n; k++) {
+            if (rand() <= occ_p) {
+                ++sum;
             }
         }
+        return sum;
+    };
+};
+
+// DA/TA/QA meta function
+var multiattack = function (p, occ_f) {
+    var qa = (p.qa > 0.0);
+    var ta = (p.ta > 0.0);
+    var da = (p.da > 0.0);
+    return function () {
+        if (qa && rand() <= p.qa) {
+            return 3;
+        }
+        else if (ta && rand() <= p.ta) {
+            return 2;
+        }
+        else if (da && rand() <= p.da) {
+            return 1;
+        }
+        return occ_f();
+    };
+};
+
+var vulture_proc = function () {
+    if (rand() <= p.vulture_main) {
+        return 1;
+    }
+    return 0;
+};
+
+var make_attack_procs = function (p) {
+    var attackprocs = [0]; // 1ターンの追加攻撃回数を計算する関数群
+
+    if (p.footwork) { // 猫足
+        var footproc = footwork_proc(p);
+        if (footproc) attackprocs.push(footproc);
+        return attackprocs;
+    }
+
+    if (p.dual || p.h2h) attackprocs[0] += 1;
+    // DA/TA/QA/複数回攻撃（優先度はQA>TA>DA>複数回攻撃）
+    var occ_f_main = function () { return 0; };
+    if (p.magian_main) {
+        occ_f_main = magian_occ(p.occ_n_main, p.occ_p_main);
+    }
+    else { //メイジャン以外の複数回攻撃武器
+        occ_f_main = other_occ(p.occ_n_main, p.occ_p_main);
+    }
+    attackprocs.push(multiattack(p, occ_f_main));
+    if (p.dual || p.h2h) {
+        var occ_f_sub = function () { return 0; };
+        if (p.magian_sub) {
+            occ_f_sub = magian_occ(p.occ_n_sub, p.occ_p_sub);
+        }
+        else { //メイジャン以外の複数回攻撃武器
+            occ_f_sub = other_occ(p.occ_n_sub, p.occ_p_sub);
+        }
+        attackprocs.push(multiattack(p, occ_f_sub));
+    }
+
+    // ヴァルチャ
+    if (p.vulture_main > 0.0) {
+        attackprocs.push(vulture_proc);
+    }
+
+    // 蹴撃
+    if (p.h2h) {
+        var kickproc = kick_proc(p.kick, p.kick_add);
+        if (kickproc) attackprocs.push(kickproc);
     }
 
     return attackprocs;
