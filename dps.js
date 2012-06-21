@@ -305,12 +305,13 @@ var weapon_list = [
 function calc_dps_h (st, d, delay) {
     var da = st['double_attack']; // DA
     var ta = st['triple_attack']; // TA
+    var qa = st['quad_attack']; // QA
 
     var add1 = 0; // 初段のみの効果
     add1 += 2 * st['three_times']; // スファライの3倍撃（非DA/TA時）
     add1 += st['multi_p']; // グランツファウストの追加攻撃
 
-    var add2 = 2*ta + (1-ta)*da; // 両手に乗る効果
+    var add2 = 3*qa + 2*(1-qa)*ta + (1-qa)*(1-ta)*da; // 両手に乗る効果
     var occ_expected = 0.0; // 追加攻撃回数の期待値
     switch (st['occ_n']) {
         case 2:
@@ -323,7 +324,7 @@ function calc_dps_h (st, d, delay) {
             occ_expected = 1.0; // = 0.3 + 0.2*2 + 0.1*3;
             break;
     }
-    add2 += (1-ta)*(1-da)*occ_expected; // 時々2-n回攻撃
+    add2 += (1-qa)*(1-ta)*(1-da)*occ_expected; // 時々2-n回攻撃
     add2 += st['vulture']; // ヴァルチャ
     add2 *= (1+st['two_times']); // ウルスラグナの2倍撃（DA/TAに乗ると仮定）
 
@@ -343,6 +344,7 @@ function calc_dps_k (st, d, delay) {
 function calc_dps_f (st, d, delay) {
     var da = st['double_attack'];
     var ta = st['triple_attack'];
+    var qa = st['quad_attack'];
     var kp = st['kick_p_eq'];
     var ka = st['kick_add_p'];
     var occ_expected = 0.0; // 追加攻撃回数の期待値
@@ -359,7 +361,7 @@ function calc_dps_f (st, d, delay) {
     }
     return d.map(function (d) {
         //var add_p = 1 - (1-ta) * (1-da) * occ_np * (1-kp); // 乗算式
-        var add_p = Math.min(ta + da + kp + (1-occ_expected), 0.95); // 加算式
+        var add_p = Math.min(qa + ta + da + kp + (1-occ_expected), 0.95); // 加算式
         return d * (1 + add_p * (1 + ka)) * 60.0 / delay;
     });
 }
@@ -370,7 +372,7 @@ function weapon_calc (mystatus) {
         var w = weapon_list[i];
         if (!w.memo) w.memo = "";
         var st = {};
-        ['double_attack', 'triple_attack', 'kick_p_eq', 'kick_add_p'].map(function (prop) {
+        ['double_attack', 'triple_attack', 'quad_attack', 'kick_p_eq', 'kick_add_p'].map(function (prop) {
             st[prop] = mystatus[prop];
             if (w[prop]) st[prop] += w[prop];
         });
@@ -471,6 +473,9 @@ function get_inputs (mystatus) {
     // トリプルアタック
     mystatus['triple_attack'] = parseInt(getv('t_triple_attack')) * 0.01;
     if (mystatus['triple_attack'].toString() == "NaN") mystatus['triple_attack'] = 0;
+    // クワッドアタック
+    mystatus['quad_attack'] = parseInt(getv('t_quad_attack')) * 0.01;
+    if (mystatus['quad_attack'].toString() == "NaN") mystatus['quad_attack'] = 0;
     // ヴァルチャ
     mystatus['vulture'] = parseFloat(getv('t_vulture')) * 0.01;
     if (mystatus['vulture'].toString() == "NaN") mystatus['vulture'] = 0;
@@ -526,10 +531,10 @@ function set_status (mystatus) {
 
     // 総合スキル
     mystatus['skill'] = mystatus['skill_plus'];
-    var skill_bounds = [0, 50, 60, 70, 80, 90, 99];
+    var skill_bounds = [0, 50, 60, 70, 80, 90, 100];
     var skill_diff = [0, 3, 5, 4.85, 5, 6, 7];
-    var skill_sum = [3, 153, 203, 251, 301, 361, 424];
-    for (var i=1; i<skill_bounds.length; i++) {
+    var skill_sum = [3, 153, 203, 251, 301, 361, 431];
+    for (var i=1; i<skill_bounds.length; ++i) {
         if (mystatus['lv'] < skill_bounds[i]) {
             mystatus['skill'] += Math.floor(skill_sum[i-1] + (mystatus['lv'] - skill_bounds[i-1]) * skill_diff[i]);
             break;
@@ -624,7 +629,7 @@ function set_status (mystatus) {
     if (mystatus['footwork']) tp_base = mystatus['delay'];
     mystatus['tp'] = parseFloat(floor2(calc_tp(tp_base) * (1 + mystatus['stp'] / 100), true, 1, 1));
     setv('t_tp', ff(mystatus['tp'], true, 1));
-    setv('t_tp_speed', ff(mystatus['tp']*(2*(1+mystatus['double_attack']+2*mystatus['triple_attack'])+mystatus['kick_p_eq']*(1+mystatus['kick_add_p']))/mystatus['haste_delay']*60*0.95));
+    setv('t_tp_speed', ff(mystatus['tp']*(2*(1+mystatus['double_attack']+2*mystatus['triple_attack']+3*mystatus['quad_attack'])+mystatus['kick_p_eq']*(1+mystatus['kick_add_p']))/mystatus['haste_delay']*60*0.95));
     // 得TP（WS）
     mystatus['ws_tp'] = parseFloat(floor2(floor2(calc_tp(tp_base) * (1 + mystatus['ws_stp'] / 100), 1) * 2 + floor2(1 + mystatus['ws_stp'] / 100, 1) * 6, 1));
     setv('t_ws_tp', ff(mystatus['ws_tp'], true, 1));
