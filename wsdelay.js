@@ -579,7 +579,8 @@ var exec = function () {
         csv += i + "," + s.wshit + "," + (s.wstp / 10) + "," + (s.lasttp / 10) + "," + j + "," + (s.cur_tp / 10) + "\n";
     }
 
-    line = "通常基礎TP" + (p.tp / 10) + "%、";
+    line = "試行回数" + (p.N) + "回、";
+    line += "通常基礎TP" + (p.tp / 10) + "%、";
     line += "通常得TP" + (p.gtp / 10) + "%、";
     line += "通常与TP" + (p.dtp / 10) + "%、";
     line += "1ターン間隔" + Math.floor(p.total_delay) + "（" + floor2(p.total_delay_s, 1) + "秒）<br>";
