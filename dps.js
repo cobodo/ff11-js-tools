@@ -83,222 +83,236 @@ function calc_tp (delay) {
 }
 
 var weapon_list = [
-    {name: "素手", lv: 0, d: 0, delay: 0},
-    {name: "トレイニーシザー", lv: 1, d: 1, delay: 66},
-    {name: "キャットバグナウ+1", lv: 1, d: 3, delay: 51},
-    {name: "セスタス+1", lv: 1, d: 2, delay: 43},
-    {name: "セスタス", lv: 1, d: 1, delay: 48},
-    {name: "フルーツパンチ", lv: 1, d: 0, delay: 40},
-    {name: "キャットバグナウ", lv: 1, d: 2, delay: 60},
-    {name: "ブロンズナックル+1", lv: 5, d: 3, delay: 91},
-    {name: "ブロンズナックル", lv: 5, d: 2, delay: 96},
-    {name: "ブラスナックル+1", lv: 9, d: 5, delay: 91},
-    {name: "ブラスナックル", lv: 9, d: 4, delay: 96},
-    {name: "トロピカルパンチ+1", lv: 10, d: 2, delay: 0},
-    {name: "トロピカルパンチ", lv: 10, d: 1, delay: 0},
-    {name: "王国弓兵制式戦拳", lv: 10, d: 2, delay: 43},
-    {name: "義勇兵の爪", lv: 10, d: 3, delay: 66},
-    {name: "共和軍団兵制式鉄拳", lv: 10, d: 4, delay: 96},
-    {name: "ハイドロバグナウ+1", lv: 11, d: 5, delay: 55},
-    {name: "ブラスバグナウ+1", lv: 11, d: 5, delay: 55},
-    {name: "ハイドロバグナウ", lv: 11, d: 4, delay: 60},
-    {name: "ブラスバグナウ", lv: 11, d: 4, delay: 60},
-    {name: "バーニンセスタス", lv: 12, d: 3, delay: 40},
-    {name: "スマッシュセスタス", lv: 12, d: 2, delay: 48},
-    {name: "リザードセスタス", lv: 12, d: 2, delay: 48},
-    {name: "ストライクバグナウ", lv: 14, d: 5, delay: 42},
-    {name: "王国弓兵戦拳+2", lv: 15, d: 4, delay: 33},
-    {name: "義勇兵爪+2", lv: 15, d: 5, delay: 48},
-    {name: "王国弓兵戦拳+1", lv: 15, d: 3, delay: 38},
-    {name: "義勇兵爪+1", lv: 15, d: 4, delay: 57},
-    {name: "共和軍団兵鉄拳+2", lv: 15, d: 6, delay: 76},
-    {name: "共和軍団兵鉄拳+1", lv: 15, d: 5, delay: 86},
-    {name: "クーガーバグナウ", lv: 20, d: 6, delay: 51},
-    {name: "プラトーンセスタス", lv: 20, d: 4, delay: 48},
-    {name: "メタルナックル+1", lv: 20, d: 7, delay: 91},
-    {name: "メタルナックル", lv: 20, d: 6, delay: 96},
-    {name: "ソニックナックル", lv: 22, d: 6, delay: 86},
-    {name: "リンクスバグナウ", lv: 24, d: 6, delay: 30},
-    {name: "バグナウ+1", lv: 24, d: 7, delay: 55},
-    {name: "バグナウ", lv: 24, d: 6, delay: 60},
-    {name: "クーストース", lv: 25, d: 4, delay: 48},
-    {name: "ポイズンセスタス+1", lv: 27, d: 4, delay: 40},
-    {name: "ポイズンセスタス", lv: 27, d: 3, delay: 48},
-    {name: "クロー+1", lv: 30, d: 8, delay: 61},
-    {name: "ハイドロクロー+1", lv: 30, d: 8, delay: 61},
-    {name: "ボレアースセスタス", lv: 30, d: 6, delay: 48},
-    {name: "クロー", lv: 30, d: 7, delay: 66},
-    {name: "ハイドロクロー", lv: 30, d: 7, delay: 66},
-    {name: "タイロカタール", lv: 31, d: 6, delay: 84},
-    {name: "タイロカタール+1", lv: 31, d: 7, delay: 75},
-    {name: "インパクトナックル", lv: 32, d: 8, delay: 86},
-    {name: "カタール+1", lv: 33, d: 9, delay: 75},
-    {name: "カタール", lv: 33, d: 8, delay: 84},
-    {name: "ミスリルナックル+1", lv: 38, d: 10, delay: 91},
-    {name: "ミスリルナックル", lv: 38, d: 9, delay: 96},
-    {name: "バンピリッククロー", lv: 39, d: 8, delay: 60},
-    {name: "ヒマンテス+1", lv: 40, d: 5, delay: 40},
-    {name: "トーニィパタ", lv: 40, d: 11, delay: 96},
-    {name: "ヒマンテス", lv: 40, d: 4, delay: 48},
-    {name: "ノーブルヒマンテス", lv: 40, d: 4, delay: 48},
-    {name: "ミスリルクロー+1", lv: 41, d: 10, delay: 61},
-    {name: "ミスリルクロー", lv: 41, d: 9, delay: 66},
-    {name: "ビートセスタス", lv: 42, d: 4, delay: 48},
-    {name: "エグゾセ", lv: 46, d: 10, delay: 51},
-    {name: "アダーガ+1", lv: 47, d: 11, delay: 49},
-    {name: "アダーガ", lv: 47, d: 10, delay: 54},
-    {name: "パタ+1", lv: 48, d: 15, delay: 86},
-    {name: "パタ", lv: 48, d: 14, delay: 96},
-    {name: "クロスカウンター", lv: 50, d: 19, delay: 96},
-    {name: "リタリエーター", lv: 50, d: 19, delay: 96},
-    {name: "連邦軍師制式指揮棒", lv: 50, d: 15, delay: 91},
-    {name: "連邦軍師指揮棒+2", lv: 52, d: 16, delay: 71},
-    {name: "ダーククロー+1", lv: 52, d: 12, delay: 57},
-    {name: "連邦軍師指揮棒+1", lv: 52, d: 15, delay: 81},
-    {name: "ダーククロー", lv: 52, d: 11, delay: 66},
-    {name: "トラマセスタス", lv: 52, d: 6, delay: 40},
-    {name: "クァールセスタス", lv: 52, d: 5, delay: 48},
-    {name: "ダークナックル", lv: 54, d: 12, delay: 96},
-    {name: "ダークナックル+1", lv: 54, d: 13, delay: 86},
-    {name: "バードベーン", lv: 54, d: 14, delay: 84},
-    {name: "サインティ+1", lv: 55, d: 11, delay: 49},
-    {name: "サインティ", lv: 55, d: 10, delay: 51},
-    {name: "ハイドロパタ+1", lv: 56, d: 17, delay: 86},
-    {name: "ボーンパタ+1", lv: 56, d: 17, delay: 86},
-    {name: "ハイドロパタ", lv: 56, d: 16, delay: 96},
-    {name: "ボーンパタ", lv: 56, d: 16, delay: 96},
-    {name: "スパルタンセスタス", lv: 58, d: 20, delay: 113},
-    {name: "ポペットカタール", lv: 58, d: 17, delay: 84},
-    {name: "サーメットクロー+1", lv: 59, d: 12, delay: 42},
-    {name: "サーメットクロー", lv: 59, d: 11, delay: 51},
-    {name: "ダークカタール+1", lv: 59, d: 14, delay: 75},
-    {name: "ダークカタール", lv: 59, d: 13, delay: 84},
-    {name: "ブラックアダーガ+1", lv: 60, d: 14, delay: 49},
-    {name: "ブラックアダーガ", lv: 60, d: 13, delay: 54},
-    {name: "パペットクロー", lv: 60, d: 12, delay: 66},
-    {name: "パギュール", lv: 60, d: 14, delay: 106},
-    {name: "ジャマダル+1", lv: 61, d: 15, delay: 75},
-    {name: "ジャマダル", lv: 61, d: 14, delay: 84},
-    {name: "ゴールドパタ", lv: 64, d: 18, delay: 122},
-    {name: "ゴールドパタ+1", lv: 64, d: 19, delay: 106},
-    {name: "セヴェルスクロー", lv: 64, d: 15, delay: 61},
-    {name: "セヴェルスクロー+1", lv: 64, d: 16, delay: 56},
-    {name: "ダークサインティ+1", lv: 65, d: 13, delay: 49},
-    {name: "ダークサインティ", lv: 65, d: 12, delay: 51},
-    {name: "シヴァクロー", lv: 65, d: 11, delay: 60},
-    {name: "フェラルファング", lv: 66, d: 19, delay: 96},
-    {name: "タイガーファング", lv: 66, d: 18, delay: 96},
-    {name: "スタンジャマダル", lv: 66, d: 15, delay: 84},
-    {name: "ヴィシュヌセスタス", lv: 67, d: 7, delay: 0},
-    {name: "ナラシンハセスタス", lv: 67, d: 6, delay: 0},
-    {name: "ドラゴンクロー+1", lv: 68, d: 14, delay: 61},
-    {name: "ドラゴンクロー", lv: 68, d: 13, delay: 66},
-    {name: "アカンタシェーバー", lv: 69, d: 18, delay: 51},
-    {name: "アベンジャー", lv: 69, d: 18, delay: 96},
-    {name: "五十四歩", lv: 69, d: 8, delay: 48, memo: "蹴撃+3", kick_p_eq: 0.03},
-    {name: "ハデスサインティ+1", lv: 70, d: 19, delay: 49},
-    {name: "ハデスサインティ", lv: 70, d: 18, delay: 51},
-    {name: "ルーンバグナウ", lv: 70, d: 13, delay: 60},
-    {name: "ペルワンカタール", lv: 70, d: 16, delay: 84},
-    {name: "ベヒモスセスタス+1", lv: 70, d: 8, delay: 40},
-    {name: "ベヒモスセスタス", lv: 70, d: 7, delay: 48},
-    {name: "シェンロンバグナウ", lv: 71, d: 21, delay: 51, memo: "DA+1%", double_attack: 0.01},
-    {name: "コブラバグナウ", lv: 71, d: 15, delay: 55},
-    {name: "ダイアナックル+1", lv: 71, d: 18, delay: 86},
-    {name: "筆頭魔戦隊長爪", lv: 71, d: 15, delay: 66},
-    {name: "ダイアナックル", lv: 71, d: 17, delay: 96},
-    {name: "ペルワンパタ", lv: 71, d: 17, delay: 96},
-    {name: "ミーティアセスタス", lv: 71, d: 8, delay: 36},
-    {name: "トライアルナックル", lv: 71, d: 16, delay: 96},
-    {name: "ワーグバグナウ（潜在）", lv: 72, d: 18, delay: 60},
-    {name: "ワーグバグナウ（デフォ）", lv: 72, d: 13, delay: 60},
-    {name: "マイティパタ（デフォ）", lv: 72, d: 17, delay: 96},
-    {name: "マイティパタ（火曜日）", lv: 72, d: 22, delay: 96},
-    {name: "マーシャルナックル", lv: 72, d: 16, delay: 96},
-    {name: "フェイスバグナウ（VSあり）", lv: 73, d: 9, delay: 113, memo: "追加攻撃50%と仮定", vulture: 0.5},
-    {name: "デストロイヤー（潜在）", lv: 73, d: 18, delay: 48, memo: "クリティカルヒット+6%", crit_p: 0.06},
-    {name: "インドラカタール", lv: 73, d: 19, delay: 84, memo: "TA+1%", triple_attack: 0.01},
-    {name: "デストロイヤー（デフォ）", lv: 73, d: 5, delay: 48},
-    {name: "フェイスバグナウ（VS無し）", lv: 73, d: 9, delay: 113},
-    {name: "リュフトサインティ", lv: 73, d: 18, delay: 51},
-    {name: "マノプル+1", lv: 74, d: 21, delay: 106},
-    {name: "ポンデラスマノプル", lv: 74, d: 20, delay: 122},
-    {name: "マノプル", lv: 74, d: 20, delay: 122},
-    {name: "オベロンナックル", lv: 75, d: 18, delay: 96},
-    {name: "スファライ", lv: 75, d: 23, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05},
-    {name: "スファライ（最終）", lv: 99, d: 52, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05},
-    {name: "カエストス", lv: 75, d: 23, delay: 96},
-    {name: "カイザーナックル", lv: 75, d: 20, delay: 86},
-    {name: "グランツファウスト", lv: 75, d: 20, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5},
-    {name: "グランツファウスト（最終）", lv: 99, d: 51, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5},
-    {name: "ケーニヒスナックル", lv: 75, d: 19, delay: 96},
-    {name: "デュナミスナックル", lv: 75, d: 16, delay: 96},
-    {name: "バーニンナックル", lv: 75, d: 16, delay: 96},
-    {name: "ミリタントナックル", lv: 75, d: 1, delay: 96},
-    {name: "レリックナックル", lv: 75, d: 1, delay: 999},
-    {name: "ピュジリスト", lv: 75, d: 9, delay: 86},
-    {name: "シミアンフィスト", lv: 75, d: 12, delay: 86},
-    {name: "マンティス", lv: 75, d: 14, delay: 55},
-    {name: "マンティスNo.75", lv: 75, d: 21, delay: 55},
-    {name: "マンティスNo.1138", lv: 75, d: 22, delay: 55},
-    {name: "ワーグファング", lv: 75, d: 0, delay: 75},
-    {name: "ワーグファングNo.78", lv: 75, d: 17, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "ワーグファングNo.81", lv: 75, d: 0, delay: 140, memo: "弱ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "ワーグファングNo.1141", lv: 75, d: 18, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "ワーグファングNo.1143", lv: 75, d: 0, delay: 122, memo: "弱ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "キャッツクロー", lv: 75, d: 10, delay: 66},
-    {name: "キャッツクロー（ステ）", lv: 75, d: 18, delay: 61},
-    {name: "キャッツクロー（追加効果）", lv: 75, d: 19, delay: 66},
-    {name: "ルナリスクロー", lv: 80, d: 26, delay: 96},
-    {name: "アフリクター", lv: 77, d: 22, delay: 96, memo: "蹴撃+7 クリティカルヒット+3%", kick_p_eq: 0.07, crit_p: 0.03},
-    {name: "ポワンサヴァット", lv: 77, d: 19, delay: 51},
-    {name: "ポワンサヴァット+1", lv: 77, d: 20, delay: 49},
-    {name: "ウルスラグナ", lv: 80, d: 27, delay: 51},
-    {name: "ウルスラグナNo.1909", lv: 85, d: 32, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2},
-    {name: "ウルスラグナ（最終）", lv: 99, d: 42, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2},
-    {name: "レバナントフィスト", lv: 80, d: 23, delay: 55},
-    {name: "Rフィスト+1", lv: 85, d: 28, delay: 55},
-    {name: "Rフィスト+2", lv: 90, d: 31, delay: 55},
-    {name: "Rフィスト+3", lv: 95, d: 34, delay: 55},
-    {name: "デゥムズィ", lv:99, d: 36, delay: 55},
-    {name: "アルサインクローNo.1142", lv: 80, d: 19, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "アルサインクロー+1No.1911", lv: 85, d: 23, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "アルサインクロー+2No.2309", lv: 90, d: 25, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "アルサインクロー+3No.2742", lv: 95, d: 28, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "アルサインクローNo.1144", lv: 80, d: 0, delay: 140, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "アルサインクロー+1No.1912", lv: 85, d: 0, delay: 132, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "アルサインクロー+2No.2310", lv: 90, d: 0, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "アルサインクロー+3No.2743", lv: 95, d: 1, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "アルサインクローNo.1145", lv: 80, d: 23, delay: 86, memo: "弱ワーグ系。DA+7%", double_attack: 0.07},
-    {name: "アルサインクロー+1No.1913", lv: 85, d: 27, delay: 86, memo: "弱ワーグ系。DA+9%", double_attack: 0.09},
-    {name: "アルサインクロー+2No.2311", lv: 90, d: 30, delay: 86, memo: "弱ワーグ系。DA+10%", double_attack: 0.1},
-    {name: "アルサインクロー+3No.2744", lv: 95, d: 33, delay: 86, memo: "弱ワーグ系。DA+10%", double_attack: 0.1},
-    {name: "ウルサ・マヨルNo.3205", lv: 99, d: 31, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2},
-    {name: "ウルサ・マヨルNo.3206", lv: 99, d: 2, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3},
-    {name: "ウルサ・マヨルNo.3207", lv: 99, d: 34, delay: 86, memo: "弱ワーグ系。DA+11%", double_attack: 0.11},
-    {name: "タイパンファング", lv: 80, d: 22, delay: 61},
-    {name: "タイパンファング+1", lv: 85, d: 26, delay: 61},
-    {name: "タイパンファング+2", lv: 90, d: 29, delay: 61},
-    {name: "タイパンファング+3", lv: 95, d: 32, delay: 61},
-    {name: "オキシュラニ", lv:99, d: 34, delay: 61},
-    {name: "バラクーダ", lv: 80, d: 14, delay: 60},
-    {name: "バラクーダNo.1198", lv: 80, d: 22, delay: 60},
-    {name: "バラクーダNo.1199", lv: 80, d: 20, delay: 60},
-    {name: "バラクーダ+1", lv: 85, d: 23, delay: 60},
-    {name: "バラクーダ+2No.2336/2338", lv: 90, d: 26, delay: 60},
-    {name: "バラクーダ+2No.2337", lv: 90, d: 23, delay: 60},
-    {name: "バラクーダ+3No.2769/2771", lv: 95, d: 27, delay: 60},
-    {name: "バラクーダ+3No.2770", lv: 95, d: 24, delay: 60},
-    {name: "スフィラNo.3232/3234", lv:99, d: 29, delay: 60},
-    {name: "スフィラNo.3233", lv:99, d: 26, delay: 60},
-    {name: "マグヌスサインティ", lv: 82, d: 10, delay: 51, memo: "マグヌスストーン装備時、時々2倍撃。発動率50%と仮定。", vulture: 0.5},
-    {name: "ヘフォンナックル", lv: 85, d: 30, delay: 86},
-    {name: "トウリンセスタス", lv: 89, d: 28, delay: 48},
-    {name: "フュアロセスタス", lv: 90, d: 22, delay: 30},
-    {name: "アイラバグナウ", lv: 87, d: 23, delay: 60},
-    {name: "アイラバグナウ+1", lv: 87, d: 24, delay: 57},
-    {name: "メタソーマカタール", lv: 88, d: 30, delay: 84},
-    {name: "グロテスクセスタス", lv:92, d: 20, delay: 0}
+    {name: "素手", lv: 0, d: 0, delay: 0}
+    , {name: "トレイニーシザー", lv: 1, d: 1, delay: 66}
+    , {name: "キャットバグナウ+1", lv: 1, d: 3, delay: 51}
+    , {name: "セスタス+1", lv: 1, d: 2, delay: 43}
+    , {name: "セスタス", lv: 1, d: 1, delay: 48}
+    , {name: "フルーツパンチ", lv: 1, d: 0, delay: 40}
+    , {name: "キャットバグナウ", lv: 1, d: 2, delay: 60}
+    , {name: "ブロンズナックル+1", lv: 5, d: 3, delay: 91}
+    , {name: "ブロンズナックル", lv: 5, d: 2, delay: 96}
+    , {name: "ブラスナックル+1", lv: 9, d: 5, delay: 91}
+    , {name: "ブラスナックル", lv: 9, d: 4, delay: 96}
+    , {name: "トロピカルパンチ+1", lv: 10, d: 2, delay: 0}
+    , {name: "トロピカルパンチ", lv: 10, d: 1, delay: 0}
+    , {name: "王国弓兵制式戦拳", lv: 10, d: 2, delay: 43}
+    , {name: "義勇兵の爪", lv: 10, d: 3, delay: 66}
+    , {name: "共和軍団兵制式鉄拳", lv: 10, d: 4, delay: 96}
+    , {name: "ハイドロバグナウ+1", lv: 11, d: 5, delay: 55}
+    , {name: "ブラスバグナウ+1", lv: 11, d: 5, delay: 55}
+    , {name: "ハイドロバグナウ", lv: 11, d: 4, delay: 60}
+    , {name: "ブラスバグナウ", lv: 11, d: 4, delay: 60}
+    , {name: "バーニンセスタス", lv: 12, d: 3, delay: 40}
+    , {name: "スマッシュセスタス", lv: 12, d: 2, delay: 48}
+    , {name: "リザードセスタス", lv: 12, d: 2, delay: 48}
+    , {name: "ストライクバグナウ", lv: 14, d: 5, delay: 42}
+    , {name: "王国弓兵戦拳+2", lv: 15, d: 4, delay: 33}
+    , {name: "義勇兵爪+2", lv: 15, d: 5, delay: 48}
+    , {name: "王国弓兵戦拳+1", lv: 15, d: 3, delay: 38}
+    , {name: "義勇兵爪+1", lv: 15, d: 4, delay: 57}
+    , {name: "共和軍団兵鉄拳+2", lv: 15, d: 6, delay: 76}
+    , {name: "共和軍団兵鉄拳+1", lv: 15, d: 5, delay: 86}
+    , {name: "クーガーバグナウ", lv: 20, d: 6, delay: 51}
+    , {name: "プラトーンセスタス", lv: 20, d: 4, delay: 48}
+    , {name: "メタルナックル+1", lv: 20, d: 7, delay: 91}
+    , {name: "メタルナックル", lv: 20, d: 6, delay: 96}
+    , {name: "ソニックナックル", lv: 22, d: 6, delay: 86}
+    , {name: "リンクスバグナウ", lv: 24, d: 6, delay: 30}
+    , {name: "バグナウ+1", lv: 24, d: 7, delay: 55}
+    , {name: "バグナウ", lv: 24, d: 6, delay: 60}
+    , {name: "クーストース", lv: 25, d: 4, delay: 48}
+    , {name: "ポイズンセスタス+1", lv: 27, d: 4, delay: 40}
+    , {name: "ポイズンセスタス", lv: 27, d: 3, delay: 48}
+    , {name: "クロー+1", lv: 30, d: 8, delay: 61}
+    , {name: "ハイドロクロー+1", lv: 30, d: 8, delay: 61}
+    , {name: "ボレアースセスタス", lv: 30, d: 6, delay: 48}
+    , {name: "クロー", lv: 30, d: 7, delay: 66}
+    , {name: "ハイドロクロー", lv: 30, d: 7, delay: 66}
+    , {name: "タイロカタール", lv: 31, d: 6, delay: 84}
+    , {name: "タイロカタール+1", lv: 31, d: 7, delay: 75}
+    , {name: "インパクトナックル", lv: 32, d: 8, delay: 86}
+    , {name: "カタール+1", lv: 33, d: 9, delay: 75}
+    , {name: "カタール", lv: 33, d: 8, delay: 84}
+    , {name: "ミスリルナックル+1", lv: 38, d: 10, delay: 91}
+    , {name: "ミスリルナックル", lv: 38, d: 9, delay: 96}
+    , {name: "バンピリッククロー", lv: 39, d: 8, delay: 60}
+    , {name: "ヒマンテス+1", lv: 40, d: 5, delay: 40}
+    , {name: "トーニィパタ", lv: 40, d: 11, delay: 96}
+    , {name: "ヒマンテス", lv: 40, d: 4, delay: 48}
+    , {name: "ノーブルヒマンテス", lv: 40, d: 4, delay: 48}
+    , {name: "ミスリルクロー+1", lv: 41, d: 10, delay: 61}
+    , {name: "ミスリルクロー", lv: 41, d: 9, delay: 66}
+    , {name: "ビートセスタス", lv: 42, d: 4, delay: 48}
+    , {name: "エグゾセ", lv: 46, d: 10, delay: 51}
+    , {name: "アダーガ+1", lv: 47, d: 11, delay: 49}
+    , {name: "アダーガ", lv: 47, d: 10, delay: 54}
+    , {name: "パタ+1", lv: 48, d: 15, delay: 86}
+    , {name: "パタ", lv: 48, d: 14, delay: 96}
+    , {name: "クロスカウンター", lv: 50, d: 19, delay: 96}
+    , {name: "リタリエーター", lv: 50, d: 19, delay: 96}
+    , {name: "連邦軍師制式指揮棒", lv: 50, d: 15, delay: 91}
+    , {name: "連邦軍師指揮棒+2", lv: 52, d: 16, delay: 71}
+    , {name: "ダーククロー+1", lv: 52, d: 12, delay: 57}
+    , {name: "連邦軍師指揮棒+1", lv: 52, d: 15, delay: 81}
+    , {name: "ダーククロー", lv: 52, d: 11, delay: 66}
+    , {name: "トラマセスタス", lv: 52, d: 6, delay: 40}
+    , {name: "クァールセスタス", lv: 52, d: 5, delay: 48}
+    , {name: "ダークナックル", lv: 54, d: 12, delay: 96}
+    , {name: "ダークナックル+1", lv: 54, d: 13, delay: 86}
+    , {name: "バードベーン", lv: 54, d: 14, delay: 84}
+    , {name: "サインティ+1", lv: 55, d: 11, delay: 49}
+    , {name: "サインティ", lv: 55, d: 10, delay: 51}
+    , {name: "ハイドロパタ+1", lv: 56, d: 17, delay: 86}
+    , {name: "ボーンパタ+1", lv: 56, d: 17, delay: 86}
+    , {name: "ハイドロパタ", lv: 56, d: 16, delay: 96}
+    , {name: "ボーンパタ", lv: 56, d: 16, delay: 96}
+    , {name: "スパルタンセスタス", lv: 58, d: 20, delay: 113}
+    , {name: "ポペットカタール", lv: 58, d: 17, delay: 84}
+    , {name: "サーメットクロー+1", lv: 59, d: 12, delay: 42}
+    , {name: "サーメットクロー", lv: 59, d: 11, delay: 51}
+    , {name: "ダークカタール+1", lv: 59, d: 14, delay: 75}
+    , {name: "ダークカタール", lv: 59, d: 13, delay: 84}
+    , {name: "ブラックアダーガ+1", lv: 60, d: 14, delay: 49}
+    , {name: "ブラックアダーガ", lv: 60, d: 13, delay: 54}
+    , {name: "パペットクロー", lv: 60, d: 12, delay: 66}
+    , {name: "パギュール", lv: 60, d: 14, delay: 106}
+    , {name: "ジャマダル+1", lv: 61, d: 15, delay: 75}
+    , {name: "ジャマダル", lv: 61, d: 14, delay: 84}
+    , {name: "ゴールドパタ", lv: 64, d: 18, delay: 122}
+    , {name: "ゴールドパタ+1", lv: 64, d: 19, delay: 106}
+    , {name: "セヴェルスクロー", lv: 64, d: 15, delay: 61}
+    , {name: "セヴェルスクロー+1", lv: 64, d: 16, delay: 56}
+    , {name: "ダークサインティ+1", lv: 65, d: 13, delay: 49}
+    , {name: "ダークサインティ", lv: 65, d: 12, delay: 51}
+    , {name: "シヴァクロー", lv: 65, d: 11, delay: 60}
+    , {name: "フェラルファング", lv: 66, d: 19, delay: 96}
+    , {name: "タイガーファング", lv: 66, d: 18, delay: 96}
+    , {name: "スタンジャマダル", lv: 66, d: 15, delay: 84}
+    , {name: "ヴィシュヌセスタス", lv: 67, d: 7, delay: 0}
+    , {name: "ナラシンハセスタス", lv: 67, d: 6, delay: 0}
+    , {name: "ドラゴンクロー+1", lv: 68, d: 14, delay: 61}
+    , {name: "ドラゴンクロー", lv: 68, d: 13, delay: 66}
+    , {name: "アカンタシェーバー", lv: 69, d: 18, delay: 51}
+    , {name: "アベンジャー", lv: 69, d: 18, delay: 96}
+    , {name: "五十四歩", lv: 69, d: 8, delay: 48, memo: "蹴撃+3", kick_p_eq: 0.03}
+    , {name: "ハデスサインティ+1", lv: 70, d: 19, delay: 49}
+    , {name: "ハデスサインティ", lv: 70, d: 18, delay: 51}
+    , {name: "ルーンバグナウ", lv: 70, d: 13, delay: 60}
+    , {name: "ペルワンカタール", lv: 70, d: 16, delay: 84}
+    , {name: "ベヒモスセスタス+1", lv: 70, d: 8, delay: 40}
+    , {name: "ベヒモスセスタス", lv: 70, d: 7, delay: 48}
+    , {name: "シェンロンバグナウ", lv: 71, d: 21, delay: 51, memo: "DA+1%", double_attack: 0.01}
+    , {name: "コブラバグナウ", lv: 71, d: 15, delay: 55}
+    , {name: "ダイアナックル+1", lv: 71, d: 18, delay: 86}
+    , {name: "筆頭魔戦隊長爪", lv: 71, d: 15, delay: 66}
+    , {name: "ダイアナックル", lv: 71, d: 17, delay: 96}
+    , {name: "ペルワンパタ", lv: 71, d: 17, delay: 96}
+    , {name: "ミーティアセスタス", lv: 71, d: 8, delay: 36}
+    , {name: "トライアルナックル", lv: 71, d: 16, delay: 96}
+    , {name: "ワーグバグナウ（潜在）", lv: 72, d: 18, delay: 60}
+    , {name: "ワーグバグナウ（デフォ）", lv: 72, d: 13, delay: 60}
+    , {name: "マイティパタ（デフォ）", lv: 72, d: 17, delay: 96}
+    , {name: "マイティパタ（火曜日）", lv: 72, d: 22, delay: 96}
+    , {name: "マーシャルナックル", lv: 72, d: 16, delay: 96}
+    , {name: "フェイスバグナウ（VSあり）", lv: 73, d: 9, delay: 113, memo: "追加攻撃50%と仮定", vulture: 0.5}
+    , {name: "デストロイヤー（潜在）", lv: 73, d: 18, delay: 48, memo: "クリティカルヒット+6%", crit_p: 0.06}
+    , {name: "インドラカタール", lv: 73, d: 19, delay: 84, memo: "TA+1%", triple_attack: 0.01}
+    , {name: "デストロイヤー（デフォ）", lv: 73, d: 5, delay: 48}
+    , {name: "フェイスバグナウ（VS無し）", lv: 73, d: 9, delay: 113}
+    , {name: "リュフトサインティ", lv: 73, d: 18, delay: 51}
+    , {name: "マノプル+1", lv: 74, d: 21, delay: 106}
+    , {name: "ポンデラスマノプル", lv: 74, d: 20, delay: 122}
+    , {name: "マノプル", lv: 74, d: 20, delay: 122}
+    , {name: "オベロンナックル", lv: 75, d: 18, delay: 96}
+    , {name: "スファライ", lv: 75, d: 23, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05}
+    , {name: "スファライ（最終）", lv: 99, d: 52, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05}
+    , {name: "カエストス", lv: 75, d: 23, delay: 96}
+    , {name: "カイザーナックル", lv: 75, d: 20, delay: 86}
+    , {name: "グランツファウスト", lv: 75, d: 20, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5}
+    , {name: "グランツファウスト（最終）", lv: 99, d: 51, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5}
+    , {name: "ケーニヒスナックル", lv: 75, d: 19, delay: 96}
+    , {name: "デュナミスナックル", lv: 75, d: 16, delay: 96}
+    , {name: "バーニンナックル", lv: 75, d: 16, delay: 96}
+    , {name: "ミリタントナックル", lv: 75, d: 1, delay: 96}
+    , {name: "レリックナックル", lv: 75, d: 1, delay: 999}
+    , {name: "ピュジリスト", lv: 75, d: 9, delay: 86}
+    , {name: "シミアンフィスト", lv: 75, d: 12, delay: 86}
+    , {name: "マンティス", lv: 75, d: 14, delay: 55}
+    , {name: "マンティスNo.75", lv: 75, d: 21, delay: 55}
+    , {name: "マンティスNo.1138", lv: 75, d: 22, delay: 55}
+    , {name: "ワーグファング", lv: 75, d: 0, delay: 75}
+    , {name: "ワーグファングNo.78", lv: 75, d: 17, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "ワーグファングNo.81", lv: 75, d: 0, delay: 140, memo: "弱ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "ワーグファングNo.1141", lv: 75, d: 18, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "ワーグファングNo.1143", lv: 75, d: 0, delay: 122, memo: "弱ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "キャッツクロー", lv: 75, d: 10, delay: 66}
+    , {name: "キャッツクロー（ステ）", lv: 75, d: 18, delay: 61}
+    , {name: "キャッツクロー（追加効果）", lv: 75, d: 19, delay: 66}
+    , {name: "ルナリスクロー", lv: 80, d: 26, delay: 96}
+    , {name: "アフリクター", lv: 77, d: 22, delay: 96, memo: "蹴撃+7 クリティカルヒット+3%", kick_p_eq: 0.07, crit_p: 0.03}
+    , {name: "ポワンサヴァット", lv: 77, d: 19, delay: 51}
+    , {name: "ポワンサヴァット+1", lv: 77, d: 20, delay: 49}
+    , {name: "ウルスラグナ", lv: 80, d: 27, delay: 51}
+    , {name: "ウルスラグナNo.1909", lv: 85, d: 32, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
+    , {name: "ウルスラグナNo.2307", lv: 90, d: 35, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
+    , {name: "ウルスラグナ（最終）", lv: 99, d: 42, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
+    , {name: "レバナントフィスト", lv: 80, d: 23, delay: 55}
+    , {name: "Rフィスト+1", lv: 85, d: 28, delay: 55}
+    , {name: "Rフィスト+2", lv: 90, d: 31, delay: 55}
+    , {name: "Rフィスト+3", lv: 95, d: 34, delay: 55}
+    , {name: "デゥムズィ", lv: 99, d: 36, delay: 55}
+    , {name: "アルサインクローNo.1142", lv: 80, d: 19, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "アルサインクロー+1No.1911", lv: 85, d: 23, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "アルサインクロー+2No.2309", lv: 90, d: 25, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "アルサインクロー+3No.2742", lv: 95, d: 28, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "アルサインクローNo.1144", lv: 80, d: 0, delay: 140, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3}
+    , {name: "アルサインクロー+1No.1912", lv: 85, d: 0, delay: 132, memo: "弱ワーグ系。時々2-3回攻撃。複数回攻撃発動割合5:3:2と仮定。", occ_p: 0.4375, occ_n: 3}
+    , {name: "アルサインクロー+2No.2310", lv: 90, d: 0, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3}
+    , {name: "アルサインクロー+3No.2743", lv: 95, d: 1, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3}
+    , {name: "アルサインクローNo.1145", lv: 80, d: 23, delay: 86, memo: "弱ワーグ系。DA+7%", double_attack: 0.07}
+    , {name: "アルサインクロー+1No.1913", lv: 85, d: 27, delay: 86, memo: "弱ワーグ系。DA+9%", double_attack: 0.09}
+    , {name: "アルサインクロー+2No.2311", lv: 90, d: 30, delay: 86, memo: "弱ワーグ系。DA+10%", double_attack: 0.1}
+    , {name: "アルサインクロー+3No.2744", lv: 95, d: 33, delay: 86, memo: "弱ワーグ系。DA+10%", double_attack: 0.1}
+    , {name: "ウルサ・マヨルNo.3205", lv: 99, d: 31, delay: 140, memo: "強ワーグ系。時々2回攻撃。複数回攻撃発動率43.75%と仮定。", occ_p: 0.4375, occ_n: 2}
+    , {name: "ウルサ・マヨルNo.3206", lv: 99, d: 2, delay: 140, memo: "弱ワーグ系。時々2-4回攻撃。複数回攻撃発動割合4:3:2:1と仮定。", occ_p: 0.4375, occ_n: 3}
+    , {name: "ウルサ・マヨルNo.3207", lv: 99, d: 34, delay: 86, memo: "弱ワーグ系。DA+11%", double_attack: 0.11}
+    , {name: "タイパンファング", lv: 80, d: 22, delay: 61}
+    , {name: "タイパンファング+1", lv: 85, d: 26, delay: 61}
+    , {name: "タイパンファング+2", lv: 90, d: 29, delay: 61}
+    , {name: "タイパンファング+3", lv: 95, d: 32, delay: 61}
+    , {name: "オキシュラニ", lv: 99, d: 34, delay: 61}
+    , {name: "バラクーダ", lv: 80, d: 14, delay: 60}
+    , {name: "バラクーダNo.1198", lv: 80, d: 22, delay: 60}
+    , {name: "バラクーダNo.1199", lv: 80, d: 20, delay: 60}
+    , {name: "バラクーダ+1", lv: 85, d: 23, delay: 60}
+    , {name: "バラクーダ+2No.2336/2338", lv: 90, d: 26, delay: 60}
+    , {name: "バラクーダ+2No.2337", lv: 90, d: 23, delay: 60}
+    , {name: "バラクーダ+3No.2769/2771", lv: 95, d: 27, delay: 60}
+    , {name: "バラクーダ+3No.2770", lv: 95, d: 24, delay: 60}
+    , {name: "スフィラNo.3232/3234", lv: 99, d: 29, delay: 60}
+    , {name: "スフィラNo.3233", lv: 99, d: 26, delay: 60}
+    , {name: "マグヌスサインティ", lv: 82, d: 10, delay: 51, memo: "マグヌスストーン装備時、時々2倍撃。発動率50%と仮定。", vulture: 0.5}
+    , {name: "ヘフォンナックル", lv: 85, d: 30, delay: 86}
+    , {name: "トウリンセスタス", lv: 89, d: 28, delay: 48}
+    , {name: "フュアロセスタス", lv: 90, d: 22, delay: 30}
+    , {name: "アイラバグナウ", lv: 87, d: 23, delay: 60}
+    , {name: "アイラバグナウ+1", lv: 87, d: 24, delay: 57}
+    , {name: "メタソーマカタール", lv: 88, d: 30, delay: 84}
+    , {name: "グロテスクセスタス", lv: 92, d: 20, delay: 0}
+    , {name: "マラスバグナウ", lv: 97, d: 27, delay: 60}
+    , {name: "シヴァジバグナウ", lv: 97, d: 28, delay: 57}
+    , {name: "ブローニアダーガ", lv: 99, d: 35, delay: 54}
+    , {name: "シャラフィスト", lv: 99, d: 34, delay: 60}
+    , {name: "ギルル", lv: 99, d: 35, delay: 51}
+    , {name: "ブルートクラレン", lv: 99, d: 42, delay: 96}
+    , {name: "ブルートクラウエン", lv: 99, d: 43, delay: 91}
+    , {name: "アクワサインティ", lv: 99, d: 35, delay: 51}
+    , {name: "アクワサインティ+1", lv: 99, d: 36, delay: 49}
+    , {name: "ヴインヒトセスタス", lv: 99, d: 32, delay: 48}
+    , {name: "ヴインヒトセスタス（レイヴ中）", lv: 99, d: 39, delay: 48}
+    , {name: "トラロポアラニ", lv: 99, d: 74, delay: 96}
+    , {name: "ニンザ", lv: 99, d: 38, delay: 51}
 ];
 
 // D/間隔（手）
