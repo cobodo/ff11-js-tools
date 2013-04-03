@@ -1,0 +1,61 @@
+h1 {
+    text-align: center;
+    font-size: x-large;
+}
+p {
+    text-align: center;
+}
+#howto p {
+    text-align: left;
+}
+span.debug {
+    display: none;
+    /* display: inline; */
+}
+textarea {
+    width: 100%;
+}
+.sheet {
+    width: 95%;
+    margin: auto;
+    border: solid 2px #8aa;
+    padding: 1ex;
+    display: none;
+}
+input.txt {
+    width: 8ex;
+    text-align: right;
+}
+td, th {
+    border: solid 1px #333;
+}
+table thead td {
+    border: solid 1px #338;
+    background: #FFB;
+    text-align: center;
+}
+table td.number {
+    text-align: right;
+    font-family: monospace;
+}
+table#status_t {
+    width: 100%;
+}
+table#status_t tbody th {
+    background: #BFB;
+    width: 12%;
+}
+table#status_t tbody td.number {
+    width: 15%;
+}
+table#status_t tfoot th {
+    background: #FBB;
+}
+table#weapon tbody td {
+    text-align: right;
+    font-family: monospace;
+}
+table#weapon td.memo {
+    text-align: left;
+}
+

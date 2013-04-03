@@ -4,67 +4,8 @@
 <meta charset="utf-8">
 <title>モンク用 D/間隔 計算表(jQuery ver.)</title>
 <link rel="stylesheet" href="tablesorter_theme/blue/style.css" media="screen">
+<link rel="stylesheet" href="dps.css" type="text/css" media="screen">
 <style type="text/css">
-h1 {
-    text-align: center;
-    font-size: x-large;
-}
-p {
-    text-align: center;
-}
-#howto p {
-    text-align: left;
-}
-span.debug {
-    display: none;
-    /* display: inline; */
-}
-textarea {
-    width: 100%;
-}
-.sheet {
-    width: 95%;
-    margin: auto;
-    border: solid 2px #8aa;
-    padding: 1ex;
-    display: none;
-}
-input.txt {
-    width: 8ex;
-    text-align: right;
-}
-td, th {
-    border: solid 1px #333;
-}
-table thead td {
-    border: solid 1px #338;
-    background: #FFB;
-    text-align: center;
-}
-table td.number {
-    text-align: right;
-    font-family: monospace;
-}
-table#status_t {
-    width: 100%;
-}
-table#status_t tbody th {
-    background: #BFB;
-    width: 12%;
-}
-table#status_t tbody td.number {
-    width: 15%;
-}
-table#status_t tfoot th {
-    background: #FBB;
-}
-table#weapon tbody td {
-    text-align: right;
-    font-family: monospace;
-}
-table#weapon td.memo {
-    text-align: left;
-}
 table#weapon tr#hand th, table#weapon tr#hand td {
     background: #BFF;
 }
@@ -364,82 +305,82 @@ table#weapon tr#hand th, table#weapon tr#hand td {
 </div>
 
 <div class="sheet" id="howto">
-<h2>使い方</h2>
-<h3>概要</h3>
-上のボタンを押すと各画面に切り替わる。
-<h3>「使い方」</h3>
-ここ。
-<h3>「ステータス」</h3>
-<p>基本画面。</p>
-<ol>
-<li>自分のステータス・装備の性能を入力する</li>
-<li>下の方にD/間隔(固定ダメージ*手数/間隔)が表示される。</li>
-<li>各入力欄の値を変えると、連動して結果の値も変わる。</li>
-</ol>
-<h3>「武器」</h3>
-<p>「ステータス」で入力したステータスを元に各武器の固定ダメージ/間隔を算出した一覧が表示される。</p>
-<ul>
-<li>「ステータス」で入力したレベル以下のもののみ表示。</li>
-<li>項目名をクリックするごとに、その項目で昇順/降順のソート。</li>
-<li>「素手」は武器を装備しない状態。</li>
-<li>備考に文が書いてある武器は、そのように計算されている。詳細は注意事項欄で。</li>
-</ul>
-<h3>「注意事項等」</h3>
-<p>参考にした情報や、適当に決めてある内容など。</p>
+    <h2>使い方</h2>
+    <h3>概要</h3>
+    上のボタンを押すと各画面に切り替わる。
+    <h3>「使い方」</h3>
+    ここ。
+    <h3>「ステータス」</h3>
+    <p>基本画面。</p>
+    <ol>
+        <li>自分のステータス・装備の性能を入力する</li>
+        <li>下の方にD/間隔(固定ダメージ*手数/間隔)が表示される。</li>
+        <li>各入力欄の値を変えると、連動して結果の値も変わる。</li>
+    </ol>
+    <h3>「武器」</h3>
+    <p>「ステータス」で入力したステータスを元に各武器の固定ダメージ/間隔を算出した一覧が表示される。</p>
+    <ul>
+        <li>「ステータス」で入力したレベル以下のもののみ表示。</li>
+        <li>項目名をクリックするごとに、その項目で昇順/降順のソート。</li>
+        <li>「素手」は武器を装備しない状態。</li>
+        <li>備考に文が書いてある武器は、そのように計算されている。詳細は注意事項欄で。</li>
+    </ul>
+    <h3>「注意事項等」</h3>
+    <p>参考にした情報や、適当に決めてある内容など。</p>
 </div>
 
 <table class="tablesorter sheet" id="weapon">
-<thead>
-<tr><th class="case">名前</th><th class="num">Lv</th><th class="num">D+</th><th class="num">隔+</th><th class="num">WR</th><th class="num">下限D</th><th class="num">中央D</th><th class="num">上限D</th><th class="num">間隔</th><th class="num">間隔+ﾍｲｽﾄ</th><th class="num">D/間隔（下限）</th><th class="num">D/間隔（中央）</th><th class="num">D/間隔（上限）</th><th>備考</th></tr>
-</thead>
-<tbody id="weapon_list">
-<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-</tbody>
+    <thead>
+        <tr><th class="case">名前</th><th class="num">Lv</th><th class="num">D+</th><th class="num">隔+</th><th class="num">WR</th><th class="num">下限D</th><th class="num">中央D</th><th class="num">上限D</th><th class="num">間隔</th><th class="num">間隔+ﾍｲｽﾄ</th><th class="num">D/間隔（下限）</th><th class="num">D/間隔（中央）</th><th class="num">D/間隔（上限）</th><th>備考</th></tr>
+    </thead>
+    <tbody id="weapon_list">
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
 </table>
 
 <div class="sheet" id="caution">
-<h2>注意事項等</h2>
-<ul>
-<li>ここでのD/間隔は、「固定ダメージ*手数/間隔」です。SV関数の値は上限と下限、平均値の切り下げを表示しています。
-<ul>
-<li>この表はあくまでも通常攻撃を見積もるもので、WSダメージ等を含んだ総合的な与ダメまで計ることはできません。</li>
-</ul>
-</li>
-<li>ずいぶん前に原型を作った自作Excelシートから移植したので、古い情報を元にしている可能性があります。</li>
-<li>ヘイストの1024分率での値は <a href="http://wikiwiki.jp/ff11sig/?%A5%D8%A5%A4%A5%B9%A5%C8">ヘイスト - 計り知れない仕様@FF11 Wiki*</a> を参考にしました。</li>
-<li>SV関数の値は<a href="http://www32.atwiki.jp/studiogobli/pages/13.html">Studio Gobli</a> <a href="http://www.geocities.co.jp/Playtown-Part/6371/def.html">SV表</a>より。</li>
-<li>D/間隔では、隔60＝1秒であることから、最終的な値を60倍して表示しています。他サイトの値と比較を行なう場合には注意してください。
-<ul>
-<li>こんなクソ細かい計算してるサイトはあんまりないと思いますけど。</li>
-</ul>
-</li>
-<li>武器欄で備考に何か書いてある場合はそれを考慮した計算になっています。</li>
-<li>WSまでの平均ターン数、平均WS間隔等の正確な算出は<a href="http://dl.dropbox.com/u/186647/ff/wsdelay.html">WSターン数シミュレータ</a>でどうぞ。</li>
-<li>以下の事柄には根拠がありません。何か知っている方は<a href="http://d.hatena.ne.jp/galka6b/">ご連絡</a>いただけると反映されます。
-<ul>
-<li>蹴撃の武器ランクは常に0</li>
-<li><del>猫足中の武器ランクは常に2</del> <ins>検証スレによれば常に0</ins></li>
-<li>間隔値は常に整数で処理される（小数点以下は切り上げられる）</li>
-<li>猫足中の間隔はどのレベルでも480</li>
-<li>フェイスバグナウの追加攻撃発動率は50%</li>
-<li>スファライの3倍撃発動率は左手のみのうち更に5%</li>
-<li>グランツファウストのTP300%アフターマス中の追加攻撃発生率は左手のみ50%</li>
-<li>ウルスラグナのアフターマス中の2倍撃は、左手・右手・DA・TAに乗り、蹴撃に乗らない。</li>
-<li>ヘイストキャップは1024分率では800/1024</li>
-<li>時々2回/2-3回攻撃発動率は43.75%、DA判定失敗後に判定</li>
-</ul>
-</li>
-<li>その他計算の詳細については<a href="http://d.hatena.ne.jp/galka6b/20101222/1293013647">格闘「修正D/間隔」計算の仕方 - cobodoのFF日記</a>を参照のこと。</li>
-</ul>
+    <h2>注意事項等</h2>
+    <ul>
+        <li>ここでのD/間隔は、「固定ダメージ*手数/間隔」です。SV関数の値は上限と下限、平均値の切り下げを表示しています。
+        <ul>
+            <li>この表はあくまでも通常攻撃を見積もるもので、WSダメージ等を含んだ総合的な与ダメまで計ることはできません。</li>
+        </ul>
+        </li>
+        <li>ずいぶん前に原型を作った自作Excelシートから移植したので、古い情報を元にしている可能性があります。</li>
+        <li>ヘイストの1024分率での値は <a href="http://wikiwiki.jp/ff11sig/?%A5%D8%A5%A4%A5%B9%A5%C8">ヘイスト - 計り知れない仕様@FF11 Wiki*</a> を参考にしました。</li>
+        <li>SV関数の値は<a href="http://www32.atwiki.jp/studiogobli/pages/13.html">Studio Gobli</a> <a href="http://www.geocities.co.jp/Playtown-Part/6371/def.html">SV表</a>より。</li>
+        <li>D/間隔では、隔60＝1秒であることから、最終的な値を60倍して表示しています。他サイトの値と比較を行なう場合には注意してください。
+        <ul>
+            <li>こんなクソ細かい計算してるサイトはあんまりないと思いますけど。</li>
+        </ul>
+        </li>
+        <li>武器欄で備考に何か書いてある場合はそれを考慮した計算になっています。</li>
+        <li>WSまでの平均ターン数、平均WS間隔等の正確な算出は<a href="http://dl.dropbox.com/u/186647/ff/wsdelay.html">WSターン数シミュレータ</a>でどうぞ。</li>
+        <li>以下の事柄には根拠がありません。何か知っている方は<a href="http://d.hatena.ne.jp/galka6b/">ご連絡</a>いただけると反映されます。
+        <ul>
+            <li>蹴撃の武器ランクは常に0</li>
+            <li><del>猫足中の武器ランクは常に2</del> <ins>検証スレによれば常に0</ins></li>
+            <li>間隔値は常に整数で処理される（小数点以下は切り上げられる）</li>
+            <li>猫足中の間隔はどのレベルでも480</li>
+            <li>フェイスバグナウの追加攻撃発動率は50%</li>
+            <li>スファライの3倍撃発動率は左手のみのうち更に5%</li>
+            <li>グランツファウストのTP300%アフターマス中の追加攻撃発生率は左手のみ50%</li>
+            <li>ウルスラグナのアフターマス中の2倍撃は、左手・右手・DA・TAに乗り、蹴撃に乗らない。</li>
+            <li>ヘイストキャップは1024分率では800/1024</li>
+            <li>時々2回/2-3回攻撃発動率は43.75%、DA判定失敗後に判定</li>
+        </ul>
+        </li>
+        <li>その他計算の詳細については<a href="http://d.hatena.ne.jp/galka6b/20101222/1293013647">格闘「修正D/間隔」計算の仕方 - cobodoのFF日記</a>を参照のこと。</li>
+    </ul>
 </div>
 
-<script src="http://www.google.com/jsapi"></script>
-<script>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
 google.load("jquery", "1");
 </script>
-<script src="jquery.tablesorter.min.js"></script>
-<script src="dps.js"></script>
-<script>
+<script src="jquery.tablesorter.min.js" type="text/javascript"></script>
+<script src="dps.js" type="text/javascript"></script>
+<script type="text/javascript">
 function getv (id) { return $('#'+id).val(); }
 function setv (id, val) { return $('#'+id).text(val); }
 function ischecked (id) { return $('#'+id).prop('checked'); }
