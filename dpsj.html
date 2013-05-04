@@ -3,11 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>モンク用 D/間隔 計算表(jQuery ver.)</title>
-    <link rel="stylesheet" href="tablesorter_theme/blue/style.css" media="screen">
+    <link rel="stylesheet" href="jquery-ui-1.10.2/themes/base/jquery-ui.css" media="screen">
+    <link rel="stylesheet" href="jquery-ui-1.10.2/themes/base/jquery.ui.all.css" media="screen">
+    <link rel="stylesheet" href="jquery-ui-1.10.2/themes/" media="screen">
+    <link rel="stylesheet" href="jqGrid/css/ui.jqgrid.css" media="screen">
     <link rel="stylesheet" href="dps.css" type="text/css" media="screen">
     <style type="text/css">
-      table#weapon tr#hand th, table#weapon tr#hand td {
-        background: #BFF;
+      table#weapon {
+        width: 95%;
       }
     </style>
     <script type="text/javascript">
@@ -327,13 +330,7 @@
       <p>参考にした情報や、適当に決めてある内容など。</p>
     </div>
 
-    <table class="tablesorter sheet" id="weapon">
-      <thead>
-        <tr><th class="case">名前</th><th class="num">Lv</th><th class="num">D+</th><th class="num">隔+</th><th class="num">WR</th><th class="num">下限D</th><th class="num">中央D</th><th class="num">上限D</th><th class="num">間隔</th><th class="num">間隔+ﾍｲｽﾄ</th><th class="num">D/間隔（下限）</th><th class="num">D/間隔（中央）</th><th class="num">D/間隔（上限）</th><th>備考</th></tr>
-      </thead>
-      <tbody id="weapon_list">
-        <tr style="display: none;"><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-      </tbody>
+    <table class="sheet" id="weapon">
     </table>
 
     <div class="sheet" id="caution">
@@ -376,7 +373,10 @@
     <script type="text/javascript">
       google.load("jquery", "1");
     </script>
-    <script src="jquery.tablesorter.min.js" type="text/javascript"></script>
+    <script src="jquery-ui-1.10.2/ui/jquery-ui.js" type="text/javascript"></script>
+    <script src="jquery-ui-1.10.2/ui/i18n/jquery-ui-i18n.js" type="text/javascript"></script>
+    <script src="jquery-ui-1.10.2/ui/jquery.ui.sortable.js" type="text/javascript"></script>
+    <script src="jqGrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>
     <script src="dps.js" type="text/javascript"></script>
     <script type="text/javascript">
       function getv (id) { return $('#'+id).val(); }
@@ -387,13 +387,14 @@
 
       function weapon_draw () {
         weapon_calc(mystatus);
+        $('#weapon').clearGridData();
+        $('#weapon')[0].addJSONData(weapon_list);
+        return;
         var wl = $('#weapon_list');
-        $('#weapon_list').html('');
-        var tr = $("<tr></tr>");
-        var tr1;
+        wl.html('');
         for (var i=0; i<weapon_list.length; i++) {
           if (mystatus.lv < weapon_list[i].lv) continue;
-          tr1 = tr.clone(false);
+          var tr1 = $('<tr></tr>');
           if (i==0) {
             tr1.attr('id', 'hand');
           }
@@ -410,12 +411,10 @@
 
           wl.append(tr1);
         }
-        $('#weapon').trigger('update');
-        $('#weapon').trigger('sorton', [[[11,1]]]);
       }
 
       var tab_switcher = (function (cur) {
-        $('#'+cur).css("display", "block");
+        $('#'+cur).show();
         return function (id) {
           if (id == cur) return;
           $('#'+cur).fadeOut(0);
@@ -426,18 +425,24 @@
       })('status');
 
       function init () {
-        $('input[type="text"]').click(calc).keyup(calc);
-        $('input[type="checkbox"]').click(calc).keyup(calc);
+        $('input[type="text"],input[type="checkbox"]').click(calc).keyup(calc);
         calc();
 
         // 表示関連
         var tab_ids = ["status", "weapon", "caution", "howto"];
         tab_ids.map(function (t) {
           var tabid = '#b_' + t;
-          $(tabid).click(function () {
-            if (t=="weapon") weapon_draw();
-            tab_switcher(t);
-          });
+          if (t=='weapon') {
+            $(tabid).on('click', function () {
+              weapon_draw();
+              tab_switcher(t);
+            });
+          }
+          else {
+            $(tabid).on('click', function () {
+              tab_switcher(t);
+            });
+          }
         });
 
         var info_ids = ["input_special", "info_D", "info_delay", "info_kick", "info_tp"];
@@ -454,7 +459,30 @@
           $('#'+t).fadeOut(0);
         });
 
-        $('#weapon').tablesorter({sortList: [[11,1]]});
+        $('#weapon').jqGrid({
+          colNames:['名前', 'Lv', 'D+', '隔+', 'WR', '下限D', '中央D', '上限D', '間隔', '間隔+ヘイスト', 'D/間隔（下限）', 'D/間隔（中央）', 'D/間隔（上限）', '備考'],
+          colModel:[
+            {name: 'name', index:'name', align:'center'},
+            {name: 'lv', index:'lv', align:'center'},
+            {name: 'd', index:'d', align:'center'},
+            {name: 'delay', index:'delay', align:'center'},
+            {name: 'weapon_rank', index:'weapon_rank', align:'center'},
+            {name: 'sv_bot', index:'sv_bot', align:'center'},
+            {name: 'sv_mid', index:'sv_mid', align:'center'},
+            {name: 'sv_top', index:'sv_top', align:'center'},
+            {name: 'total_delay', index:'total_delay', align:'center'},
+            {name: 'haste_delay', index:'haste_delay', align:'center'},
+            {name: 'dps_bot', index:'dps_bot', align:'center'},
+            {name: 'dps_mid', index:'dps_mid', align:'center'},
+            {name: 'dps_top', index:'dps_top', align:'center'},
+            {name: 'memo', index:'memo', align:'center'},
+          ],
+          rowNum: weapon_list.length,
+          sortname: 'dps_mid',
+          sortorder: 'desc',
+          sortable: true,
+          width: 1800
+        });
       }
 
       $(document).ready(init);
