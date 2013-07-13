@@ -315,6 +315,8 @@ var weapon_list = [
     , {name: "ニンザ", lv: 99, d: 38, delay: 51}
     , {name: "リゴアバグナウ", lv: 99, d: 101, delay: 60}
     , {name: "オアティフール", lv: 99, d: 146, delay: 96}
+    , {name: "フォフロンセスタス", lv: 99, d: 56, delay: 60}
+    , {name: "フォフロンセスタス（レイヴ）", lv: 99, d: 70, delay: 60}
 ];
 
 // D/間隔（手）
