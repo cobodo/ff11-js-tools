@@ -311,12 +311,13 @@ var weapon_list = [
     , {name: "アクワサインティ+1", lv: 99, d: 36, delay: 49}
     , {name: "ヴインヒトセスタス", lv: 99, d: 32, delay: 48}
     , {name: "ヴインヒトセスタス（レイヴ中）", lv: 99, d: 39, delay: 48}
-    , {name: "トラロポアラニ", lv: 99, d: 74, delay: 96}
-    , {name: "ニンザ", lv: 99, d: 38, delay: 51}
-    , {name: "リゴアバグナウ", lv: 99, d: 101, delay: 60}
-    , {name: "オアティフール", lv: 99, d: 146, delay: 96}
-    , {name: "フォフロンセスタス", lv: 99, d: 56, delay: 60}
-    , {name: "フォフロンセスタス（レイヴ）", lv: 99, d: 70, delay: 60}
+    , {name: "トラロポアラニ", lv: 99, d: 74, delay: 96, skill: 63, memo: "格闘スキル+63"}
+    , {name: "ニンザ", lv: 99, d: 28, delay: 51, skill: 54, memo: "格闘スキル+54"}
+    , {name: "ニンザ+1", lv: 99, d: 85, delay: 51, skill: 162, memo: "格闘スキル+162"}
+    , {name: "リゴアバグナウ", lv: 99, d: 90, delay: 60, skill: 162, memo: "格闘スキル+162"}
+    , {name: "オアティフール", lv: 99, d: 126, delay: 96, skill: 228, memo: "格闘スキル+228"}
+    , {name: "フォフロンセスタス", lv: 99, d: 52, delay: 60, skill: 63, memo: "格闘スキル+63"}
+    , {name: "フォフロンセスタス（レイヴ）", lv: 99, d: 66, delay: 60, skill: 63, memo: "格闘スキル+63"}
 ];
 
 // D/間隔（手）
@@ -417,14 +418,16 @@ function weapon_calc (mystatus) {
             w.haste_delay = Math.ceil(w.total_delay * (1024 - mystatus['haste_all']) / 1024.0);
             th = [0.0, 0.0, 0.0];
             tk = calc_dps_f(st, [w.sv_bot, w.sv_mid, w.sv_top], w.haste_delay);
-        } else {
+        }
+        else {
             w.weapon_rank = Math.floor((w.d+3)/9);
 
             var sv_top = 8 + w.weapon_rank;
-            w.sv_top = mystatus['hand_d'] + w.d + sv_top;
+            var hand_d = calc_hand_d(mystatus['skill'] + (w.skill ? w.skill : 0));
+            w.sv_top = hand_d + w.d + sv_top;
 
             var sv_bot = Math.min(-w.weapon_rank, -2);
-            w.sv_bot = mystatus['hand_d'] + w.d + sv_bot;
+            w.sv_bot = hand_d + w.d + sv_bot;
 
             w.sv_mid = Math.floor((w.sv_top + w.sv_bot)/2);
 
@@ -537,6 +540,10 @@ function get_inputs (mystatus) {
     if (mystatus['crit_n'].toString() == "NaN") mystatus['crit_n'] = 2.0;
 }
 
+function calc_hand_d (skill) {
+    return 3 + Math.floor(skill * 0.11);
+}
+
 function set_status (mystatus) {
     // 総合ヘイスト
     mystatus['haste_all'] = mystatus['haste_eq'] + mystatus['haste_magic'] + mystatus['haste_samba'];
@@ -566,7 +573,7 @@ function set_status (mystatus) {
     setv('t_skill', mystatus['skill']);
 
     // 素手D
-    mystatus['hand_d'] = 3 + Math.floor(mystatus['skill'] * 0.11);
+    mystatus['hand_d'] = calc_hand_d(mystatus['skill']);
     setv('t_hand_d', mystatus['hand_d']);
 
     // 武器ランク
