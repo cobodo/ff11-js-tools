@@ -226,11 +226,11 @@ var weapon_list = [
     , {name: "マノプル", lv: 74, d: 20, delay: 122}
     , {name: "オベロンナックル", lv: 75, d: 18, delay: 96}
     , {name: "スファライ", lv: 75, d: 23, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05}
-    , {name: "スファライ（最終）", lv: 99, d: 52, delay: 86, memo: "初撃のみ3倍撃5%と仮定", three_times: 0.05}
+    , {name: "スファライ（最終）", lv: 99, d: 116, delay: 86, skill: 242, memo: "初撃のみ3倍撃5%と仮定。格闘スキル+242。", three_times: 0.05}
     , {name: "カエストス", lv: 75, d: 23, delay: 96}
     , {name: "カイザーナックル", lv: 75, d: 20, delay: 86}
     , {name: "グランツファウスト", lv: 75, d: 20, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5}
-    , {name: "グランツファウスト（最終）", lv: 99, d: 51, delay: 96, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定", multi_p: 0.5}
+    , {name: "グランツファウスト（最終）", lv: 99, d: 115, delay: 96, skill: 242, memo: "常時アフターマス・初撃のみ2回攻撃発動率50%と仮定。格闘スキル+242。", multi_p: 0.5}
     , {name: "ケーニヒスナックル", lv: 75, d: 19, delay: 96}
     , {name: "デュナミスナックル", lv: 75, d: 16, delay: 96}
     , {name: "バーニンナックル", lv: 75, d: 16, delay: 96}
@@ -256,7 +256,7 @@ var weapon_list = [
     , {name: "ウルスラグナ", lv: 80, d: 27, delay: 51}
     , {name: "ウルスラグナNo.1909", lv: 85, d: 32, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
     , {name: "ウルスラグナNo.2307", lv: 90, d: 35, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
-    , {name: "ウルスラグナ（最終）", lv: 99, d: 42, delay: 51, memo: "常時アフターマス・2倍撃発動率20%と仮定。", two_times: 0.2}
+    , {name: "ウルスラグナ（最終）", lv: 99, d: 96, delay: 51, skill: 242, memo: "常時アフターマス・2倍撃発動率20%と仮定。格闘スキル+242", two_times: 0.2}
     , {name: "レバナントフィスト", lv: 80, d: 23, delay: 55}
     , {name: "Rフィスト+1", lv: 85, d: 28, delay: 55}
     , {name: "Rフィスト+2", lv: 90, d: 31, delay: 55}
@@ -318,6 +318,12 @@ var weapon_list = [
     , {name: "オアティフール", lv: 99, d: 126, delay: 96, skill: 228, memo: "格闘スキル+228"}
     , {name: "フォフロンセスタス", lv: 99, d: 52, delay: 60, skill: 63, memo: "格闘スキル+63"}
     , {name: "フォフロンセスタス（レイヴ）", lv: 99, d: 66, delay: 60, skill: 63, memo: "格闘スキル+63"}
+    , {name: "デゥムズィ-1", lv: 99, d: 23, delay: 55}
+    , {name: "ピニオンセスタス", lv: 99, d: 52, delay: 0, skill: 102, memo: "格闘スキル+102"}
+    , {name: "カマラデリナックル", lv: 99, d: 74, delay: 84, skill: 102, memo: "格闘スキル+102"}
+    , {name: "マオチノーリ", lv: 99, d: 110, delay: 96, skill: 177, memo: "格闘スキル+177"}
+    , {name: "エミネンバグナウ", lv: 99, d: 87, delay: 51, skill: 203, memo: "格闘スキル+203"}
+    , {name: "エミネンバグナウ（潜在）", lv: 99, d: 91, delay: 51, skill: 203, memo: "格闘スキル+203"}
 ];
 
 // D/間隔（手）
