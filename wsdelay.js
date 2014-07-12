@@ -51,12 +51,12 @@ InputField.prototype = {
 var setting = {
     'inputs': [
         new InputField('N', 'int', 50000), // 試行回数
-        new InputField('target_tp', 'float', 100, false), // 目標TP
+        new InputField('target_tp', 'float', 1000, false), // 目標TP
         new InputField('kick', 'float', 24.5, true), // 蹴撃
         new InputField('regain', 'int', 0), // リゲイン
         new InputField('haste', 'int', 381), // ヘイスト
         new InputField('wstime', 'int', 8), // WS攻撃回数
-        new InputField('conservetp', 'float', 8, true), // コンサーブTP
+        new InputField('conservetp', 'float', 80, true), // コンサーブTP
 
         new InputField('acc', 'float', 95, true), // 通常命中率
         new InputField('wsacc', 'float', 95, true), // WS命中率
@@ -115,8 +115,6 @@ var setting = {
             p.h2h = false;
             e('h2h').checked = false;
         }
-        // 目標TP
-        p.target_tp *= 10;
         // MA効果アップ
         if (!p.h2h || p.footwork) p.ma = 0;
         if (!p.h2h || p.footwork) p.wsma = 0;
@@ -140,8 +138,6 @@ var setting = {
         p.wstp = calc_tp((p.dual || (p.h2h && !p.footwork))? p.wsdelay / 2 : p.wsdelay);
         p.wsgtp1 = Math.floor(p.wstp * (1+p.wsstp));
         p.wsgtp2 = Math.floor(10 * (1+p.wsstp));
-        // リゲイン
-        p.regain *= 10;
         // 与TP
         p.dtp = Math.floor((p.tp+30) * (1-p.moksha) * (1-p.agi));
         p.wsdtp = Math.floor((p.tp+30) * (1-p.wsmoksha) * (1-p.wsagi));
@@ -158,8 +154,6 @@ var setting = {
             p.occ_n_sub = p.occ_n_main;
             p.occ_p_sub = p.occ_p_main;
         }
-        // セーブTP
-        p.savetp *= 10;
     },
     'argset': function (s) {
         var vs;
@@ -188,18 +182,11 @@ var setting = {
     }
 };
 
-var _calc_tp = function (delay, basetp, basedelay, k) {
-    return Math.floor(basetp + (delay - basedelay) * k);
-};
-
 var calc_tp = function (delay) {
-    var ret;
-    if (delay <= 180)      ret = _calc_tp(delay,  50, 180, 15 / 180);
-    else if (delay <= 450) ret = _calc_tp(delay,  50, 180, 65 / 270);
-    else if (delay <= 480) ret = _calc_tp(delay, 115, 450, 15 /  30);
-    else if (delay <= 530) ret = _calc_tp(delay, 130, 480, 15 /  50);
-    else                   ret = _calc_tp(delay, 145, 530, 35 / 470);
-    return ret;
+    if (delay < 180)        return delay * 183 / 1024 + 29;
+    else if (delay < 540)   return (delay - 180) * 88 / 360 + 61;
+    else if (delay < 600)   return (delay - 540) * 3 / 60 + 149;
+    else                    return delay * 19 / 270 + 110;
 };
 
 var get_settings = function (p) {
@@ -576,18 +563,18 @@ var exec = function () {
         s.next();
         ws(p, s);
         var j = autoattack(p, s, attackprocs);
-        csv += i + "," + s.wshit + "," + (s.wstp / 10) + "," + (s.lasttp / 10) + "," + j + "," + (s.cur_tp / 10) + "\n";
+        csv += i + "," + s.wshit + "," + s.wstp + "," + s.lasttp + "," + j + "," + s.cur_tp + "\n";
     }
 
     line = "試行回数" + (p.N) + "回、";
-    line += "通常基礎TP" + (p.tp / 10) + "%、";
-    line += "通常得TP" + (p.gtp / 10) + "%、";
-    line += "通常与TP" + (p.dtp / 10) + "%、";
+    line += "通常基礎TP" + p.tp + "、";
+    line += "通常得TP" + p.gtp + "、";
+    line += "通常与TP" + p.dtp + "、";
     line += "1ターン間隔" + Math.floor(p.total_delay) + "（" + floor2(p.total_delay_s, 1) + "秒）<br>";
-    line += "WS基礎TP" + (p.wstp / 10) + "%、";
-    line += "WS得TP（初段）" + (p.wsgtp1 / 10) + "%、";
-    line += "WS得TP（多段）" + (p.wsgtp2 / 10) + "%、";
-    line += "WS与TP" + (p.wsdtp / 10) + "%<br>";
+    line += "WS基礎TP" + p.wstp + "、";
+    line += "WS得TP（初段）" + p.wsgtp1 + "、";
+    line += "WS得TP（多段）" + p.wsgtp2 + "、";
+    line += "WS与TP" + p.wsdtp + "<br>";
     line += "WS平均ヒット数" + floor2(1.0 * s.sumwshit / p.N, 2);
     line += "、最大ターン数" + s.maxturn;
     line += "、最小ターン数" + s.minturn;
@@ -595,12 +582,12 @@ var exec = function () {
     line += "、平均ターン数" + floor2(aveturn, 2);
     var medturn = makehist(window.document, p.N, s.minturn, s.maxturn, s.turnhist);
     line += "、ターン数中央値" + medturn;
-    line += "、-1%止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
+    line += "、-10止まりは" + s.stop99 + "回(" + floor2(s.stop99 / p.N * 100) + "%)でした。<br>";
     var ave_time_bet_ws = floor2(aveturn * p.total_delay_s + 2 + 2*p.jabeforews, 1);
     line += "平均WS間隔は" + ave_time_bet_ws + "秒、";
     var ave_ws_speed = floor2(1.0 / (aveturn * p.total_delay_s + 2 + 2*p.jabeforews) * 60, 4);
     line += "平均WS速度は" + ave_ws_speed + "回/分、";
-    var ave_dealtp_speed = floor2(s.dealtp * 0.1 / (p.N * (aveturn * p.total_delay_s + 2 + 2*p.jabeforews)) * 60, 1);
+    var ave_dealtp_speed = floor2(s.dealtp / (p.N * (aveturn * p.total_delay_s + 2 + 2*p.jabeforews)) * 60, 1);
     line += "平均与TP速度は" + ave_dealtp_speed + "TP/分です。<br>";
     e('result').innerHTML = line;
     csv = "回数,WSヒット数,WS得TP,直前TP,ターン数,最終TP\n" + csv;
